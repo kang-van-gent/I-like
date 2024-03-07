@@ -1,0 +1,140 @@
+include ../layout/_layout
+
+// Layouts
+section.section.section-lg.bg-gradient-animated.pended-element.novi-background( data-preset!={ title:'Layouts', category:'tab, gallery, thumbnail', reload:true, id:'layouts' } )
+	.container-fluid
+		h1.text-center( data-animate!={ class: 'fadeInUp' } ) Check out other themes
+			| #[br.d-none.d-xs-block]
+			| based on Intense
+		.tab
+			ul.nav.nav-classic.justify-content-center( role='tablist' data-animate!={ class: 'fadeInUp' } )
+				li.nav-item.h4
+					a.nav-link.active( data-bs-toggle='tab', href='#navClassic1-1', role='tab', aria-selected='true' ) Home Pages
+				li.nav-item.h4
+					a.nav-link( data-bs-toggle='tab', href='#navClassic1-2', role='tab', aria-selected='false' ) Skins
+			.tab-content
+				#navClassic1-1.tab-pane.fade.show.active( role='tabpanel' )
+					.row.row-30.row-md-40.row-lg-50.justify-content-center
+						.col-xs-6.col-md-4.col-xl-auto( data-animate!={ class: 'fadeInUp' } )
+							+layout({
+								img:   'layouts/layout-1-336x450',
+								title: 'Home — Default',
+								link:  'index.html'
+							})
+						.col-xs-6.col-md-4.col-xl-auto( data-animate!={ class: 'fadeInUp' } )
+							+layout({
+								img:   'layouts/layout-3-336x450',
+								title: 'Home — Consulting',
+								link:  'home-consulting.html'
+							})
+						.col-xs-6.col-md-4.col-xl-auto( data-animate!={ class: 'fadeInUp' } )
+							+layout({
+								img:   'layouts/layout-2-336x450',
+								title: 'Home — Business',
+								link:  'home-business.html'
+							})
+						.col-xs-6.col-md-4.col-xl-auto( data-animate!={ class: 'fadeInUp' } )
+							+layout({
+								img:   'layouts/layout-5-336x450',
+								title: 'Home — Studio',
+								link: 'home-studio.html'
+							})
+						.col-xs-6.col-md-4.col-xl-auto( data-animate!={ class: 'fadeInUp' } )
+							+layout({
+								img:   'layouts/layout-6-336x450',
+								title: 'Home — App',
+								link:  'home-application.html'
+							})
+						.col-xs-6.col-md-4.col-xl-auto( data-animate!={ class: 'fadeInUp' } )
+							+layout({
+								img:   'layouts/layout-7-336x450',
+								title: 'Home — Event',
+								link:  'home-event.html'
+							})
+						.col-xs-6.col-md-4.col-xl-auto( data-animate!={ class: 'fadeInUp' } )
+							+layout({
+								img:   'layouts/layout-8-336x450',
+								title: 'Home — Blog',
+								link:  'home-blog.html'
+							})
+						.col-xs-6.col-md-4.col-xl-auto( data-animate!={ class: 'fadeInUp' } )
+							+layout({
+								img:   'layouts/layout-9-336x450',
+								title: 'Home — Store',
+								link: 'home-store.html'
+							})
+						.col-xs-6.col-md-4.col-xl-auto( data-animate!={ class: 'fadeInUp' } )
+							+layout({
+								img:   'layouts/layout-10-336x450',
+								title: 'Home — Minimal',
+								link: 'home-minimal.html'
+							})
+						.col-xs-6.col-md-4.col-xl-auto( data-animate!={ class: 'fadeInUp' } )
+							+layout({
+								img:   'layouts/layout-4-336x450',
+								title: 'Home — Portfolio',
+								link: 'home-portfolio.html'
+							})
+
+				#navClassic1-2.tab-pane.fade( role='tabpanel' )
+					.row.row-40.row-md-50.justify-content-center
+						.col-xs-6.col-md-4.col-xl-auto
+							+layout({
+								img:   'layouts/skin-1-336x450',
+								title: 'Seabay',
+								link:  '../seabay/index.html'
+							})
+						.col-xs-6.col-md-4.col-xl-auto
+							+layout({
+								img:   'layouts/skin-2-336x450',
+								title: 'Construction',
+								link:  '../construction/index.html'
+							})
+						.col-xs-6.col-md-4.col-xl-auto
+							+layout({
+								img:   'layouts/skin-3-336x450',
+								title: 'Ingreen',
+								link:  '../ingreen/index.html'
+							})
+						.col-xs-6.col-md-4.col-xl-auto
+							+layout({
+								img:   'layouts/skin-4-336x450',
+								title: 'Coronavirus',
+								link:  '../coronavirus/index.html'
+							})
+						.col-xs-6.col-md-4.col-xl-auto
+							+layout({
+								img:   'layouts/skin-5-336x450',
+								title: 'Charity',
+								link:  '../charity/index.html'
+							})
+						.col-xs-6.col-md-4.col-xl-auto
+							+layout({
+								img:   'layouts/skin-6-336x450',
+								title: 'Startup',
+								link:  '../startup/index.html'
+							})
+						.col-xs-6.col-md-4.col-xl-auto
+							+layout({
+								img:   'layouts/skin-7-336x450',
+								title: 'Event',
+								link:  '../event/index.html'
+							})
+						.col-xs-6.col-md-4.col-xl-auto
+							+layout({
+								img:   'layouts/skin-8-336x450',
+								title: 'Travel Agency',
+								link:  '../travel-agency/index.html'
+							})
+						.col-xs-6.col-md-4.col-xl-auto
+							+layout({
+								img:   'layouts/skin-9-336x450',
+								title: 'SEO',
+								link:  '../seo/index.html'
+							})
+						.col-xs-6.col-md-4.col-xl-auto
+							+layout({
+								img:   'layouts/skin-10-336x450',
+								title: 'Business Consulting',
+								link:  '../business-consulting/index.html'
+							})
