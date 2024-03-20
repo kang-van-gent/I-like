@@ -8,7 +8,12 @@
       <div class="navbar-cell">
         <div class="navbar-panel">
           <button class="navbar-switch int-hamburger novi-icon" data-multi-switch='{"targets":".rd-navbar","scope":".rd-navbar","isolate":"[data-multi-switch]"}'></button>
-          <div class="navbar-logo"><a class="navbar-logo-link" href="index.html"><img class="lazy-img navbar-logo-default" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs%3D" data-src="images/logo-default-114x27.svg" alt="Intense" width="114" height="27"><img class="lazy-img navbar-logo-inverse" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs%3D" data-src="images/logo-inverse-114x27.svg" alt="Intense" width="114" height="27"></a></div>
+          <div class="navbar-logo">
+            <a class="navbar-logo-link" href="/">
+              <img class="lazy-img navbar-logo-default" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs%3D" data-src="images/logo-default-114x27.svg" alt="Intense" width="114" height="27">
+              <img class="lazy-img navbar-logo-inverse" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs%3D" data-src="images/logo-inverse-114x27.svg" alt="Intense" width="114" height="27">
+            </a>
+          </div>
         </div>
       </div>
       <div class="navbar-cell navbar-spacer"></div>
@@ -227,7 +232,7 @@
             <div class="icon-box-icon icon-secondary icon-xl novi-icon fa-diamond"></div>
           </div>
           <div class="blurb-embed"><span class="blurb-number h2 text-secondary">
-              บริการคุณภาพสูง </span></div>
+              คุณภาพสูง </span></div>
         </article>
       </div>
       <div class="col-md-6 ">
@@ -237,7 +242,7 @@
             <div class="icon-box-icon icon-secondary icon-xl novi-icon fa-rocket"></div>
           </div>
           <div class="blurb-embed"><span class="blurb-number h2 text-secondary">
-              ระบบทำงานรวดเร็ว</span></div>
+              ระบบรวดเร็ว</span></div>
         </article>
       </div>
 
@@ -248,7 +253,7 @@
             <div class="icon-box-icon icon-secondary icon-xl novi-icon fa-credit-card-alt"></div>
           </div>
           <div class="blurb-embed"><span class="blurb-number h2 text-secondary">
-              เรทราคาถูกที่สุด</span></div>
+              ราคาถูกที่สุด</span></div>
         </article>
       </div>
       <div class="col-md-6 ">
@@ -258,7 +263,7 @@
             <div class="icon-box-icon icon-secondary icon-xl novi-icon fa-user-plus"></div>
           </div>
           <div class="blurb-embed"><span class="blurb-number h2 text-secondary">
-              พนักงานช่วยเหลือ 24/7</span></div>
+              ช่วยเหลือ 24 ชม.</span></div>
         </article>
       </div>
 

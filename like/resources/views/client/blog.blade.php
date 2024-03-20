@@ -57,14 +57,14 @@
       <div class="col-md-6 col-lg-4">
         <!-- Post hover-->
         <div class="post post-hover post-sm">
-          <div class="post-img-link"><a href="post-with-sidebar.html"><img class="lazy-img" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs%3D" data-src="images/image-09-400x257.jpg" alt="" width="400" height="257"></a>
+          <div class="post-img-link"><a href="/post"><img class="lazy-img" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs%3D" data-src="images/image-09-400x257.jpg" alt="" width="400" height="257"></a>
           </div>
           <div class="post-inner">
-            <h5 class="post-title"><a href="post-with-sidebar.html">Top 10 trends that change modern web design</a></h5>
+            <h5 class="post-title"><a href="/post">Top 10 trends that change modern web design</a></h5>
 
             <div class="post-text">This year may bring us a lot of surprises as standards in web design change and we experience lots of new trends. You can take these trends in and decide if they...</div>
             <div class="post-meta post-meta-between">
-              <div class="post-meta-item"><a class="btn btn-secondary" href="post-with-sidebar.html">อ่านต่อ</a></div>
+              <div class="post-meta-item"><a class="btn btn-secondary" href="/post">อ่านต่อ</a></div>
 
             </div>
           </div>
@@ -73,14 +73,14 @@
       <div class="col-md-6 col-lg-4">
         <!-- Post hover-->
         <div class="post post-hover post-sm">
-          <div class="post-img-link"><a href="post-with-sidebar.html"><img class="lazy-img" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs%3D" data-src="images/image-05-400x257.jpg" alt="" width="400" height="257"></a>
+          <div class="post-img-link"><a href="/post"><img class="lazy-img" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs%3D" data-src="images/image-05-400x257.jpg" alt="" width="400" height="257"></a>
           </div>
           <div class="post-inner">
-            <h5 class="post-title"><a href="post-with-sidebar.html">15 impressive examples of one-page website design</a></h5>
+            <h5 class="post-title"><a href="/post">15 impressive examples of one-page website design</a></h5>
 
             <div class="post-text">Nowadays, designing a landing page is way more difficult. The only challenge you face is getting all the necessary information on a single page. To help...</div>
             <div class="post-meta post-meta-between">
-              <div class="post-meta-item"><a class="btn btn-secondary" href="post-with-sidebar.html">อ่านต่อ</a></div>
+              <div class="post-meta-item"><a class="btn btn-secondary" href="/post">อ่านต่อ</a></div>
 
             </div>
           </div>
@@ -89,14 +89,14 @@
       <div class="col-md-6 col-lg-4">
         <!-- Post hover-->
         <div class="post post-hover post-sm">
-          <div class="post-img-link"><a href="post-with-sidebar.html"><img class="lazy-img" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs%3D" data-src="images/image-08-400x257.jpg" alt="" width="400" height="257"></a>
+          <div class="post-img-link"><a href="/post"><img class="lazy-img" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs%3D" data-src="images/image-08-400x257.jpg" alt="" width="400" height="257"></a>
           </div>
           <div class="post-inner">
-            <h5 class="post-title"><a href="post-with-sidebar.html">Best examples of online portfolio by 10 designers</a></h5>
+            <h5 class="post-title"><a href="/post">Best examples of online portfolio by 10 designers</a></h5>
 
             <div class="post-text">Out of all of the creative people in the world, designers have a very clear vision of what their online portfolio should look like. Their line of work demands a site that...</div>
             <div class="post-meta post-meta-between">
-              <div class="post-meta-item"><a class="btn btn-secondary" href="post-with-sidebar.html">อ่านต่อ</a></div>
+              <div class="post-meta-item"><a class="btn btn-secondary" href="/post">อ่านต่อ</a></div>
 
             </div>
           </div>
@@ -105,14 +105,14 @@
       <div class="col-md-6 col-lg-4">
         <!-- Post hover-->
         <div class="post post-hover post-sm">
-          <div class="post-img-link"><a href="post-with-sidebar.html"><img class="lazy-img" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs%3D" data-src="images/image-06-400x257.jpg" alt="" width="400" height="257"></a>
+          <div class="post-img-link"><a href="/post"><img class="lazy-img" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs%3D" data-src="images/image-06-400x257.jpg" alt="" width="400" height="257"></a>
           </div>
           <div class="post-inner">
-            <h5 class="post-title"><a href="post-with-sidebar.html">5 design tips that will increase your conversions</a></h5>
+            <h5 class="post-title"><a href="/post">5 design tips that will increase your conversions</a></h5>
 
             <div class="post-text">If you want to increase ROI from your website, you can go about it in two ways: increase traffic or increase conversions. It is much easier to increase conversions...</div>
             <div class="post-meta post-meta-between">
-              <div class="post-meta-item"><a class="btn btn-secondary" href="post-with-sidebar.html">อ่านต่อ</a></div>
+              <div class="post-meta-item"><a class="btn btn-secondary" href="/post">อ่านต่อ</a></div>
 
             </div>
           </div>
@@ -121,14 +121,14 @@
       <div class="col-md-6 col-lg-4">
         <!-- Post hover-->
         <div class="post post-hover post-sm">
-          <div class="post-img-link"><a href="post-with-sidebar.html"><img class="lazy-img" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs%3D" data-src="images/image-10-400x257.jpg" alt="" width="400" height="257"></a>
+          <div class="post-img-link"><a href="/post"><img class="lazy-img" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs%3D" data-src="images/image-10-400x257.jpg" alt="" width="400" height="257"></a>
           </div>
           <div class="post-inner">
-            <h5 class="post-title"><a href="post-with-sidebar.html">Different sides of the dark user interface in web design</a></h5>
+            <h5 class="post-title"><a href="/post">Different sides of the dark user interface in web design</a></h5>
 
             <div class="post-text">Dark design is and always will be a trend. The level of darkness will always vary, but basically, it’s really hard to screw up a simple, dark design. This is especially...</div>
             <div class="post-meta post-meta-between">
-              <div class="post-meta-item"><a class="btn btn-secondary" href="post-with-sidebar.html">อ่านต่อ</a></div>
+              <div class="post-meta-item"><a class="btn btn-secondary" href="/post">อ่านต่อ</a></div>
 
             </div>
           </div>
@@ -137,14 +137,14 @@
       <div class="col-md-6 col-lg-4">
         <!-- Post hover-->
         <div class="post post-hover post-sm">
-          <div class="post-img-link"><a href="post-with-sidebar.html"><img class="lazy-img" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs%3D" data-src="images/image-11-400x257.jpg" alt="" width="400" height="257"></a>
+          <div class="post-img-link"><a href="/post"><img class="lazy-img" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs%3D" data-src="images/image-11-400x257.jpg" alt="" width="400" height="257"></a>
           </div>
           <div class="post-inner">
-            <h5 class="post-title"><a href="post-with-sidebar.html">Designing accessible color systems</a></h5>
+            <h5 class="post-title"><a href="/post">Designing accessible color systems</a></h5>
 
             <div class="post-text">Our team of developers and designers constantly explores ways of refining the color palette to make it more accessible and legible for users across all products...</div>
             <div class="post-meta post-meta-between">
-              <div class="post-meta-item"><a class="btn btn-secondary" href="post-with-sidebar.html">อ่านต่อ</a></div>
+              <div class="post-meta-item"><a class="btn btn-secondary" href="/post">อ่านต่อ</a></div>
 
             </div>
           </div>

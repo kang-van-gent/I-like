@@ -31,6 +31,36 @@
             </div>
             <div class="form-group">
               <div class="input-group"><span class="input-group-text int-user novi-icon"></span>
+                <input class="form-control" type="number" name="name" placeholder="อายุ">
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="select-wrap">
+                <select class="select2-original" id="simple-select1" name="country" data-select2-options='{"placeholder":"อาชีพ"}'>
+                  <option label="placeholder"></option>
+                  <option>USA</option>
+                  <option>UK</option>
+                  <option>Ukraine</option>
+                  <option>Australia</option>
+                  <option>Korea</option>
+                  <option>Japan</option>
+                  <option>Germany</option>
+                  <option>Belarus</option>
+                  <option>Poland</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="select-wrap">
+                <select class="select2-original" id="simple-select2" name="country" data-select2-options='{"placeholder":"เพศ"}'>
+                  <option label="placeholder"></option>
+                  <option>ชาย</option>
+                  <option>หญิง</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="input-group"><span class="input-group-text int-user novi-icon"></span>
                 <input class="form-control input-password password-register-1" type="text" name="password" placeholder="รหัสผ่าน"><span class="input-group-text input-group-text-nodivider input-password-icon" data-multi-switch='{"targets":".password-register-1"}'></span>
               </div>
             </div>

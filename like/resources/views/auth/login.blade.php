@@ -8,7 +8,8 @@
         <article class="accent-box">
           <h4 class="accent-box-title text-center">เข้าสู่ระบบ</h4>
           <p class="accent-box-text text-center">ใส่ข้อมูลยืนยันตัวตน</p>
-          <form class="accent-box-form rd-mailform">
+          <form class="accent-box-form rd-mailform" method="POST" action="/profile">
+            @csrf
             <div class="form-group">
               <div class="input-group"><span class="input-group-text int-user novi-icon"></span>
                 <input class="form-control" type="text" name="login" placeholder="ชื่อผู้ใช้">
@@ -28,6 +29,7 @@
                 <u class="fw-medium"><a class="link-inherit" href="register.html">สมัครสมาชิก</a></u>
               </div>
             </div>
+            <input type="hidden" name="_token" value="{{ csrf_token() }}" />
           </form>
         </article>
       </div>
