@@ -6,10 +6,13 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Link Thimbnail -->
     <meta property="og:title" content="ARSD-SOCIAL">
     <meta property="og:description" content="Official Wecsite ของผู้ให้บริการการเพิ่มผู้ติดตามและการเพิ่มไลค์ระดับประเทศ">
     <meta property="og:image" content="/images/banners/banner-01-620x360.png">
-    <meta property="og:url" content="https://www.templatemonster.com/intense-multipurpose-html-template.html">
+    <meta property="og:url" content="https://gainlike-service.com/">
+
     <link rel="preload" href="/components/base/base.css" as="style">
     <link rel="preload" href="/components/base/core.js" as="script">
     <link rel="preload" href="/components/base/script.js" as="script">
