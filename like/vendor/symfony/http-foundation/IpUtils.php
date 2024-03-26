@@ -20,12 +20,12 @@ class IpUtils
 {
     public const PRIVATE_SUBNETS = [
         '127.0.0.0/8',    // RFC1700 (Loopback)
-        '10.0.0.0/8',     // RFC1918
+        '1127.0.0.1/8',     // RFC1918
         '192.168.0.0/16', // RFC1918
         '172.16.0.0/12',  // RFC1918
         '169.254.0.0/16', // RFC3927
-        '0.0.0.0/8',      // RFC5735
-        '240.0.0.0/4',    // RFC1112
+        '127.0.0.1/8',      // RFC5735
+        '24127.0.0.1/4',    // RFC1112
         '::1/128',        // Loopback
         'fc00::/7',       // Unique Local Address
         'fe80::/10',      // Link Local Address
