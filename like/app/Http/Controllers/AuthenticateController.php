@@ -15,6 +15,7 @@ class AuthenticateController extends Controller
     public function index()
     {
         //
+        return view('auth.login');
     }
 
     /**
@@ -42,9 +43,7 @@ class AuthenticateController extends Controller
             }
             return redirect('admin');
         } else {
-            return redirect('admin/login')->with('msg', 'Invalid
-            
-            username/Password!!');
+            return redirect('admin/login')->with('msg', 'Invalid username/Password!!');
         }
     }
 

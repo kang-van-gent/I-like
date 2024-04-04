@@ -17,9 +17,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('client.index');
 });
-Route::get('/login', function () {
-    return view('auth.login');
-});
 Route::get('/register', function () {
     return view('auth.register');
 });
@@ -37,7 +34,7 @@ Route::get('/post', function () {
 });
 
 // Authentication Controller
-Route::get('/login', [AuthenticateController::class, 'login']);
+Route::get('/login', [AuthenticateController::class, 'index']);
 
 // Client after login
 Route::get('/dashboard', function () {
