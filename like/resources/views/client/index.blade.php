@@ -8,10 +8,9 @@
       <div class="navbar-cell">
         <div class="navbar-panel">
           <button class="navbar-switch int-hamburger novi-icon" data-multi-switch='{"targets":".rd-navbar","scope":".rd-navbar","isolate":"[data-multi-switch]"}'></button>
-          <div class="navbar-logo">
-            <a class="navbar-logo-link" href="/">
-              <img class="lazy-img navbar-logo-default" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs%3D" data-src="images/logo-default-114x27.svg" alt="Intense" width="114" height="27">
-              <img class="lazy-img navbar-logo-inverse" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs%3D" data-src="images/logo-inverse-114x27.svg" alt="Intense" width="114" height="27">
+          <div class="navbar-logo ">
+            <a class="navbar-logo-link " href="/">
+              <img class="lazy-img navbar-logo-default" data-src="images/logo-gainlike.png" alt="Gainlike" width="117" height="30">
             </a>
           </div>
         </div>
@@ -21,14 +20,10 @@
         <ul class="navbar-navigation rd-navbar-nav">
           <li class="navbar-navigation-root-item active"><a class="navbar-navigation-root-link" href="/">หน้าหลัก</a>
           </li>
-          <li class="navbar-navigation-root-item"><a class="navbar-navigation-root-link" href="/promotions">โปรโมชั่น</a>
-          </li>
+          <!-- <li class="navbar-navigation-root-item"><a class="navbar-navigation-root-link" href="/promotions">โปรโมชั่น</a>
+          </li> -->
           <li class="navbar-navigation-root-item"><a class="navbar-navigation-root-link" href="/blogs">บทความ</a>
           </li>
-          <li class="navbar-navigation-root-item"><a class="navbar-navigation-root-link" href="/developer">API นักพัฒนา</a>
-          </li>
-
-
           <div class="navbar-cell">
             <div class="navbar-subpanel">
 
@@ -37,16 +32,32 @@
 
                 <div class="navbar-info">
 
-                  <a class="btn btn-primary navbar-action-button" href="/login">เข้าสู่ระบบ</a>
+                  @if(Session::has('user'))
+                  <a class="btn btn btn-secondary navbar-action-button" href="/dashboard">
+                    <div class="icon-box-icon novi-icon int-user"></div>
+                  </a>
+                  @else
+                  <a class="btn btn-primary navbar-action-button" href="/login">
+                    <div class="icon-box-icon novi-icon mdi-login"> เข้าสู่ระบบ</div>
+                  </a>
 
-                  <a class="btn btn-secondary navbar-action-button" href="/register">สมัครสมาชิก</a>
+                  <a class="btn btn-secondary navbar-action-button" href="/register">
+                    <div class="icon-box-icon novi-icon mdi-account-plus"> สมัครสมาชิก</div>
+                  </a>
+                  @endif
+
 
                 </div>
 
               </div>
             </div>
           </div>
-
+          @if(Session::has('user'))
+          <li class="navbar-navigation-root-item"><a class="navbar-navigation-root-link" href="/logout">
+              <div class="icon-box-icon novi-icon mdi-login"> ออกจากระบบ</div>
+            </a>
+          </li>
+          @endif
 
         </ul>
       </div>
@@ -59,14 +70,25 @@
   <div class="container">
     <div class="row justify-content-center novi-disabled">
       <div class="col-md-10 col-lg-8 col-xl-7 col-xxl-6" data-animate='{"class":"fadeInUp"}'>
-        <h1>ARSD-SOCIAL </h1>
+        <img class="lazy-img navbar-logo-defult" data-src="images/gain-like-banner.png" aalt="Gainlike" width="300" height="200">
         <h3>เว็บปั้มไลค์ เพิ่มติดตาม เพิ่มยอดวิว</h3>
         <p>
-          arsd-social.com โซเชียลมีเดียครบวงจรทุกบริการจบที่เรา <br>เราคือผู้ให้บริการเพิ่มยอดไลค์ เพิ่มยอดวิว เพิ่มผู้ติดตามและอื่นๆอีกมากมาย <br>พัฒนาโดยทีมระดับมืออาชีพ
+          โซเชียลมีเดียครบวงจรทุกบริการจบที่เรา <br>เราคือผู้ให้บริการเพิ่มยอดไลค์ เพิ่มยอดวิว เพิ่มผู้ติดตามและอื่นๆ อีกมากมาย <br>พัฒนาโดยทีมระดับมืออาชีพ
         </p>
         <div class="offset-md group-30">
-          <a class="btn btn-lg btn-primary" href="/login">เข้าสู่ระบบ</a>
-          <a class="btn btn-lg btn-secondary" href="/register">สมัครสมาชิก</a>
+          @if(Session::has('user'))
+          <a class="btn btn-lg btn-secondary" href="/dashboard">
+            <div class="icon-box-icon novi-icon int-user"> ไปที่หน้าโปรไฟล์</div>
+          </a>
+          @else
+          <a class="btn btn-lg btn-primary" href="/login">
+            <div class="icon-box-icon icon-sm novi-icon mdi-login"> เข้าสู่ระบบ</div>
+          </a>
+          <a class="btn btn-lg btn-secondary" href="/register">
+            <div class="icon-box-icon icon-sm novi-icon mdi-account-plus"> สมัครสมาชิก</div>
+
+          </a>
+          @endif
         </div>
       </div>
     </div>
@@ -78,7 +100,7 @@
     <div class="row row-30 align-items-center justify-content-lg-between">
       <div class="col-sm-6 col-md-5 col-lg-4" data-animate='{"class":"fadeInLeft"}'>
         <h1 class="text-primary">อันดับ 1 </h1>
-        <h3 class="sh"> เรื่อง Social ARSD <span class="text-primary">social </span></h3>
+        <h3 class="sh"> เรื่อง Social Gain-<span class="text-primary">Like </span></h3>
 
       </div>
       <div class="col-xs-10 col-sm-6 col-md-7">
@@ -216,9 +238,61 @@
         <p>เราไม่ใช่เว็บแลกไลค์ ไม่ต้องใช้โทเคน ไม่ต้องใช้รหัสผ่าน ปลอดภัย 100% เราให้บริการเพิ่มยอดไลค์ ยอดวิว ยอดผู้ติดตามและอื่นๆ มากมาย บนสื่อโซเชียลมิเดียแบบครบวงจร เพื่อช่วยให้ร้านค้าและการตลาดบนโลกออนไลน์ของคุณเป็นเรื่องง่าย เข้าถึงผู้คน เปิดการมองเห็น และเพิ่มยอดขาย ราคาของเราถูกที่สุดในตลาด เพื่อให้คุณได้เริ่มต้นธุรกิจเพิ่มยอดไลค์ และสร้างรายได้ให้ตัวคุณเองได้ โดยสามารถทำงานที่บ้านได้ โดยไม่ต้องลงทุนด้วยเงินก้อนใหญ่ และธุรกิจเพิ่มยอดไลค์ไม่ต้องสต๊อกสินค้า เรามีทีมสนับสนุน 24 ชั่วโมงที่จะคอยดูแลลูกค้าทุกคน เราภูมิใจและยินดีที่ได้ช่วยเหลือสนับสนุนลูกค้าของเราทุกคนตลอด 24 ชั่วโมง และเราจะตอบกลับตั๋วของคุณให้เร็วที่สุด</p>
 
       </div>
-      <div class="col-lg-auto" data-animate='{"class":"fadeInRight"}'><a class="btn btn-lg btn-secondary" href="https://www.templatemonster.com/intense-multipurpose-html-template.html" target="_blank">
+      <div class="col-lg-auto" data-animate='{"class":"fadeInRight"}'><a class="btn btn-lg btn-secondary" href="/promotions">
           โปรโมชั่น</a></div>
     </div>
+  </div>
+</section>
+
+<!-- Services-->
+<section class="section section-lg bg-invisible novi-background" data-preset='{"title":"Services","category":"slider","reload":true,"id":"services"}'>
+  <div class="container">
+  </div>
+  <!-- <h2 class="text-center">โปรโมชั่น</h2> -->
+  <!-- Swiper slider-->
+  <div class="swiper-container mt-5" style="min-height: 75vh">
+    <!-- Additional required wrapper-->
+    <div class="swiper-wrapper">
+      <!-- Slides-->
+      <div class="swiper-slide section-lg px-xl-5 align-items-lg-end context-dark overlay-dark-02" style="background-image: url( images/image-71-1920x700.jpg )">
+        <div class="container">
+          <div class="row row-20 justify-content-between align-items-end">
+            <div class="col-sm-8 col-md-6">
+              <h2>Photos that are a perfect reflection of your lifestyle</h2>
+              <p class="small">Lifestyle photography services capture the precious moments of<br class="d-none d-lg-block">your life that you value instead of capturing staged photos.</p>
+            </div>
+            <div class="col-auto"><a class="link small" href="#">Learn more<span class="link-icon int-arrow-right novi-icon"></span></a></div>
+          </div>
+        </div>
+      </div>
+      <div class="swiper-slide section-lg px-xl-5 align-items-lg-end context-dark" style="background-image: url( images/image-72-1920x700.jpg )">
+        <div class="container">
+          <div class="row row-20 justify-content-between align-items-end">
+            <div class="col-sm-8 col-md-6">
+              <h2>Corporate photography for all your business needs</h2>
+              <p class="small">Corporate photography helps businesses of all kinds to build trust<br class="d-none d-lg-block">online and individuals to connect with their audience.</p>
+            </div>
+            <div class="col-auto"><a class="link small" href="#">Learn more<span class="link-icon int-arrow-right novi-icon"></span></a></div>
+          </div>
+        </div>
+      </div>
+      <div class="swiper-slide section-lg px-xl-5 align-items-lg-end context-dark overlay-dark" style="background-image: url( images/image-73-1920x700.jpg )">
+        <div class="container">
+          <div class="row row-20 justify-content-between align-items-end">
+            <div class="col-sm-8 col-md-6">
+              <h2>Architectural & commercial photography services</h2>
+              <p class="small">Through architectural and commercial photography services, we<br class="d-none d-lg-block">help express companies’ stories to fuel the brand images.</p>
+            </div>
+            <div class="col-auto"><a class="link small" href="#">Learn more<span class="link-icon int-arrow-right novi-icon"></span></a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Pagination-->
+    <div class="swiper-pagination d-xl-none"></div>
+    <!-- Navigation buttons-->
+    <div class="swiper-button-prev d-none d-xl-flex"></div>
+    <div class="swiper-button-next d-none d-xl-flex"></div>
   </div>
 </section>
 
@@ -276,7 +350,7 @@
     <div class="row row-15 align-items-center flex-md-row-reverse">
       <div class="col-sm-6 col-md-5" data-animate='{"class":"fadeInRight"}'>
 
-        <h1><span>เราคือ </span><span class="text-primary">ผู้ให้บริการ<br>" เพิ่มยอดไลค์ "</span> <span>ที่ดีที่สุด </span></h1>
+        <h1><span>เราคือ </span><span class="text-primary">ผู้ให้บริการ<br>" เพิ่มยอดไลก์ "</span> <span>ที่ดีที่สุด </span></h1>
       </div>
       <div class="col-sm-6 col-md-7" data-animate='{"class":"fadeInLeft"}'>
 

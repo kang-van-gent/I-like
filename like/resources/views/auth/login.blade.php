@@ -8,25 +8,33 @@
         <article class="accent-box">
           <h4 class="accent-box-title text-center">เข้าสู่ระบบ</h4>
           <p class="accent-box-text text-center">ใส่ข้อมูลยืนยันตัวตน</p>
-          <form class="accent-box-form rd-mailform" method="POST" action="/profile">
+          <form class="accent-box-form" method="POST" action="{{url('/checklogin')}}">
             @csrf
             <div class="form-group">
               <div class="input-group"><span class="input-group-text int-user novi-icon"></span>
-                <input class="form-control" type="text" name="login" placeholder="ชื่อผู้ใช้">
+                <input class="form-control" type="text" name="username" placeholder="ชื่อผู้ใช้">
               </div>
             </div>
             <div class="form-group">
-              <div class="input-group input-group-validation"><span class="input-group-text int-user novi-icon"></span>
+              <div class="input-group input-group-validation"><span class="input-group-text int-lock novi-icon"></span>
                 <input class="form-control input-password password-login" type="text" name="password" placeholder="รหัสผ่าน"><span class="input-group-text input-group-text-nodivider input-password-icon" data-multi-switch='{"targets":".password-login"}'></span>
               </div>
             </div>
-            <button class="btn btn-block btn-lg btn-primary accent-box-btn" type="submit">ยืนยัน</button>
+
+
+            <button class="btn btn-block btn-lg btn-primary " type="submit">
+              <div class="icon-box-icon icon-sm novi-icon mdi-login"> เข้าสู่ระบบ</div>
+            </button>
+            @if(Session::has('msg'))
+            <p class="text-danger"> {{session('msg')}}</p>
+            @endif
+
             <div class="accent-box-text small group-15">
               <div>
                 <u class="fw-medium"><a class="link-inherit" href="#">ลืมรหัสผ่าน?</a></u>
               </div>
               <div>ยังไม่ได้เป็นสมาชิก?
-                <u class="fw-medium"><a class="link-inherit" href="register.html">สมัครสมาชิก</a></u>
+                <u class="fw-medium"><a class="link-inherit" href="/register">สมัครสมาชิก</a></u>
               </div>
             </div>
             <input type="hidden" name="_token" value="{{ csrf_token() }}" />

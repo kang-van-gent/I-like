@@ -7,7 +7,11 @@
       <div class="navbar-cell">
         <div class="navbar-panel">
           <button class="navbar-switch int-hamburger novi-icon" data-multi-switch='{"targets":".rd-navbar","scope":".rd-navbar","isolate":"[data-multi-switch]"}'></button>
-          <div class="navbar-logo"><a class="navbar-logo-link" href="index.html"><img class="lazy-img navbar-logo-default" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs%3D" data-src="images/logo-default-114x27.svg" alt="Intense" width="114" height="27"><img class="lazy-img navbar-logo-inverse" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs%3D" data-src="images/logo-inverse-114x27.svg" alt="Intense" width="114" height="27"></a></div>
+          <div class="navbar-logo">
+            <a class="navbar-logo-link" href="index.html">
+              <img class="lazy-img navbar-logo-default" data-src="images/logo-gainlike.png" alt="Gainlike" width="117" height="30">
+            </a>
+          </div>
         </div>
       </div>
       <div class="navbar-cell navbar-spacer"></div>
@@ -15,11 +19,8 @@
         <ul class="navbar-navigation rd-navbar-nav">
           <li class="navbar-navigation-root-item "><a class="navbar-navigation-root-link" href="/">หน้าหลัก</a>
           </li>
-          <li class="navbar-navigation-root-item"><a class="navbar-navigation-root-link" href="/promotions">โปรโมชั่น</a>
-          </li>
+
           <li class="navbar-navigation-root-item active"><a class="navbar-navigation-root-link" href="/blogs">บทความ</a>
-          </li>
-          <li class="navbar-navigation-root-item"><a class="navbar-navigation-root-link" href="/developer">API นักพัฒนา</a>
           </li>
 
 
@@ -31,15 +32,33 @@
 
                 <div class="navbar-info">
 
-                  <a class="btn btn-primary navbar-action-button" href="/login">เข้าสู่ระบบ</a>
+                  @if(Session::has('user'))
+                  <a class="btn btn btn-secondary navbar-action-button" href="/dashboard">
+                    <div class="icon-box-icon novi-icon int-user"></div>
+                  </a>
+                  @else
+                  <a class="btn btn-primary navbar-action-button" href="/login">
+                    <div class="icon-box-icon novi-icon mdi-login"> เข้าสู่ระบบ</div>
+                  </a>
 
-                  <a class="btn btn-secondary navbar-action-button" href="/register">สมัครสมาชิก</a>
+                  <a class="btn btn-secondary navbar-action-button" href="/register">
+                    <div class="icon-box-icon novi-icon mdi-account-plus"> สมัครสมาชิก</div>
+                  </a>
+                  @endif
+
 
                 </div>
 
               </div>
             </div>
           </div>
+
+          @if(Session::has('user'))
+          <li class="navbar-navigation-root-item"><a class="navbar-navigation-root-link" href="/logout">
+              <div class="icon-box-icon novi-icon mdi-login"> ออกจากระบบ</div>
+            </a>
+          </li>
+          @endif
 
 
         </ul>
@@ -54,6 +73,8 @@
   <div class="container">
     <h1 class="text-center">บทความ</h1>
     <div class="row row-40 row-md-60">
+
+      <!-- Connect to database using images  -->
       <div class="col-md-6 col-lg-4">
         <!-- Post hover-->
         <div class="post post-hover post-sm">
@@ -70,87 +91,9 @@
           </div>
         </div>
       </div>
-      <div class="col-md-6 col-lg-4">
-        <!-- Post hover-->
-        <div class="post post-hover post-sm">
-          <div class="post-img-link"><a href="/post"><img class="lazy-img" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs%3D" data-src="images/image-05-400x257.jpg" alt="" width="400" height="257"></a>
-          </div>
-          <div class="post-inner">
-            <h5 class="post-title"><a href="/post">15 impressive examples of one-page website design</a></h5>
 
-            <div class="post-text">Nowadays, designing a landing page is way more difficult. The only challenge you face is getting all the necessary information on a single page. To help...</div>
-            <div class="post-meta post-meta-between">
-              <div class="post-meta-item"><a class="btn btn-secondary" href="/post">อ่านต่อ</a></div>
-
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6 col-lg-4">
-        <!-- Post hover-->
-        <div class="post post-hover post-sm">
-          <div class="post-img-link"><a href="/post"><img class="lazy-img" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs%3D" data-src="images/image-08-400x257.jpg" alt="" width="400" height="257"></a>
-          </div>
-          <div class="post-inner">
-            <h5 class="post-title"><a href="/post">Best examples of online portfolio by 10 designers</a></h5>
-
-            <div class="post-text">Out of all of the creative people in the world, designers have a very clear vision of what their online portfolio should look like. Their line of work demands a site that...</div>
-            <div class="post-meta post-meta-between">
-              <div class="post-meta-item"><a class="btn btn-secondary" href="/post">อ่านต่อ</a></div>
-
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6 col-lg-4">
-        <!-- Post hover-->
-        <div class="post post-hover post-sm">
-          <div class="post-img-link"><a href="/post"><img class="lazy-img" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs%3D" data-src="images/image-06-400x257.jpg" alt="" width="400" height="257"></a>
-          </div>
-          <div class="post-inner">
-            <h5 class="post-title"><a href="/post">5 design tips that will increase your conversions</a></h5>
-
-            <div class="post-text">If you want to increase ROI from your website, you can go about it in two ways: increase traffic or increase conversions. It is much easier to increase conversions...</div>
-            <div class="post-meta post-meta-between">
-              <div class="post-meta-item"><a class="btn btn-secondary" href="/post">อ่านต่อ</a></div>
-
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6 col-lg-4">
-        <!-- Post hover-->
-        <div class="post post-hover post-sm">
-          <div class="post-img-link"><a href="/post"><img class="lazy-img" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs%3D" data-src="images/image-10-400x257.jpg" alt="" width="400" height="257"></a>
-          </div>
-          <div class="post-inner">
-            <h5 class="post-title"><a href="/post">Different sides of the dark user interface in web design</a></h5>
-
-            <div class="post-text">Dark design is and always will be a trend. The level of darkness will always vary, but basically, it’s really hard to screw up a simple, dark design. This is especially...</div>
-            <div class="post-meta post-meta-between">
-              <div class="post-meta-item"><a class="btn btn-secondary" href="/post">อ่านต่อ</a></div>
-
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6 col-lg-4">
-        <!-- Post hover-->
-        <div class="post post-hover post-sm">
-          <div class="post-img-link"><a href="/post"><img class="lazy-img" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs%3D" data-src="images/image-11-400x257.jpg" alt="" width="400" height="257"></a>
-          </div>
-          <div class="post-inner">
-            <h5 class="post-title"><a href="/post">Designing accessible color systems</a></h5>
-
-            <div class="post-text">Our team of developers and designers constantly explores ways of refining the color palette to make it more accessible and legible for users across all products...</div>
-            <div class="post-meta post-meta-between">
-              <div class="post-meta-item"><a class="btn btn-secondary" href="/post">อ่านต่อ</a></div>
-
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-12">
+      <!-- Paginations -->
+      <!-- <div class="col-12">
         <ul class="pag pag-simple justify-content-center">
           <li class="pag-simple-item active"><a class="pag-simple-link" href="#">1</a>
           </li>
@@ -165,8 +108,26 @@
           <li class="pag-simple-item"><a class="pag-simple-link pag-simple-link-next" href="#"><span>Next</span><span class="int-arrow-right novi-icon"></span></a>
           </li>
         </ul>
-      </div>
+      </div> -->
     </div>
   </div>
 </section>
 @endsection
+
+
+<!--  optimizable 1 blog has many paragraphs 1 paragraph that include images
+collection construct :
+-- blogs
+    blogId -- int 11,
+    coverImage -- file,
+    details -- text,
+    category -- varchar 200,
+    ref -- text,
+    createdAt -- Timestamp 
+
+-- paragraphs
+    paraId -- int 11,
+    details -- text,
+    image -- file,
+    blogId -- int 11,
+-->

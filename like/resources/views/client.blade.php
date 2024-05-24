@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>ARSD-SOCIAL</title>
+    <title>Gain-Like</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -20,6 +20,9 @@
     <link rel="stylesheet" href="/components/base/base.css">
     <script src="/components/base/core.js"></script>
     <script src="/components/base/script.js"></script>
+
+
+
 </head>
 
 <body>
@@ -33,7 +36,7 @@
                 <div class="row row-30 justify-content-xxl-between novi-disabled">
                     <div class="col-lg-5">
                         <!-- Logo-->
-                        <div class="logo"><a class="logo-link" href="index.html"><img class="lazy-img logo-image-default" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs%3D" data-src="images/logo-default-114x27.svg" alt="Intense" width="114" height="27"><img class="lazy-img logo-image-inverse" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs%3D" data-src="images/logo-inverse-114x27.svg" alt="Intense" width="114" height="27"></a></div>
+                        <div><a class="logo-link" href="index.html"><img src="images/gain-like-inverse.png" alt="Gainlike" width="200" height="50"></a></div>
                         <p class="small">Get the most for your website with Intense Multipurpose Website Template, valued by over
                             3,000 customers worldwide. With a great number of pages, components, elements, and blocks, this responsive
                             Bootstrap template is definitely worth your attention.</p>
@@ -88,7 +91,7 @@
             <circle class="page-loader-circle" cx="90" cy="90" r="88"></circle>
         </svg>
         <div class="page-loader-inner">
-            <div class="page-loader-inner-side page-loader-inner-side-1"><img class="pended-img page-loader-logo" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs%3D" data-src="images/logo-default-114x27.svg" alt="" width="114" height="27" data-target=".page-loader-inner">
+            <div class="page-loader-inner-side page-loader-inner-side-1"><img class="pended-img page-loader-logo" data-src="images/logo-gainlike.png" alt="" data-target=".page-loader-inner">
             </div>
             <div class="page-loader-inner-side page-loader-inner-side-2">กำลังโหลด...</div>
         </div>

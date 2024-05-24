@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\customer;
 use App\Models\User;
 use App\Models\users;
 use Illuminate\Http\Request;
@@ -28,31 +29,50 @@ class AuthenticateController extends Controller
             'password' => 'required',
         ]);
 
-        $admin = users::where(['username' => $request->username, 'password' => sha1($request->password)])->count();
+        $admin = customer::where(['username' => $request->username, 'password' => sha1($request->password)])->count();
 
         if ($admin > 0) {
 
-            $adminData = users::where(['username' => $request->username, 'password' => sha1($request->password)])->get();
+            $adminData = customer::where(['username' => $request->username, 'password' => sha1($request->password)])->get();
 
-            session(['adminData' => $adminData]);
+            session(['user' => true, 'data' => $adminData]);
 
             if ($request->has('rememberme')) {
                 Cookie::queue('adminuser', $request->username, 1440);
 
                 Cookie::queue('adminpwd', $request->password, 1440);
             }
-            return redirect('admin');
+            return redirect('/dashboard');
         } else {
-            return redirect('admin/login')->with('msg', 'Invalid username/Password!!');
+            return redirect('/login')->with('msg', 'ชื่อผู้ใช้หรือรหัสผ่านผิด กรุณาลองใหม่อีกครั้ง');
         }
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function register(Request $request)
     {
         //
+        // this state should check while typing.
+        if ($request->password != $request->conpass) {
+            # code...
+            return redirect('/register')->with('msg', 'Password is not match.');
+        }
+
+        //should check exits user and email.
+
+        $data = new customer();
+        $data->username = $request->username;
+        $data->email = $request->email;
+        $data->firstName = $request->firstName;
+        $data->lastName = $request->lastName;
+        $data->age = $request->age;
+        $data->career = $request->career;
+        $data->gender = $request->gender;
+        $data->password = sha1($request->password);
+        $data->save();
+        return redirect('/');
     }
 
     /**
@@ -93,5 +113,12 @@ class AuthenticateController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    //Logout
+    function logout()
+    {
+        session()->forget(['user', 'data']);
+        return redirect('/');
     }
 }

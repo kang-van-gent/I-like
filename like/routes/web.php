@@ -35,6 +35,9 @@ Route::get('/post', function () {
 
 // Authentication Controller
 Route::get('/login', [AuthenticateController::class, 'index']);
+Route::post('/checklogin', [AuthenticateController::class, 'login']);
+Route::post('/regis', [AuthenticateController::class, 'register']);
+Route::get('/logout', [AuthenticateController::class, 'logout']);
 
 // Client after login
 Route::get('/dashboard', function () {

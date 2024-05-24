@@ -7,7 +7,11 @@
       <div class="navbar-cell">
         <div class="navbar-panel">
           <button class="navbar-switch int-hamburger novi-icon" data-multi-switch='{"targets":".rd-navbar","scope":".rd-navbar","isolate":"[data-multi-switch]"}'></button>
-          <div class="navbar-logo"><a class="navbar-logo-link" href="index.html"><img class="lazy-img navbar-logo-default" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs%3D" data-src="images/logo-default-114x27.svg" alt="Intense" width="114" height="27"><img class="lazy-img navbar-logo-inverse" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs%3D" data-src="images/logo-inverse-114x27.svg" alt="Intense" width="114" height="27"></a></div>
+          <div class="navbar-logo">
+            <a class="navbar-logo-link" href="index.html">
+              <img class="lazy-img navbar-logo-default" data-src="images/logo-gainlike.png" alt="Gainlike" width="117" height="30">
+            </a>
+          </div>
         </div>
       </div>
       <div class="navbar-cell navbar-spacer"></div>
@@ -19,8 +23,7 @@
           </li>
           <li class="navbar-navigation-root-item"><a class="navbar-navigation-root-link" href="/blogs">บทความ</a>
           </li>
-          <li class="navbar-navigation-root-item"><a class="navbar-navigation-root-link" href="/developer">API นักพัฒนา</a>
-          </li>
+
 
 
           <div class="navbar-cell">
@@ -34,6 +37,8 @@
                   <a class="btn btn-primary navbar-action-button" href="/login">เข้าสู่ระบบ</a>
 
                   <a class="btn btn-secondary navbar-action-button" href="/register">สมัครสมาชิก</a>
+
+                  <a class="btn btn-secondary navbar-action-button" href="/dashboard">โปรไฟล์</a>
 
                 </div>
 

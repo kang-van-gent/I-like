@@ -9,7 +9,7 @@
     <div>
       <div class="brand-logo d-flex align-items-center justify-content-between">
         <a href="/" class="text-nowrap logo-img">
-          <img class="lazy-img navbar-logo-default" src="/images/logo-default-114x27.svg" alt="Intense" width="114" height="27">
+          <img class="lazy-img navbar-logo-default" src="images/logo-gainlike.png" alt="Gainlike" width="117" height="30">
         </a>
 
         <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
