@@ -95,3 +95,15 @@
 </section>
 
 @endsection
+
+
+<!-- Register error handle.
+Form require.
+-- All form is reqiure.
+-- Username is require and must be unique.
+-- Email is require and must br unique.
+-- Password must be at least 8 charactors.
+-- At least 1 uppercase.
+-- Password must contains letters and numbers.
+-- Confirm password must match password.
+-->

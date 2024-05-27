@@ -254,12 +254,12 @@
     <!-- Additional required wrapper-->
     <div class="swiper-wrapper">
       <!-- Slides-->
-      <div class="swiper-slide section-lg px-xl-5 align-items-lg-end context-dark overlay-dark-02" style="background-image: url( images/image-71-1920x700.jpg )">
+      <div class="swiper-slide section-lg px-xl-5 align-items-lg-end context-dark overlay-dark-02" style="background-image: url( images/Promotion3.jpg )">
         <div class="container">
           <div class="row row-20 justify-content-between align-items-end">
             <div class="col-sm-8 col-md-6">
-              <h2>Photos that are a perfect reflection of your lifestyle</h2>
-              <p class="small">Lifestyle photography services capture the precious moments of<br class="d-none d-lg-block">your life that you value instead of capturing staged photos.</p>
+              <!-- <h2>Photos that are a perfect reflection of your lifestyle</h2>
+              <p class="small">Lifestyle photography services capture the precious moments of<br class="d-none d-lg-block">your life that you value instead of capturing staged photos.</p> -->
             </div>
             <div class="col-auto"><a class="link small" href="#">Learn more<span class="link-icon int-arrow-right novi-icon"></span></a></div>
           </div>

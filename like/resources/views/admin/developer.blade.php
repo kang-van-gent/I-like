@@ -9,7 +9,7 @@
     <div>
       <div class="brand-logo d-flex align-items-center justify-content-between">
         <a href="/" class="text-nowrap logo-img">
-          <img class="lazy-img navbar-logo-default" src="/images/logo-default-114x27.svg" alt="Intense" width="114" height="27">
+          <img class="lazy-img navbar-logo-default" src="images/logo-gainlike.png" alt="Gainlike" width="117" height="30">
         </a>
 
         <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
@@ -47,7 +47,7 @@
               <span class="hide-menu">บริการอัพเดต</span>
             </a>
           </li>
-          <li class="sidebar-item ">
+          <!-- <li class="sidebar-item ">
             <a class="sidebar-link " href="/affiliates" aria-expanded="false">
               <span>
                 <i class="ti ti-layout-dashboard"></i>
@@ -72,7 +72,7 @@
                 เช่าเว็บปั๊มไลค์แผงหลัก
               </span>
             </a>
-          </li>
+          </li> -->
           <li class="sidebar-item ">
             <a class="sidebar-link " href="/blog" aria-expanded="false">
               <span>
@@ -201,7 +201,7 @@
             </div>
           </div>
         </div>
-        <div class="unlimited-access hide-menu bg-light-primary position-relative mb-7 mt-2 rounded">
+        <!-- <div class="unlimited-access hide-menu bg-light-primary position-relative mb-7 mt-2 rounded">
           <div class="d-flex">
             <div class="unlimited-access-title me-3">
               <h6 class="fw-semibold fs-4 mb-6 text-primary w-85">NEW <br> ระดับของคุณ</h6>
@@ -215,7 +215,7 @@
               <h6 class="fw-semibold fs-4 mb-6 text-primary w-85">500 บาท <br> เมื่อคุณเติมเงินด้วย QR Code ธนาคาร หรือ True wallet</h6>
             </div>
           </div>
-        </div>
+        </div> -->
 
       </nav>
       <!-- End Sidebar navigation -->
@@ -234,16 +234,11 @@
               <i class="ti ti-menu-2"></i>
             </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link nav-icon-hover" href="javascript:void(0)">
-              <i class="ti ti-bell-ringing"></i>
-              <div class="notification bg-primary rounded-circle"></div>
-            </a>
-          </li>
+
         </ul>
         <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
           <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
-            <a href="https://adminmart.com/product/modernize-free-bootstrap-admin-dashboard/" target="_blank" class="btn btn-primary">Download Free</a>
+            <a href="https://adminmart.com/product/modernize-free-bootstrap-admin-dashboard/" target="_blank" class="btn btn-primary"><i class="ti ti-logout"></i> log out</a>
             <li class="nav-item dropdown">
               <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown" aria-expanded="false">
                 <img src="/src/assets/images/profile/user-1.jpg" alt="" width="35" height="35" class="rounded-circle">
