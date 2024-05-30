@@ -110,6 +110,54 @@
     </div>
   </div>
 </section>
+<!-- Promotions -->
+<section class="section bg-invisible novi-background pended-element" data-preset='{"title":"Features","category":"carousel","reload":true,"id":"features-2"}'>
+  <div class="container">
+    <div class="row align-items-center slick-creative novi-disabled">
+      <div class="col-md-7 d-md-flex flex-md-row-reverse">
+        <div class="slick-slider slider-for slider-images" data-slick='{"arrows":false,"asNavFor":".slider-nav","draggable":false,"adaptiveHeight":true}'>
+          <div class="text-end"><img class="pended-img" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs%3D" data-src="images/image-34-1042x910.png" alt="" width="1042" height="910">
+          </div>
+          <div class="text-end"><img class="pended-img" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs%3D" data-src="images/image-35-1042x910.png" alt="" width="1042" height="910">
+          </div>
+          <div class="text-end"><img class="pended-img" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs%3D" data-src="images/image-36-1042x910.png" alt="" width="1042" height="910">
+          </div>
+        </div>
+      </div>
+      <div class="col-md-5 pt-5" style="padding-bottom: 14.2%">
+        <div class="ps-xxl-3">
+          <h6 class="text-primary">โปรโมชั่น</h6>
+          <div class="slick-slider slider-nav" data-slick='{"arrows":false,"asNavFor":".slider-for","autoplay":true,"autoplaySpeed":3000,"focusOnSelect":true,"variableWidth":true}'>
+            <div class="slick-dot">Websites</div>
+            <div class="slick-dot">Sliders</div>
+            <div class="slick-dot">Content Blocks</div>
+          </div>
+          <div class="slick-slider slider-for" data-slick='{"arrows":false,"asNavFor":".slider-nav","draggable":false}'>
+            <p>Intense gives you a variety of powerful options, useful tools, and unlimited designs to easily create a website of your dreams that your clients will love.</p>
+            <p>Use the built-in slider plugins to create appealing blocks with smooth sliders that are completely responsive and customizable.</p>
+            <p>Change the layout of Intense with the included content blocks ranging from counters to tabs and accordions and other impressive elements.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Call to action-->
+<section class="section section-lg bg-accent-light text-center text-lg-start pended-element novi-background" data-preset='{"title":"Call To Action","category":"call to action","reload":true,"id":"call-to-action-7"}'>
+  <div class="container">
+    <div class="row row-30 align-items-lg-center justify-content-lg-between">
+      <div class="col-lg-8" data-animate='{"class":"fadeInLeft"}'>
+        <h2>
+          เราคือผู้นำด้านการเพิ่มความน่าเชื่อถือทางสื่อโซเชียลมีเดียครบวงจร</h2>
+
+        <p>เราไม่ใช่เว็บแลกไลค์ ไม่ต้องใช้โทเคน ไม่ต้องใช้รหัสผ่าน ปลอดภัย 100% เราให้บริการเพิ่มยอดไลค์ ยอดวิว ยอดผู้ติดตามและอื่นๆ มากมาย บนสื่อโซเชียลมิเดียแบบครบวงจร เพื่อช่วยให้ร้านค้าและการตลาดบนโลกออนไลน์ของคุณเป็นเรื่องง่าย เข้าถึงผู้คน เปิดการมองเห็น และเพิ่มยอดขาย ราคาของเราถูกที่สุดในตลาด เพื่อให้คุณได้เริ่มต้นธุรกิจเพิ่มยอดไลค์ และสร้างรายได้ให้ตัวคุณเองได้ โดยสามารถทำงานที่บ้านได้ โดยไม่ต้องลงทุนด้วยเงินก้อนใหญ่ และธุรกิจเพิ่มยอดไลค์ไม่ต้องสต๊อกสินค้า เรามีทีมสนับสนุน 24 ชั่วโมงที่จะคอยดูแลลูกค้าทุกคน เราภูมิใจและยินดีที่ได้ช่วยเหลือสนับสนุนลูกค้าของเราทุกคนตลอด 24 ชั่วโมง และเราจะตอบกลับตั๋วของคุณให้เร็วที่สุด</p>
+
+      </div>
+      <div class="col-lg-auto" data-animate='{"class":"fadeInRight"}'><a class="btn btn-lg btn-secondary" href="/promotions">
+          รายละเอียดโปรโมชั่น</a></div>
+    </div>
+  </div>
+</section>
 <!-- Decoration-->
 <section class="section section-lg bg-invisible text-center pended-element parallax-js" data-preset='{"title":"Decoration","category":"parallax","reload":true,"id":"decoration"}'>
   <div class="container">
@@ -227,74 +275,9 @@
   </div>
 </section>
 
-<!-- Call to action-->
-<section class="section section-lg bg-accent-light text-center text-lg-start pended-element novi-background" data-preset='{"title":"Call To Action","category":"call to action","reload":true,"id":"call-to-action-7"}'>
-  <div class="container">
-    <div class="row row-30 align-items-lg-center justify-content-lg-between">
-      <div class="col-lg-8" data-animate='{"class":"fadeInLeft"}'>
-        <h2>
-          เราคือผู้นำด้านการเพิ่มความน่าเชื่อถือทางสื่อโซเชียลมีเดียครบวงจร</h2>
 
-        <p>เราไม่ใช่เว็บแลกไลค์ ไม่ต้องใช้โทเคน ไม่ต้องใช้รหัสผ่าน ปลอดภัย 100% เราให้บริการเพิ่มยอดไลค์ ยอดวิว ยอดผู้ติดตามและอื่นๆ มากมาย บนสื่อโซเชียลมิเดียแบบครบวงจร เพื่อช่วยให้ร้านค้าและการตลาดบนโลกออนไลน์ของคุณเป็นเรื่องง่าย เข้าถึงผู้คน เปิดการมองเห็น และเพิ่มยอดขาย ราคาของเราถูกที่สุดในตลาด เพื่อให้คุณได้เริ่มต้นธุรกิจเพิ่มยอดไลค์ และสร้างรายได้ให้ตัวคุณเองได้ โดยสามารถทำงานที่บ้านได้ โดยไม่ต้องลงทุนด้วยเงินก้อนใหญ่ และธุรกิจเพิ่มยอดไลค์ไม่ต้องสต๊อกสินค้า เรามีทีมสนับสนุน 24 ชั่วโมงที่จะคอยดูแลลูกค้าทุกคน เราภูมิใจและยินดีที่ได้ช่วยเหลือสนับสนุนลูกค้าของเราทุกคนตลอด 24 ชั่วโมง และเราจะตอบกลับตั๋วของคุณให้เร็วที่สุด</p>
 
-      </div>
-      <div class="col-lg-auto" data-animate='{"class":"fadeInRight"}'><a class="btn btn-lg btn-secondary" href="/promotions">
-          โปรโมชั่น</a></div>
-    </div>
-  </div>
-</section>
 
-<!-- Services-->
-<section class="section section-lg bg-invisible novi-background" data-preset='{"title":"Services","category":"slider","reload":true,"id":"services"}'>
-  <div class="container">
-  </div>
-  <!-- <h2 class="text-center">โปรโมชั่น</h2> -->
-  <!-- Swiper slider-->
-  <div class="swiper-container mt-5" style="min-height: 75vh">
-    <!-- Additional required wrapper-->
-    <div class="swiper-wrapper">
-      <!-- Slides-->
-      <div class="swiper-slide section-lg px-xl-5 align-items-lg-end context-dark overlay-dark-02" style="background-image: url( images/Promotion3.jpg )">
-        <div class="container">
-          <div class="row row-20 justify-content-between align-items-end">
-            <div class="col-sm-8 col-md-6">
-              <!-- <h2>Photos that are a perfect reflection of your lifestyle</h2>
-              <p class="small">Lifestyle photography services capture the precious moments of<br class="d-none d-lg-block">your life that you value instead of capturing staged photos.</p> -->
-            </div>
-            <div class="col-auto"><a class="link small" href="#">Learn more<span class="link-icon int-arrow-right novi-icon"></span></a></div>
-          </div>
-        </div>
-      </div>
-      <div class="swiper-slide section-lg px-xl-5 align-items-lg-end context-dark" style="background-image: url( images/image-72-1920x700.jpg )">
-        <div class="container">
-          <div class="row row-20 justify-content-between align-items-end">
-            <div class="col-sm-8 col-md-6">
-              <h2>Corporate photography for all your business needs</h2>
-              <p class="small">Corporate photography helps businesses of all kinds to build trust<br class="d-none d-lg-block">online and individuals to connect with their audience.</p>
-            </div>
-            <div class="col-auto"><a class="link small" href="#">Learn more<span class="link-icon int-arrow-right novi-icon"></span></a></div>
-          </div>
-        </div>
-      </div>
-      <div class="swiper-slide section-lg px-xl-5 align-items-lg-end context-dark overlay-dark" style="background-image: url( images/image-73-1920x700.jpg )">
-        <div class="container">
-          <div class="row row-20 justify-content-between align-items-end">
-            <div class="col-sm-8 col-md-6">
-              <h2>Architectural & commercial photography services</h2>
-              <p class="small">Through architectural and commercial photography services, we<br class="d-none d-lg-block">help express companies’ stories to fuel the brand images.</p>
-            </div>
-            <div class="col-auto"><a class="link small" href="#">Learn more<span class="link-icon int-arrow-right novi-icon"></span></a></div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- Pagination-->
-    <div class="swiper-pagination d-xl-none"></div>
-    <!-- Navigation buttons-->
-    <div class="swiper-button-prev d-none d-xl-flex"></div>
-    <div class="swiper-button-next d-none d-xl-flex"></div>
-  </div>
-</section>
 
 <section class="section section-lg bg-invisible novi-background" data-preset='{"title":"Blurb Ordered Sample","category":"blurb","reload":true,"id":"blurb-ordered-sample-3"}'>
   <div class=" container">
