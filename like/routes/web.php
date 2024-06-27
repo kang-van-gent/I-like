@@ -1,6 +1,10 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthenticateController;
+use App\Http\Controllers\BlogController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\MasterController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,18 +24,18 @@ Route::get('/', function () {
 Route::get('/register', function () {
     return view('auth.register');
 });
-Route::get('/blogs', function () {
-    return view('client.blog');
-});
+
 Route::get('/promotions', function () {
     return view('client.promotion');
 });
 Route::get('/developer', function () {
     return view('client.developer');
 });
-Route::get('/post', function () {
-    return view('client.post');
-});
+
+
+Route::get('/blogs', [HomeController::class, 'blogs']);
+Route::get('/post', [HomeController::class, 'post']);
+
 
 // Authentication Controller
 Route::get('/login', [AuthenticateController::class, 'index']);
@@ -40,66 +44,31 @@ Route::post('/regis', [AuthenticateController::class, 'register']);
 Route::get('/logout', [AuthenticateController::class, 'logout']);
 
 // Client after login
-Route::get('/dashboard', function () {
-    return view('admin.index');
-});
-Route::get('/updates', function () {
-    return view('admin.update');
-});
-Route::get('/affiliates', function () {
-    return view('admin.affiliates');
-});
-Route::get('/child-panel', function () {
-    return view('admin.child-panel');
-});
-Route::get('/pricing', function () {
-    return view('admin.pricing');
-});
-Route::get('/blog', function () {
-    return view('admin.blog');
-});
-Route::get('/terms', function () {
-    return view('admin.terms');
-});
-Route::get('/addfunds', function () {
-    return view('admin.addfunds');
-});
-Route::get('/buys', function () {
-    return view('admin.buys');
-});
-Route::get('/drip-feed', function () {
-    return view('admin.drip-feed');
-});
-Route::get('/faq', function () {
-    return view('admin.faq');
-});
-Route::get('/howitworks', function () {
-    return view('admin.howitworks');
-});
-Route::get('/subscriptions', function () {
-    return view('admin.subscriptions');
-});
-Route::get('/refill', function () {
-    return view('admin.refill');
-});
-Route::get('/services', function () {
-    return view('admin.services');
-});
-Route::get('/orders', function () {
-    return view('admin.orders');
-});
-Route::get('/massorder', function () {
-    return view('admin.massorder');
-});
-Route::get('/tickets', function () {
-    return view('admin.tickets');
-});
-Route::get('/developers', function () {
-    return view('admin.developer');
-});
+Route::get('/dashboard', [AdminController::class, 'index']);
+
+Route::get('/updates', [AdminController::class, 'updateServices']);
+Route::get('/affiliates', [AdminController::class, 'affiliates']);
+Route::get('/child-panel', [AdminController::class, 'childPanel']);
+Route::get('/pricing', [AdminController::class, 'pricing']);
+Route::get('/blog', [AdminController::class, 'blog']);
+Route::get('/terms', [AdminController::class, 'terms']);
+Route::get('/addfunds', [AdminController::class, 'addfunds']);
+Route::get('/buys', [AdminController::class, 'buys']);
+Route::get('/drip-feed', [AdminController::class, 'dripFeed']);
+Route::get('/faq', [AdminController::class, 'faq']);
+Route::get('/howitworks', [AdminController::class, 'howitworks']);
+Route::get('/subscriptions', [AdminController::class, 'subscriptions']);
+Route::get('/refill', [AdminController::class, 'refill']);
+Route::get('/orders', [AdminController::class, 'orders']);
+Route::get('/massorder', [AdminController::class, 'massorder']);
+Route::get('/tickets', [AdminController::class, 'tickets']);
+Route::get('/developers', [AdminController::class, 'developers']);
+
+Route::get('/services', [AdminController::class, 'services']);
+Route::get('/services/{productId}', [AdminController::class, 'store'])->name('service.store');
+Route::get('/remove-item/{productId}', [AdminController::class, 'removeItem'])->name('service.remove');
+
 
 
 // Master admin
-Route::get('/master-admin', function () {
-    return view('master.index');
-});
+Route::get('/master-admin', [MasterController::class, 'index']);

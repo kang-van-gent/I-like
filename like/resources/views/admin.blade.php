@@ -4,16 +4,18 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Modernize Free</title>
+    <title>Gain-Like</title>
     <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="/src/assets/css/styles.min.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Line+Seed:wght@400;700&display=swap" rel="stylesheet">
+
 </head>
 
 <body>
 
-
+    @include('header.adminheader')
     @yield('contents')
+    @include('footer.adminfooter')
 
     <script src="/src/assets/libs/jquery/dist/jquery.min.js"></script>
     <script src="/src/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

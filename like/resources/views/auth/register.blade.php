@@ -14,11 +14,17 @@
               <div class="input-group"><span class="input-group-text int-user novi-icon"></span>
                 <input class="form-control" type="text" name="username" placeholder="ชื่อผู้ใช้">
               </div>
+              @error('username')
+              <div class="alert alert-danger">{{ $message }}</div>
+              @enderror
             </div>
             <div class="form-group">
               <div class="input-group"><span class="input-group-text int-email novi-icon"></span>
                 <input class="form-control" type="email" name="email" placeholder="อีเมล">
               </div>
+              @error('email')
+              <div class="alert alert-danger">{{ $message }}</div>
+              @enderror
             </div>
             <div class="form-group">
               <div class="input-group"><span class="input-group-text fa-address-card-o novi-icon"></span>
@@ -64,6 +70,9 @@
               <div class="input-group"><span class="input-group-text int-lock novi-icon"></span>
                 <input class="form-control input-password password-register-1" type="text" name="password" placeholder="รหัสผ่าน"><span class="input-group-text input-group-text-nodivider input-password-icon" data-multi-switch='{"targets":".password-register-1"}'></span>
               </div>
+              @error('password')
+              <div class="alert alert-danger">{{ $message }}</div>
+              @enderror
             </div>
             <div class="form-group">
               <div class="input-group"><span class="input-group-text int-lock novi-icon"></span>
@@ -76,6 +85,9 @@
                 <u class="fw-medium"></u><a class="link-inherit small" href="#">ข้อตกลงการใช้งาน</a>
               </label>
             </div> -->
+            @if(Session::has('error'))
+            <p class="text-danger"> {{session('error')}}</p>
+            @endif
             <button class="btn btn-block btn-lg btn-secondary " type="submit">
               <div class="icon-box-icon icon-sm novi-icon mdi-account-plus"> สมัครสมาชิก</div>
             </button>

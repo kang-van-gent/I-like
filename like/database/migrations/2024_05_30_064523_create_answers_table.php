@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('answers', function (Blueprint $table) {
             $table->id();
+            $table->message();
+            $table->ticketId();
+            $table->userId();
+            $table->adminId();
             $table->timestamps();
         });
     }

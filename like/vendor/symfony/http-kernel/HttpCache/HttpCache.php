@@ -488,8 +488,7 @@ class HttpCache implements HttpKernelInterface, TerminableInterface
          * We deviate from this in one detail, namely that we *do* serve entries in the
          * stale-if-error case even if they have a `s-maxage` Cache-Control directive.
          */
-        if (
-            null !== $entry
+        if (null !== $entry
             && \in_array($response->getStatusCode(), [500, 502, 503, 504])
             && !$entry->headers->hasCacheControlDirective('no-cache')
             && !$entry->mustRevalidate()
@@ -721,10 +720,10 @@ class HttpCache implements HttpKernelInterface, TerminableInterface
     {
         $path = $request->getPathInfo();
         if ($qs = $request->getQueryString()) {
-            $path .= '?' . $qs;
+            $path .= '?'.$qs;
         }
 
-        return $request->getMethod() . ' ' . $path;
+        return $request->getMethod().' '.$path;
     }
 
     /**

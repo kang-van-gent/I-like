@@ -1,58 +1,6 @@
 @extends('client')
 @section('contents')
-<!--RD Navbar-->
-<header class="section rd-navbar-wrap" data-preset='{"title":"Navbar Default","category":"header","reload":true,"id":"navbar-default"}'>
-  <nav class="rd-navbar">
-    <div class="navbar-container">
-      <div class="navbar-cell">
-        <div class="navbar-panel">
-          <button class="navbar-switch int-hamburger novi-icon" data-multi-switch='{"targets":".rd-navbar","scope":".rd-navbar","isolate":"[data-multi-switch]"}'></button>
-          <div class="navbar-logo">
-            <a class="navbar-logo-link" href="index.html">
-              <img class="lazy-img navbar-logo-default" data-src="images/logo-gainlike.png" alt="Gainlike" width="117" height="30">
-            </a>
-          </div>
-        </div>
-      </div>
-      <div class="navbar-cell navbar-spacer"></div>
-      <div class="navbar-cell navbar-sidebar">
-        <ul class="navbar-navigation rd-navbar-nav">
-          <li class="navbar-navigation-root-item "><a class="navbar-navigation-root-link" href="/">หน้าหลัก</a>
-          </li>
-          <li class="navbar-navigation-root-item active"><a class="navbar-navigation-root-link" href="/promotions">โปรโมชั่น</a>
-          </li>
-          <li class="navbar-navigation-root-item"><a class="navbar-navigation-root-link" href="/blogs">บทความ</a>
-          </li>
 
-
-
-          <div class="navbar-cell">
-            <div class="navbar-subpanel">
-
-              <div class="navbar-subpanel-item">
-                <button class="navbar-button navbar-info-button mdi-dots-vertical novi-icon" data-multi-switch='{"targets":".rd-navbar","scope":".rd-navbar","class":"navbar-info-active","isolate":"[data-multi-switch]"}'></button>
-
-                <div class="navbar-info">
-
-                  <a class="btn btn-primary navbar-action-button" href="/login">เข้าสู่ระบบ</a>
-
-                  <a class="btn btn-secondary navbar-action-button" href="/register">สมัครสมาชิก</a>
-
-                  <a class="btn btn-secondary navbar-action-button" href="/dashboard">โปรไฟล์</a>
-
-                </div>
-
-              </div>
-            </div>
-          </div>
-
-
-        </ul>
-      </div>
-
-    </div>
-  </nav>
-</header>
 
 <!-- Table type #2-->
 <section class=" section section-lg bg-invisible novi-background" data-preset='{"title":"Table Sample","category":"table, content box","reload":true,"id":"table-sample-2"}'>
@@ -120,7 +68,7 @@
                 ข้อมูลไม่เพียงพอ
               </td>
               <td class="text-center">
-                <button class="btn btn-lg btn-secondary">เพิ่มเติม</button>
+                <button class="btn btn-lg btn-secondary">ใส่ตะกร้า</button>
               </td>
             </tr>
             <tr>
@@ -137,7 +85,7 @@
                 ข้อมูลไม่เพียงพอ
               </td>
               <td class="text-center">
-                <button class="btn btn-lg btn-secondary">เพิ่มเติม</button>
+                <button class="btn btn-lg btn-secondary">ใส่ตะกร้า</button>
               </td>
             </tr>
             <tr>
@@ -154,7 +102,7 @@
                 ข้อมูลไม่เพียงพอ
               </td>
               <td class="text-center">
-                <button class="btn btn-lg btn-secondary">เพิ่มเติม</button>
+                <button class="btn btn-lg btn-secondary">ใส่ตะกร้า</button>
               </td>
             </tr>
             <tr>
@@ -171,7 +119,7 @@
                 ข้อมูลไม่เพียงพอ
               </td>
               <td class="text-center">
-                <button class="btn btn-lg btn-secondary">เพิ่มเติม</button>
+                <button class="btn btn-lg btn-secondary">ใส่ตะกร้า</button>
               </td>
             </tr>
             <tr>
@@ -188,7 +136,7 @@
                 ข้อมูลไม่เพียงพอ
               </td>
               <td class="text-center">
-                <button class="btn btn-lg btn-secondary">เพิ่มเติม</button>
+                <button class="btn btn-lg btn-secondary">ใส่ตะกร้า</button>
               </td>
             </tr>
             <tr>
@@ -205,7 +153,7 @@
                 ข้อมูลไม่เพียงพอ
               </td>
               <td class="text-center">
-                <button class="btn btn-lg btn-secondary">เพิ่มเติม</button>
+                <button class="btn btn-lg btn-secondary">ใส่ตะกร้า</button>
               </td>
             </tr>
             <tr>
@@ -222,7 +170,7 @@
                 ข้อมูลไม่เพียงพอ
               </td>
               <td class="text-center">
-                <button class="btn btn-lg btn-secondary">เพิ่มเติม</button>
+                <button class="btn btn-lg btn-secondary">ใส่ตะกร้า</button>
               </td>
             </tr>
             <tr>
@@ -239,7 +187,7 @@
                 ข้อมูลไม่เพียงพอ
               </td>
               <td class="text-center">
-                <button class="btn btn-lg btn-secondary">เพิ่มเติม</button>
+                <button class="btn btn-lg btn-secondary">ใส่ตะกร้า</button>
               </td>
             </tr>
             <tr>
@@ -256,7 +204,7 @@
                 ข้อมูลไม่เพียงพอ
               </td>
               <td class="text-center">
-                <button class="btn btn-lg btn-secondary">เพิ่มเติม</button>
+                <button class="btn btn-lg btn-secondary">ใส่ตะกร้า</button>
               </td>
             </tr>
             <tr>
@@ -273,7 +221,7 @@
                 ข้อมูลไม่เพียงพอ
               </td>
               <td class="text-center">
-                <button class="btn btn-lg btn-secondary">เพิ่มเติม</button>
+                <button class="btn btn-lg btn-secondary">ใส่ตะกร้า</button>
               </td>
             </tr>
             <tr>
@@ -290,7 +238,7 @@
                 ข้อมูลไม่เพียงพอ
               </td>
               <td class="text-center">
-                <button class="btn btn-lg btn-secondary">เพิ่มเติม</button>
+                <button class="btn btn-lg btn-secondary">ใส่ตะกร้า</button>
               </td>
             </tr>
             <tr>
@@ -307,7 +255,7 @@
                 ข้อมูลไม่เพียงพอ
               </td>
               <td class="text-center">
-                <button class="btn btn-lg btn-secondary">เพิ่มเติม</button>
+                <button class="btn btn-lg btn-secondary">ใส่ตะกร้า</button>
               </td>
             </tr>
             <tr>
@@ -324,7 +272,7 @@
                 ข้อมูลไม่เพียงพอ
               </td>
               <td class="text-center">
-                <button class="btn btn-lg btn-secondary">เพิ่มเติม</button>
+                <button class="btn btn-lg btn-secondary">ใส่ตะกร้า</button>
               </td>
             </tr>
             <tr>
@@ -341,7 +289,7 @@
                 ข้อมูลไม่เพียงพอ
               </td>
               <td class="text-center">
-                <button class="btn btn-lg btn-secondary">เพิ่มเติม</button>
+                <button class="btn btn-lg btn-secondary">ใส่ตะกร้า</button>
               </td>
             </tr>
             <tr>
@@ -358,7 +306,7 @@
                 ข้อมูลไม่เพียงพอ
               </td>
               <td class="text-center">
-                <button class="btn btn-lg btn-secondary">เพิ่มเติม</button>
+                <button class="btn btn-lg btn-secondary">ใส่ตะกร้า</button>
               </td>
             </tr>
             <tr>
@@ -375,7 +323,7 @@
                 ข้อมูลไม่เพียงพอ
               </td>
               <td class="text-center">
-                <button class="btn btn-lg btn-secondary">เพิ่มเติม</button>
+                <button class="btn btn-lg btn-secondary">ใส่ตะกร้า</button>
               </td>
             </tr>
             <tr>
@@ -392,7 +340,7 @@
                 ข้อมูลไม่เพียงพอ
               </td>
               <td class="text-center">
-                <button class="btn btn-lg btn-secondary">เพิ่มเติม</button>
+                <button class="btn btn-lg btn-secondary">ใส่ตะกร้า</button>
               </td>
             </tr>
             <tr>
@@ -409,7 +357,7 @@
                 ข้อมูลไม่เพียงพอ
               </td>
               <td class="text-center">
-                <button class="btn btn-lg btn-secondary">เพิ่มเติม</button>
+                <button class="btn btn-lg btn-secondary">ใส่ตะกร้า</button>
               </td>
             </tr>
             <tr>
@@ -426,7 +374,7 @@
                 ข้อมูลไม่เพียงพอ
               </td>
               <td class="text-center">
-                <button class="btn btn-lg btn-secondary">เพิ่มเติม</button>
+                <button class="btn btn-lg btn-secondary">ใส่ตะกร้า</button>
               </td>
             </tr>
             <tr>
@@ -443,7 +391,7 @@
                 ข้อมูลไม่เพียงพอ
               </td>
               <td class="text-center">
-                <button class="btn btn-lg btn-secondary">เพิ่มเติม</button>
+                <button class="btn btn-lg btn-secondary">ใส่ตะกร้า</button>
               </td>
             </tr>
 

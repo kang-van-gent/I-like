@@ -25,8 +25,8 @@
             <button class="btn btn-block btn-lg btn-primary " type="submit">
               <div class="icon-box-icon icon-sm novi-icon mdi-login"> เข้าสู่ระบบ</div>
             </button>
-            @if(Session::has('msg'))
-            <p class="text-danger"> {{session('msg')}}</p>
+            @if(Session::has('error'))
+            <p class="text-danger"> {{session('error')}}</p>
             @endif
 
             <div class="accent-box-text small group-15">

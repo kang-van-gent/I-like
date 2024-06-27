@@ -1,3 +1,4 @@
+@import url("https://bit.ly/3CZa0Sz");
 :root {
     --bs-blue: #0d6efd;
     --bs-indigo: #6610f2;
@@ -53,7 +54,7 @@
         rgba(255, 255, 255, 0.15),
         rgba(255, 255, 255, 0)
     );
-    --bs-body-font-family: Heebo, sans-serif;
+    --bs-body-font-family: "line_seed_sans_th", sans-serif;
     --bs-body-font-size: calc(1.25625rem + 0.075vw);
     --bs-body-font-weight: 300;
     --bs-body-line-height: 1.54;

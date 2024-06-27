@@ -13,7 +13,9 @@ return new class extends Migration
     {
         Schema::create('paragraphs', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->details();
+            $table->image();
+            $table->blogId();
         });
     }
 

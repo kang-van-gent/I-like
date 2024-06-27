@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\customer;
-use App\Models\User;
-use App\Models\users;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Validator;
 
 class AuthenticateController extends Controller
 {
@@ -44,7 +43,7 @@ class AuthenticateController extends Controller
             }
             return redirect('/dashboard');
         } else {
-            return redirect('/login')->with('msg', 'ชื่อผู้ใช้หรือรหัสผ่านผิด กรุณาลองใหม่อีกครั้ง');
+            return redirect('/login')->with('error', 'ชื่อผู้ใช้หรือรหัสผ่านผิด กรุณาลองใหม่อีกครั้ง');
         }
     }
 
@@ -54,11 +53,50 @@ class AuthenticateController extends Controller
     public function register(Request $request)
     {
         //
-        // this state should check while typing.
-        if ($request->password != $request->conpass) {
+
+
+        $validator = Validator::make($request->all(), [
+            'username' => [
+                'required',
+                'min:8',
+            ],
+            'email' => [
+                'required',
+                'email',
+            ],
+            'password' => [
+                'required',
+                'min:8',
+                'regex:/^(?=.*[A-Z]).+$/', // Ensures at least one uppercase letter
+
+            ],
+        ], [
+            'username.required' => 'กรุณากรอกชื่อผู้ใช้',
+            'username.min' => 'ชื่อต้องมีความยาวอย่างน้อย 8 ตัวอักษร',
+            'email.required' => 'กรุณากรอกอีเมล',
+            'email.email' => 'กรุณากรอกอีเมลให้ถูกต้อง',
+            'password.required' => 'กรุณากรอกรหัสผ่าน',
+            'password.min' => 'รหัสผ่านต้องมีความยาวอย่างน้อย 8 ตัวอักษร',
+            'password.regex' => 'รหัสผ่านต้องมีอักษรตัวใหญ่อย่างน้อย 1 ตัว',
+
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        } elseif ($request->password != $request->conpass) {
             # code...
-            return redirect('/register')->with('msg', 'Password is not match.');
+            return redirect()->back()->with('error', 'รหัสผ่านไม่ตรงกัน');
+        } elseif (Customer::where('username', $request->username)->exists()) {
+            # code...
+            return redirect()->back()->with('error', 'อีเมลซ้ำ กรุณาใช้อีเมลอื่น');
+        } elseif (Customer::where('email', $request->email)->exists()) {
+            return redirect()->back()->with('error', 'ชื่อผู้ใช้งานซ้ำ กรุณาใช้ชื่ออื่น');
         }
+
+        // The incoming request is valid...
+
+        // Retrieve the validated input data...
+        $validated = $validator->validated();
 
         //should check exits user and email.
 
