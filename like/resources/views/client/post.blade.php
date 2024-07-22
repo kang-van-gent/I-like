@@ -18,14 +18,14 @@
           <h2>{{$blog->topic}}</h2>
 
 
-          <figure class="figure"><img class="lazy-img figure-img" src="data:/image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs%3D" data-src="/images/image-05-840x540.jpg" alt="" width="840" height="540">
+          <figure class="figure text-center"><img class="lazy-img figure-img " src="{{ Storage::url($blog->headerImg) }}" data-src="{{ Storage::url($blog->headerImg) }}" alt="" width="840" height="540">
 
           </figure>
           @foreach($blog->paragrahpDeck as $paragraph )
           <p>
-            <span>{{$paragraph->details}}</span>
+            <span>&emsp;&emsp;&emsp;&emsp;&emsp;{{$paragraph->details}}</span>
           </p>
-          <figure class="figure"><img class="lazy-img figure-img" src="data:/image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs%3D" data-src="/images/image-05-840x540.jpg" alt="" width="840" height="540">
+          <figure class="figure text-center"><img class="lazy-img figure-img" src="{{ Storage::url($paragraph->image) }}" data-src="{{ Storage::url($paragraph->image) }}" alt="" width="840" height="540">
           </figure>
           @endforeach
 
@@ -36,7 +36,7 @@
 
             @foreach($lastest as $post)
             <div class="col-sm-6">
-              <div class="post post-sm"><a class="post-img-link" href="post.html"><img class="lazy-img" src="data:/image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs%3D" data-src="/images/image-09-400x257.jpg" alt="" width="400" height="257"></a>
+              <div class="post post-sm"><a class="post-img-link" href="post.html"><img class="lazy-img" src="{{ Storage::url($post->coverImage) }}" data-src="{{ Storage::url($post->coverImage) }}" alt="" width="400" height="257"></a>
                 <div class="post-meta">
                   <div class="post-meta-item"><span class="post-meta-icon int-clock novi-icon"></span><a class="post-meta-link" href="post.html">{{$post->createdAt}}</a></div>
                 </div>

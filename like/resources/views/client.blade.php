@@ -21,6 +21,15 @@
     <link rel="stylesheet" href="{{asset('components/base/base.css')}}">
     <script src="{{asset('components/base/core.js')}}" defer></script>
     <script src="{{asset('components/base/script.js')}}" defer></script>
+    <script src="{{asset('components/base/bootstrap.min.js')}}" defer></script>
+    <script src="{{asset('components/base/popper.js')}}" defer></script>
+    <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glider-js@1/glider.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/glider-js@1/glider.min.js"></script>
+
+
+
 
 
 </head>
@@ -30,7 +39,9 @@
 
         @include('header.clientheader')
         @yield('contents')
-        @include('footer.clientfooter')
+
+
+
 
     </div>
     <!-- Page Loader-->

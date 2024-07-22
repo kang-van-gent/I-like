@@ -21,7 +21,8 @@ return new class extends Migration
             $table->career();
             $table->gender();
             $table->password();
-            $table->id();
+            $table->whereFrom();
+            $table->role();
             $table->timestamps();
         });
     }

@@ -28,41 +28,69 @@
             </div>
             <div class="form-group">
               <div class="input-group"><span class="input-group-text fa-address-card-o novi-icon"></span>
-                <input class="form-control" type="text" name="firstName" placeholder="ชื่อจริง">
+                <input class="form-control" type="text" name="firstName" placeholder="ชื่อ - นามสกุล">
               </div>
             </div>
             <div class="form-group">
-              <div class="input-group"><span class="input-group-text fa-address-card-o novi-icon"></span>
-                <input class="form-control" type="text" name="lastName" placeholder="นามสกุล">
-              </div>
-            </div>
-            <div class="form-group">
-              <div class="input-group"><span class="input-group-text fa-address-card-o novi-icon"></span>
+              <div class="input-group"><span class="input-group-text  icon-box-icon novi-icon fa-calendar"></span>
                 <input class="form-control" type="number" name="age" placeholder="อายุ">
               </div>
             </div>
-            <div class="form-group">
-              <div class="select-wrap">
-                <select class="select2-original" id="simple-select1" name="career" data-select2-options='{"placeholder":"อาชีพ"}'>
-                  <option label="placeholder"></option>
-                  <option>USA</option>
-                  <option>UK</option>
-                  <option>Ukraine</option>
-                  <option>Australia</option>
-                  <option>Korea</option>
-                  <option>Japan</option>
-                  <option>Germany</option>
-                  <option>Belarus</option>
-                  <option>Poland</option>
-                </select>
-              </div>
-            </div>
+
             <div class="form-group">
               <div class="select-wrap">
                 <select class="select2-original" id="simple-select2" name="gender" data-select2-options='{"placeholder":"เพศ"}'>
                   <option label="placeholder"></option>
                   <option>ชาย</option>
                   <option>หญิง</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="select-wrap">
+                <select class="select2-original" id="simple-select1" name="career" data-select2-options='{"placeholder":"อาชีพ"}'>
+
+                  <option label="placeholder"></option>
+                  <option>นักเรียน / นักศึกษา</option>
+                  <option>อินฟลูเอนเซอร์</option>
+                  <option>ฟรีแลนซ์</option>
+                  <option>ข้าราชการ</option>
+                  <option>ธุรกิจส่วนตัว</option>
+                  <option>พนักงานบริษัทเอกชน</option>
+                  <option>ผู้ประกอบอาชีพอิสระ</option>
+                  <option>อื่นๆ (กรุณาระบุ)</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="select-wrap">
+                <select class="select2-original" id="simple-select4" name="salary" data-select2-options='{"placeholder":"รายได้โดยเฉลี่ย"}'>
+
+                  <option label="placeholder"></option>
+                  <option>ต่ำกว่า 5,000 บาท/เดือน</option>
+                  <option>5,000 - 10,000 บาท/เดือน</option>
+                  <option>10,001 - 20,000 บาท/เดือน</option>
+                  <option>20,001 - 50,000 บาท/เดือน</option>
+                  <option>มากกว่า 50,000 บาท/เดือน</option>
+                </select>
+              </div>
+            </div>
+
+
+            <div class="form-group">
+              <div class="select-wrap">
+                <select class="select2-original" id="simple-select3" name="whereFrom" data-select2-options='{"placeholder":"รู้จักเราผ่านช่องทางใด?"}'>
+                  <option label="placeholder"></option>
+                  <option>Facebook</option>
+                  <option>Instagram</option>
+                  <option>Tiktok</option>
+                  <option>Lemon8</option>
+                  <option>ค้นหาทาง Google</option>
+                  <option>โฆษณาออนไลน์ (Google Ads, Facebook Ads ฯลฯ)</option>
+                  <option>การแนะนำจากเพื่อนหรือคนอื่นๆ</option>
+                  <option>อื่นๆ (กรุณาระบุ)</option>
                 </select>
               </div>
             </div>
@@ -79,6 +107,7 @@
                 <input class="form-control input-password password-register-2" type="text" name="conpass" placeholder="ยืนยันรหัสผ่าน"><span class="input-group-text input-group-text-nodivider input-password-icon" data-multi-switch='{"targets":".password-register-2"}'></span>
               </div>
             </div>
+
             <!-- <div class="form-check accent-box-text">
               <input class="form-check-input" type="checkbox" id="check1">
               <label class="form-check-label" for="check1">ยอมรับ
@@ -107,15 +136,3 @@
 </section>
 
 @endsection
-
-
-<!-- Register error handle.
-Form require.
--- All form is reqiure.
--- Username is require and must be unique.
--- Email is require and must br unique.
--- Password must be at least 8 charactors.
--- At least 1 uppercase.
--- Password must contains letters and numbers.
--- Confirm password must match password.
--->

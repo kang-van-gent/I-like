@@ -9,7 +9,7 @@
     <div class="col-md-4">
       <div class="card overflow-hidden rounded-2">
         <div class="position-relative">
-          <a href="{{ url('/post?id='.$b->id) }}"><img src="/images/banner.png" href="{{ url('/post?id='.$b->id) }}" class="card-img-top rounded-0" alt="..."></a>
+          <a href="{{ url('/post?id='.$b->id) }}"><img src="{{ Storage::url($b->headerImg) }}" data-src="{{ Storage::url($b->headerImg) }}" href="{{ url('/post?id='.$b->id) }}" class="card-img-top rounded-0" alt="..."></a>
 
         </div>
         <div class="card-body pt-3 p-4">

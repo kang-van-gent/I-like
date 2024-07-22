@@ -9,10 +9,10 @@
       <hr class="w-50 m-auto mb-3 fw-bold">
       <ul class="nav nav-classic justify-content-center " role="tablist">
         <li class="nav-item p-2 h4">
-          <button class="btn btn-outline-secondary active rounded-pill" data-bs-toggle="tab" href="#login" role="tab" aria-selected="true">ประวัติการเปิดตั๋ว</button>
+          <button class="btn btn-outline-secondary btn-sm active rounded-pill" data-bs-toggle="tab" href="#login" role="tab" aria-selected="true">ประวัติการเปิดตั๋ว</button>
         </li>
         <li class="nav-item p-2 h4">
-          <button class="btn btn-outline-secondary rounded-pill" data-bs-toggle="tab" href="#register" role="tab" aria-selected="false">ตั๋วช่วยเหลือ</button>
+          <button class="btn btn-outline-secondary btn-sm rounded-pill" data-bs-toggle="tab" href="#register" role="tab" aria-selected="false">ตั๋วช่วยเหลือ</button>
         </li>
       </ul>
 

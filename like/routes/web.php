@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthenticateController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MasterController;
+use App\Models\promotions;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,7 +20,8 @@ use Illuminate\Support\Facades\Route;
 */
 // Client before login
 Route::get('/', function () {
-    return view('client.index');
+    $promotions = promotions::orderBy('id', 'desc')->limit(5)->get();
+    return view('client.index', ['promotions' => $promotions]);
 });
 Route::get('/register', function () {
     return view('auth.register');
@@ -71,4 +73,10 @@ Route::get('/remove-item/{productId}', [AdminController::class, 'removeItem'])->
 
 
 // Master admin
-Route::get('/master-admin', [MasterController::class, 'index']);
+Route::resource('/admin',  MasterController::class);
+Route::post('/admin/create-product', [MasterController::class, 'createProduct']);
+Route::post('/admin/create-promotion', [MasterController::class, 'createPromotion']);
+Route::post('/admin/create-blog', [MasterController::class, 'createBlog']);
+Route::get('/admin/delete-product/{id}', [MasterController::class, 'deleteProduct']);
+Route::get('/admin/delete-promotion/{id}', [MasterController::class, 'deletePromotion']);
+Route::get('/admin/delete-blog/{id}', [MasterController::class, 'deleteblog']);

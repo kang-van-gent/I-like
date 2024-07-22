@@ -41,7 +41,7 @@ class AuthenticateController extends Controller
 
                 Cookie::queue('adminpwd', $request->password, 1440);
             }
-            return redirect('/dashboard');
+            return redirect('/services');
         } else {
             return redirect('/login')->with('error', 'ชื่อผู้ใช้หรือรหัสผ่านผิด กรุณาลองใหม่อีกครั้ง');
         }
@@ -69,9 +69,27 @@ class AuthenticateController extends Controller
                 'min:8',
                 'regex:/^(?=.*[A-Z]).+$/', // Ensures at least one uppercase letter
 
-            ],
+            ], 'firstName' => [
+                'required'
+            ], 'age' => [
+                'required'
+            ], 'gender' => [
+                'required'
+            ], 'career' => [
+                'required'
+            ], 'salary' => [
+                'required'
+            ], 'whereFrom' => [
+                'required'
+            ]
         ], [
             'username.required' => 'กรุณากรอกชื่อผู้ใช้',
+            'firstName.required' => 'กรุณากรอกชื่อ-นามสกุล',
+            'age.required' => 'กรุณาใส่อายุ',
+            'gender.required' => 'กรุณาเลือกเพศ',
+            'career.required' => 'กรุณาเลือกอาชีพ',
+            'salary.required' => 'กรุณาเลือกช่วงเงินเดือน',
+            'whereFrom.required' => 'กรุณากรอกชื่อผู้ใช้',
             'username.min' => 'ชื่อต้องมีความยาวอย่างน้อย 8 ตัวอักษร',
             'email.required' => 'กรุณากรอกอีเมล',
             'email.email' => 'กรุณากรอกอีเมลให้ถูกต้อง',
@@ -80,7 +98,6 @@ class AuthenticateController extends Controller
             'password.regex' => 'รหัสผ่านต้องมีอักษรตัวใหญ่อย่างน้อย 1 ตัว',
 
         ]);
-
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         } elseif ($request->password != $request->conpass) {
@@ -108,6 +125,8 @@ class AuthenticateController extends Controller
         $data->age = $request->age;
         $data->career = $request->career;
         $data->gender = $request->gender;
+        $data->whereFrom = $request->whereFrom;
+        $data->role = 'user';
         $data->password = sha1($request->password);
         $data->save();
         return redirect('/');
