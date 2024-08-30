@@ -14,7 +14,9 @@ use Illuminate\Support\Facades\Log;
 class PaymentController extends Controller
 {
     protected $ksherPayService;
-    protected $line_access_token = 'GOYDtVZBXG5LUQnTnLUKz3Bd+0IYgZlS4wY5doFTh8uzcqe5+ThB/2nIxhIy0Nji9s36s7EvAUgm49cutRbvo7vApS6EerKuJ8HtW9SGmbzkzEG9bxQgjLMI2+Gbpp2gqkY9frch0D4bo4N9RfHHwQdB04t89/1O/w1cDnyilFU=';
+
+    protected $client_id = '2006130622';
+    protected $client_secret = '8af0060c4e981e4b22fefe678b40f042';
     protected $user_id = 'U4d8234c7f104e9a8b1df9195bc61f39e';
 
     public function __construct(KsherPayService $ksherPayService)
@@ -43,6 +45,10 @@ class PaymentController extends Controller
             }
             if ($request->input('amount') > 30000) {
                 return response()->json(['error' => 'กรุณาเติมเงินน้อยกว่า 30,000 บาท', 'title' => 'เติมเยอะเกินไปแล้ว!'], 500);
+            }
+            $amount = $request->input('amount');
+            if (strpos($amount, '.') !== false && strlen(explode('.', $amount)[1]) > 2) {
+                return response()->json(['error' => 'กรุณากรอกจำนวนเงินที่มีทศนิยมไม่เกิน 2 ตำแหน่ง', 'title' => 'ทศนิยมเยอะไป!'], 500);
             }
             // Prepare the order data
             $orderData = [
@@ -152,11 +158,38 @@ class PaymentController extends Controller
         $data = json_decode($request->items, true);
         try {
 
-            $url = 'https://api.line.me/v2/bot/message/push';
+            $shortUrl = 'https://api.line.me/v2/oauth/accessToken';
+
+            $stur = [
+                'grant_type' => 'client_credentials',
+                'client_id' => $this->client_id,
+                'client_secret' => $this->client_secret,
+            ];
+
+            $stch = curl_init($shortUrl);
+            curl_setopt($stch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($stch, CURLOPT_POST, true);
+            curl_setopt($stch, CURLOPT_POSTFIELDS, http_build_query($stur));
+            $responsest = curl_exec($stch);
+            curl_close($stch);
+
+            $responseData = json_decode($responsest, true);
+            // if (isset($responseData['access_token'])) {
+            $short_access_token = $responseData['access_token'];
+            //     echo "Access Token: " . $access_token;
+            // } else {
+            //     echo "Failed to obtain access token";
+            // }
+
+            Log::info('short live token notification:', $responseData);
+
+
+            $line_access_token = $short_access_token;
+            $url = 'https://api.line.me/v2/bot/message/push'; // turn to boadcast
 
             $headers = [
                 'Content-Type: application/json',
-                'Authorization: Bearer ' . $this->line_access_token
+                'Authorization: Bearer ' . $line_access_token
             ];
 
             //code...
@@ -199,7 +232,7 @@ class PaymentController extends Controller
                 $message = "📣  ออเดอร์ใหม่จากเว็บ GainLike‼️ \n\n - 📌 ตรวจสอบทันที!";
 
                 $postData = [
-
+                    'to' => $this->user_id, // remove this
                     'messages' => [
                         [
                             'type' => 'text',
@@ -215,6 +248,11 @@ class PaymentController extends Controller
                 curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($postData));
                 $response = curl_exec($ch);
                 curl_close($ch);
+
+                $responseLine = json_decode($response, true);
+
+                Log::info('Line message response:', $postData);
+
 
                 $user->wallet = $user->wallet - $request->price;
                 session('data')[0]->wallet = session('data')[0]->wallet - $request->price;

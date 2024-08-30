@@ -60,6 +60,7 @@ class AuthenticateController extends Controller
             'username' => [
                 'required',
                 'min:8',
+                'regex:/^[a-zA-Z0-9]+$/'
             ],
             'email' => [
                 'required',
@@ -68,36 +69,14 @@ class AuthenticateController extends Controller
             'password' => [
                 'required',
                 'min:8',
-                'regex:/^(?=.*[A-Z]).+$/', // Ensures at least one uppercase letter
+                'regex:/^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])[a-zA-Z0-9]+$/', // Ensures at least one uppercase letter, one lowercase letter, one number, and no spaces or special characters
 
             ],
-            // 'firstName' => [
-            //     'required'
-            // ],
-            // 'age' => [
-            //     'required'
-            // ],
-            // 'gender' => [
-            //     'required'
-            // ],
-            // 'career' => [
-            //     'required'
-            // ],
-            // 'salary' => [
-            //     'required'
-            // ],
-            // 'whereFrom' => [
-            //     'required'
-            // ]
+
         ], [
             'username.required' => 'กรุณากรอกชื่อผู้ใช้',
-            // 'firstName.required' => 'กรุณากรอกชื่อ-นามสกุล',
-            // 'age.required' => 'กรุณาใส่อายุ',
-            // 'gender.required' => 'กรุณาเลือกเพศ',
-            // 'career.required' => 'กรุณาเลือกอาชีพ',
-            // 'salary.required' => 'กรุณาเลือกช่วงเงินเดือน',
-            // 'whereFrom.required' => 'กรุณากรอกชื่อผู้ใช้',
             'username.min' => 'ชื่อต้องมีความยาวอย่างน้อย 8 ตัวอักษร',
+            'username.regex' => 'ชื่อผู้ใช้ต้องไม่มีช่องว่างหรือตัวอักษรพิเศษ',
             'email.required' => 'กรุณากรอกอีเมล',
             'email.email' => 'กรุณากรอกอีเมลให้ถูกต้อง',
             'password.required' => 'กรุณากรอกรหัสผ่าน',

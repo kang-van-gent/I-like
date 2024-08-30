@@ -210,7 +210,9 @@
                 <div class="col-md-4 mb-4">
                     <div class="card shadow-lg">
                         <div class="card-body text-center">
-                            <p class="card-text"><strong>Service:</strong> ${product.amount} ${product.service}</p>
+                            <p class="card-text"><strong>บริการ :</strong> ${product.amount} ${product.service}</p>
+                            <p class="card-text"><strong>ราคา :</strong> ${product.price} บาท</p>
+
                             <a href="${routeUrl}/${product.id}" class="btn btn-secondary w-100">ใส่ตะกร้า</a>
                         </div>
                     </div>

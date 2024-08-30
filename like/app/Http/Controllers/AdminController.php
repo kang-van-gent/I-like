@@ -426,6 +426,25 @@ class AdminController extends Controller
 
         return back();
     }
+
+    public function updateQuantity(Request $request)
+    {
+        $itemId = $request->input('itemId');
+        $change = $request->input('change');
+
+        // Find the item in the cart and update its quantity
+        $cartItem = Cart::get($itemId); // Assuming you're using a Cart package
+        if ($cartItem) {
+            $newQuantity = $cartItem->quantity + $change;
+            if ($newQuantity > 0) {
+                Cart::update($itemId, ['quantity' => $newQuantity]);
+                return response()->json(['status' => 'success']);
+            }
+        }
+
+        return response()->json(['status' => 'error']);
+    }
+
     public function removeItem($productId)
     {
         Cart::remove($productId);

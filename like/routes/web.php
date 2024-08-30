@@ -76,6 +76,7 @@ Route::get('/services', [AdminController::class, 'services'])->name('admin.servi
 Route::get('/filter-services', [AdminController::class, 'filterServices'])->name('filter.services');
 Route::get('/services/{productId}', [AdminController::class, 'store'])->name('service.store');
 Route::get('/product/details', [AdminController::class, 'getProductByDetails'])->name('product.details');
+Route::post('/service/updateQuantity', [AdminController::class, 'updateQuantity'])->name('service.updateQuantity');
 Route::get('/remove-item/{productId}', [AdminController::class, 'removeItem'])->name('service.remove');
 
 

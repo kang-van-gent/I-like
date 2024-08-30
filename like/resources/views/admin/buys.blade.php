@@ -27,8 +27,12 @@
                       </div>
                       <div class="d-grid gap-2 d-md-flex justify-content-md-between mb-3">
                         <h6 class="card-subtitle mb-2 text-muted ">x{{ $item->attributes->amount }}</h6>
-                        <h6 class="card-subtitle mb-2 text-muted">จำนวน : {{ $item->quantity }} รายการ</h6>
-                        <a href="{{ route('service.remove',$item->id) }}" class="btn btn-outline-danger btn-sm" type="button">เอาออกจากตะกร้า</a>
+                        <h6 class="card-subtitle mb-2 text-muted mx-2">จำนวน : {{ $item->quantity }} รายการ</h6>
+                        <div class="d-flex align-items-center">
+                          <!-- <button class="btn btn-outline-secondary btn-sm me-2" type="button" onclick="updateQuantity('{{ $item->id }}', -1)">-</button>
+                          <button class="btn btn-outline-secondary btn-sm me-2" type="button" onclick="updateQuantity('{{ $item->id }}', 1)">+</button> -->
+                          <a href="{{ route('service.remove',$item->id) }}" class="btn btn-outline-danger btn-sm" type="button">X</a>
+                        </div>
                       </div>
                       <div class="form-floating mb-2">
                         <input type="text" class="form-control" id="commentLink{{ $item->id }}" placeholder="ลิ้งก์สำหรับ comment" value="{{$item->attributes->link}}">
@@ -92,6 +96,28 @@
 </script>
 
 <script>
+  // function updateQuantity(itemId, change) {
+  //   $.ajax({
+  //     url: '{{ route("service.updateQuantity") }}', // Update this to the correct route
+  //     method: 'POST',
+  //     data: {
+  //       _token: '{{ csrf_token() }}',
+  //       itemId: itemId,
+  //       change: change
+  //     },
+  //     success: function(response) {
+  //       if (response.status === 'success') {
+  //         location.reload(); // Reload the page to update the quantity
+  //       } else {
+  //         alert('Error updating quantity');
+  //       }
+  //     },
+  //     error: function(error) {
+  //       console.error('Error:', error);
+  //       alert('Error updating quantity');
+  //     }
+  //   });
+  // }
   async function validateComment(item) {
     return new Promise((resolve, reject) => {
       try {
@@ -153,6 +179,17 @@
         confirmButtonText: 'ชำระเงิน'
       }).then((result) => {
         if (result.isConfirmed) {
+          // Show loading spinner
+          Swal.fire({
+            title: 'กำลังดำเนินการ...',
+            text: 'โปรดรอสักครู่',
+            allowOutsideClick: false,
+            showConfirmButton: false,
+            willOpen: () => {
+              Swal.showLoading()
+            }
+          });
+
           $.ajax({
             url: '{{ route("payment.buy") }}',
             type: 'POST',
@@ -162,6 +199,7 @@
               price: total
             },
             success: function(response) {
+              Swal.close(); // Close the loading spinner
               console.log(response);
               if (response.status == 'success') {
                 Swal.fire({
@@ -171,7 +209,7 @@
                   confirmButtonText: 'รับทราบ'
                 }).then((response) => {
                   if (response.isConfirmed) {
-                    window.location.reload()
+                    window.location.reload();
                   }
                 });
               } else {
@@ -185,6 +223,7 @@
               }
             },
             error: function(error) {
+              Swal.close(); // Close the loading spinner
               console.log(error.responseJSON);
               Swal.fire({
                 title: 'ล้มเหลว!',
