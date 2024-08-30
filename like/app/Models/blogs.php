@@ -8,9 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class blogs extends Model
 {
     use HasFactory;
-    const CREATED_AT = 'createdAt';
-    const UPDATED_AT = 'updatedAt';
-    protected $table = 'blog';
+    protected $table = 'blogs';
     function paragrahpDeck()
     {
         return $this->hasMany(paragraphs::class, 'blogId');

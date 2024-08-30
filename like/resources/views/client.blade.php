@@ -37,6 +37,7 @@
 <body>
     <div class="page">
 
+
         @include('header.clientheader')
         @yield('contents')
 
@@ -56,6 +57,10 @@
         </div>
     </div>
     <div class="notifications-area" id="notifications-area"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </body>
+
 
 </html>

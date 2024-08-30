@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->topic();
             $table->details();
-            $table->userId();
-            $table->adminId();
+            $table->user_id();
+            $table->admin_id();
             $table->timestamps();
         });
     }

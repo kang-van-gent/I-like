@@ -8,6 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class answers extends Model
 {
     use HasFactory;
-    const CREATED_AT = 'createdAt';
     protected $table = 'answers';
 }

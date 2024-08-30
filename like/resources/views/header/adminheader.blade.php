@@ -20,30 +20,30 @@
                         <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
                         <span class="hide-menu">เมนู</span>
                     </li>
-                    <li class="sidebar-item ">
+                    <!-- <li class="sidebar-item ">
                         <a class="sidebar-link-primary" href="/dashboard" aria-expanded="false">
                             <span>
                                 <i class="ti ti-layout-dashboard"></i>
                             </span>
                             <span class="hide-menu">แดชบอร์ด</span>
                         </a>
-                    </li>
+                    </li> -->
                     <li class="sidebar-item ">
-                        <a class="sidebar-link-primary " href="/services" aria-expanded="false">
+                        <a class="sidebar-link-primary {{ Request::is('services*') ? 'active' : '' }}" href="/services" aria-expanded="false">
                             <span>
                                 <i class="ti ti-package"></i>
                             </span>
                             <span class="hide-menu">บริการของเรา</span>
                         </a>
                     </li>
-                    <li class="sidebar-item ">
+                    <!-- <li class="sidebar-item ">
                         <a class="sidebar-link-primary " href="/updates" aria-expanded="false">
                             <span>
                                 <i class="ti ti-speakerphone"></i>
                             </span>
                             <span class="hide-menu">โปรโมชั่น</span>
                         </a>
-                    </li>
+                    </li> -->
                     <!-- <li class="sidebar-item ">
             <a class="sidebar-link " href="/affiliates" aria-expanded="false">
               <span>
@@ -71,7 +71,7 @@
             </a>
           </li> -->
                     <li class="sidebar-item ">
-                        <a class="sidebar-link-primary " href="/blog" aria-expanded="false">
+                        <a class="sidebar-link-primary {{ Request::is('blog*') ? 'active' : '' }}" href="/blog" aria-expanded="false">
                             <span>
                                 <i class="ti ti-notebook"></i>
                             </span>
@@ -79,7 +79,7 @@
                         </a>
                     </li>
                     <li class="sidebar-item ">
-                        <a class="sidebar-link-primary " href="/terms" aria-expanded="false">
+                        <a class="sidebar-link-primary {{ Request::is('terms*') ? 'active' : '' }}" href="/terms" aria-expanded="false">
                             <span>
                                 <i class="ti ti-file-alert"></i>
                             </span>
@@ -92,7 +92,7 @@
                         <span class="hide-menu">รายการของฉัน</span>
                     </li>
                     <li class="sidebar-item ">
-                        <a class="sidebar-link-info " href="/buys" aria-expanded="false">
+                        <a class="sidebar-link-info {{ Request::is('buys*') ? 'active' : '' }}" href="/buys" aria-expanded="false">
                             <span>
                                 <i class="ti ti-shopping-cart"></i>
                             </span>
@@ -120,7 +120,7 @@
                         <span class="hide-menu">ประวัติการสั่งซื้อ</span>
                     </li> -->
                     <li class="sidebar-item ">
-                        <a class="sidebar-link-info " href="/orders" aria-expanded="false">
+                        <a class="sidebar-link-info {{ Request::is('orders*') ? 'active' : '' }}" href="/orders" aria-expanded="false">
                             <span>
                                 <i class="ti ti-history"></i>
                             </span>
@@ -151,7 +151,7 @@
                             <span class="hide-menu">ประวัติการเติมยอด</span>
                         </a>
                     </li> -->
-                    <li class="nav-small-cap">
+                    <!-- <li class="nav-small-cap">
                         <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
                         <span class="hide-menu">คำแนะนำ</span>
                     </li>
@@ -178,15 +178,15 @@
                             </span>
                             <span class="hide-menu">ตั๋วช่วยเหลือ</span>
                         </a>
-                    </li>
+                    </li> -->
 
                 </ul>
 
                 <div class="unlimited-access hide-menu bg-light-danger position-relative mb-7 mt-2 rounded">
                     <div class="d-flex">
                         <div class="unlimited-access-title me-3">
-                            <h6 class="fw-semibold fs-4 mb-6 text-danger w-85">฿0.00 <br> เครดิตคงเหลือ</h6>
-                            <a href="/addfunds" class="btn btn-danger fs-2 fw-semibold lh-sm">เติมเงิน</a>
+                            <h6 class="fw-semibold fs-4 mb-6 text-danger w-85">${{ session('data')[0]->wallet }} <br> เครดิตคงเหลือ</h6>
+                            <a href="/payment" class="btn btn-danger fs-2 fw-semibold lh-sm">เติมเงิน</a>
                         </div>
                     </div>
                 </div>
@@ -235,25 +235,13 @@
                 </ul>
                 <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
                     <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
-                        <a href="/buys" class="btn btn-primary"><i class="ti ti-shopping-cart"></i> ตะกร้า ({{$counting}} )</a>
+                        <a href="/buys" class="btn btn-primary"><i class="ti ti-shopping-cart"></i> ตะกร้า ( {{$counting}} )</a>
                         <li class="nav-item dropdown">
                             <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown" aria-expanded="false">
                                 <img src="/src/assets/images/profile/user-1.jpg" alt="" width="35" height="35" class="rounded-circle">
                             </a>
-                            <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up" aria-labelledby="drop2">
+                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="drop2">
                                 <div class="message-body">
-                                    <!-- <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">
-                                        <i class="ti ti-user fs-6"></i>
-                                        <p class="mb-0 fs-3">My Profile</p>
-                                    </a>
-                                    <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">
-                                        <i class="ti ti-mail fs-6"></i>
-                                        <p class="mb-0 fs-3">My Account</p>
-                                    </a>
-                                    <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">
-                                        <i class="ti ti-list-check fs-6"></i>
-                                        <p class="mb-0 fs-3">My Task</p>
-                                    </a> -->
                                     <a href="/logout" class="btn btn-outline-primary mx-3 mt-2 d-block"><i class="ti ti-logout"></i> Logout</a>
                                 </div>
                             </div>

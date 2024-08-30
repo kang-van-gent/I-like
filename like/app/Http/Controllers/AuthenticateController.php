@@ -15,6 +15,9 @@ class AuthenticateController extends Controller
     public function index()
     {
         //
+        if (session('data') != null) {
+            return redirect('/');
+        }
         return view('auth.login');
     }
 
@@ -53,8 +56,6 @@ class AuthenticateController extends Controller
     public function register(Request $request)
     {
         //
-
-
         $validator = Validator::make($request->all(), [
             'username' => [
                 'required',
@@ -69,27 +70,33 @@ class AuthenticateController extends Controller
                 'min:8',
                 'regex:/^(?=.*[A-Z]).+$/', // Ensures at least one uppercase letter
 
-            ], 'firstName' => [
-                'required'
-            ], 'age' => [
-                'required'
-            ], 'gender' => [
-                'required'
-            ], 'career' => [
-                'required'
-            ], 'salary' => [
-                'required'
-            ], 'whereFrom' => [
-                'required'
-            ]
+            ],
+            // 'firstName' => [
+            //     'required'
+            // ],
+            // 'age' => [
+            //     'required'
+            // ],
+            // 'gender' => [
+            //     'required'
+            // ],
+            // 'career' => [
+            //     'required'
+            // ],
+            // 'salary' => [
+            //     'required'
+            // ],
+            // 'whereFrom' => [
+            //     'required'
+            // ]
         ], [
             'username.required' => 'กรุณากรอกชื่อผู้ใช้',
-            'firstName.required' => 'กรุณากรอกชื่อ-นามสกุล',
-            'age.required' => 'กรุณาใส่อายุ',
-            'gender.required' => 'กรุณาเลือกเพศ',
-            'career.required' => 'กรุณาเลือกอาชีพ',
-            'salary.required' => 'กรุณาเลือกช่วงเงินเดือน',
-            'whereFrom.required' => 'กรุณากรอกชื่อผู้ใช้',
+            // 'firstName.required' => 'กรุณากรอกชื่อ-นามสกุล',
+            // 'age.required' => 'กรุณาใส่อายุ',
+            // 'gender.required' => 'กรุณาเลือกเพศ',
+            // 'career.required' => 'กรุณาเลือกอาชีพ',
+            // 'salary.required' => 'กรุณาเลือกช่วงเงินเดือน',
+            // 'whereFrom.required' => 'กรุณากรอกชื่อผู้ใช้',
             'username.min' => 'ชื่อต้องมีความยาวอย่างน้อย 8 ตัวอักษร',
             'email.required' => 'กรุณากรอกอีเมล',
             'email.email' => 'กรุณากรอกอีเมลให้ถูกต้อง',
@@ -99,15 +106,25 @@ class AuthenticateController extends Controller
 
         ]);
         if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator)->withInput();
+            return response()->json([
+                'status' => 'error',
+                'errors' => $validator->errors()
+            ], 400);
         } elseif ($request->password != $request->conpass) {
-            # code...
-            return redirect()->back()->with('error', 'รหัสผ่านไม่ตรงกัน');
+            return response()->json([
+                'status' => 'error',
+                'message' => 'รหัสผ่านไม่ตรงกัน'
+            ], 400);
         } elseif (Customer::where('username', $request->username)->exists()) {
-            # code...
-            return redirect()->back()->with('error', 'อีเมลซ้ำ กรุณาใช้อีเมลอื่น');
+            return response()->json([
+                'status' => 'error',
+                'message' => 'ชื่อผู้ใช้งานซ้ำ กรุณาใช้ชื่ออื่น'
+            ], 400);
         } elseif (Customer::where('email', $request->email)->exists()) {
-            return redirect()->back()->with('error', 'ชื่อผู้ใช้งานซ้ำ กรุณาใช้ชื่ออื่น');
+            return response()->json([
+                'status' => 'error',
+                'message' => 'อีเมลซ้ำ กรุณาใช้อีเมลอื่น'
+            ], 400);
         }
 
         // The incoming request is valid...
@@ -120,16 +137,22 @@ class AuthenticateController extends Controller
         $data = new customer();
         $data->username = $request->username;
         $data->email = $request->email;
-        $data->firstName = $request->firstName;
-        $data->lastName = $request->lastName;
-        $data->age = $request->age;
-        $data->career = $request->career;
-        $data->gender = $request->gender;
-        $data->whereFrom = $request->whereFrom;
-        $data->role = 'user';
+        $data->confirmed = 1;
+        $data->blocked = 0;
+        // $data->firstName = $request->firstName;
+        // $data->lastName = $request->lastName;
+        // $data->age = $request->age;
+        // $data->career = $request->career;
+        // $data->gender = $request->gender;
+        // $data->whereFrom = $request->whereFrom;
         $data->password = sha1($request->password);
         $data->save();
-        return redirect('/');
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'ลงทะเบียนสำเร็จ',
+            'data' => $data
+        ], 201);
     }
 
     /**

@@ -9,12 +9,6 @@
     -webkit-mask-box-image: -webkit-linear-gradient(top, transparent, transparent 0, white 10%, white 80%, transparent 100%);
   }
 
-  h1,
-  h3 {
-    color: green;
-    text-align: center;
-  }
-
   .cards {
     position: relative;
     display: flex;
@@ -136,14 +130,14 @@
     <div class="row justify-content-center novi-disabled">
       <div class="col-md-10 col-lg-8 col-xl-7 col-xxl-6" data-animate='{"class":"fadeInUp"}'>
         <img class="lazy-img navbar-logo-defult" data-src="images/gain-like-banner.png" aalt="Gainlike" width="300" height="200">
-        <h3>One Stop Service Social Media</h3>
+        <h3 class="text-primary text-center">One Stop Service Social Media</h3>
         <p>
           โซเชียลมีเดียครบวงจรทุกบริการจบที่เรา <br>เราคือผู้ให้บริการเพิ่มยอดไลก์ เพิ่มยอดวิว เพิ่มผู้ติดตามและอื่นๆ อีกมากมาย <br>พัฒนาโดยทีมระดับมืออาชีพ
         </p>
         <div class="offset-md group-30">
           @if(Session::has('user'))
-          <a class="btn btn-lg btn-secondary" href="/dashboard">
-            <div class="icon-box-icon novi-icon int-user"> ไปที่หน้าโปรไฟล์</div>
+          <a class="btn btn-lg btn-secondary" href="/services">
+            <div class="icon-box-icon novi-icon int-user"> ไปที่หน้าร้านค้า</div>
           </a>
           @else
           <a class="btn btn-lg btn-primary" href="/login">
@@ -249,63 +243,6 @@
 
   </div>
 </section>
-<!-- <section class="section section-lg bg-200 text-center novi-background" data-preset='{"title":"Clients","category":"partner","reload":true,"id":"clients-2"}'>
-  <div class="text-center" data-animate='{"class":"fadeInUp"}'>
-    <h1 class="mb-5">ผู้ใช้งานทั้งหมดของเรา <span class="text-primary"><span data-counter>21655</span>+</span></h1>
-  </div>
-  <div class="cont">
-    <div class="cards">
-      <div class="card">
-
-
-        <div class="card-text bg-danger w-100" style="height:50px; width:50px;">
-
-        </div>
-
-      </div>
-      <div class="card">
-        <p class="card-text"></p>
-      </div>
-      <div class="card">
-        <p class="card-text"></p>
-      </div>
-      <div class="card">
-        <p class="card-text"></p>
-      </div>
-      <div class="card">
-        <p class="card-text"></p>
-      </div>
-      <div class="card">
-        <p class="card-text"></p>
-      </div>
-      <div class="card">
-        <p class="card-text"></p>
-      </div>
-      <div class="card">
-        <p class="card-text"></p>
-      </div>
-      <div class="card">
-        <p class="card-text"></p>
-      </div>
-      <div class="card">
-        <p class="card-text"></p>
-      </div>
-      <div class="card">
-        <p class="card-text"></p>
-      </div>
-      <div class="card">
-        <p class="card-text"></p>
-      </div>
-      <div class="card">
-        <p class="card-text"></p>
-      </div>
-      <div class="card">
-        <p class="card-text"></p>
-      </div>
-
-    </div>
-  </div>
-</section> -->
 
 <section class="section section-lg bg-200 novi-background " data-preset='{"title":"Blurb Ordered Sample","category":"blurb","reload":true,"id":"blurb-ordered-sample-1"}'>
   <div class="container">

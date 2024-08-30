@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthenticateController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MasterController;
+use App\Http\Controllers\PaymentController;
 use App\Models\promotions;
 use Illuminate\Support\Facades\Route;
 
@@ -24,6 +25,9 @@ Route::get('/', function () {
     return view('client.index', ['promotions' => $promotions]);
 });
 Route::get('/register', function () {
+    if (session('data') != null) {
+        return redirect('/');
+    }
     return view('auth.register');
 });
 
@@ -42,7 +46,7 @@ Route::get('/post', [HomeController::class, 'post']);
 // Authentication Controller
 Route::get('/login', [AuthenticateController::class, 'index']);
 Route::post('/checklogin', [AuthenticateController::class, 'login']);
-Route::post('/regis', [AuthenticateController::class, 'register']);
+Route::post('/regis', [AuthenticateController::class, 'register'])->name('auth.regis');
 Route::get('/logout', [AuthenticateController::class, 'logout']);
 
 // Client after login
@@ -61,13 +65,17 @@ Route::get('/faq', [AdminController::class, 'faq']);
 Route::get('/howitworks', [AdminController::class, 'howitworks']);
 Route::get('/subscriptions', [AdminController::class, 'subscriptions']);
 Route::get('/refill', [AdminController::class, 'refill']);
-Route::get('/orders', [AdminController::class, 'orders']);
+Route::get('/orders', [AdminController::class, 'orders'])->name('admin.orders');
+Route::get('/filter-orders', [AdminController::class, 'filterOrders'])->name('filter.orders');
+
 Route::get('/massorder', [AdminController::class, 'massorder']);
 Route::get('/tickets', [AdminController::class, 'tickets']);
 Route::get('/developers', [AdminController::class, 'developers']);
 
-Route::get('/services', [AdminController::class, 'services']);
+Route::get('/services', [AdminController::class, 'services'])->name('admin.services');
+Route::get('/filter-services', [AdminController::class, 'filterServices'])->name('filter.services');
 Route::get('/services/{productId}', [AdminController::class, 'store'])->name('service.store');
+Route::get('/product/details', [AdminController::class, 'getProductByDetails'])->name('product.details');
 Route::get('/remove-item/{productId}', [AdminController::class, 'removeItem'])->name('service.remove');
 
 
@@ -80,3 +88,20 @@ Route::post('/admin/create-blog', [MasterController::class, 'createBlog']);
 Route::get('/admin/delete-product/{id}', [MasterController::class, 'deleteProduct']);
 Route::get('/admin/delete-promotion/{id}', [MasterController::class, 'deletePromotion']);
 Route::get('/admin/delete-blog/{id}', [MasterController::class, 'deleteblog']);
+
+
+Route::get('/payment', [PaymentController::class, 'showPaymentForm']);
+Route::post('/payment/create', [PaymentController::class, 'createOrder'])->name('payment.create');
+Route::get('/payment/return', [PaymentController::class, 'return'])->name('payment.return');
+Route::post('/payment/notify', [PaymentController::class, 'notify'])->name('payment.notify');
+Route::post('/payment/buy', [PaymentController::class, 'buy'])->name('payment.buy');
+
+Route::get('/payment/fail', function () {
+    // This route is just a dummy and does nothing
+    return response()->json(['failed' => 'Dummy fail URL reached']);
+})->name('payment.fail');
+
+Route::get('/payment/success', function () {
+    // This route is just a dummy and does nothing
+    return response()->json(['success' => 'Top up successfully']);
+})->name('payment.success');

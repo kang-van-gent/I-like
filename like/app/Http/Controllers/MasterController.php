@@ -17,6 +17,9 @@ class MasterController extends Controller
     public function index()
     {
         //
+        if (session('data') == null) {
+            return redirect('/login');
+        }
         $blogs = blogs::orderBy('id', 'desc')->get();
         $promotions = promotions::orderBy('id', 'desc')->get();
         $products = products::orderBy('id', 'desc')->get();

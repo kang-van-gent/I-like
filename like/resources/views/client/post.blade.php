@@ -11,7 +11,7 @@
           <div class="post-meta post-meta-between">
             <div class="post-meta-item"></div>
 
-            <div class="post-meta-item"><span class="post-icon int-clock novi-icon"></span><span class="post-meta-text">{{$blog->createdAt}}</span></div>
+            <div class="post-meta-item"><span class="post-icon int-clock novi-icon"></span><span class="post-meta-text">{{$blog->created_at}}</span></div>
           </div>
 
 
@@ -38,7 +38,7 @@
             <div class="col-sm-6">
               <div class="post post-sm"><a class="post-img-link" href="post.html"><img class="lazy-img" src="{{ Storage::url($post->coverImage) }}" data-src="{{ Storage::url($post->coverImage) }}" alt="" width="400" height="257"></a>
                 <div class="post-meta">
-                  <div class="post-meta-item"><span class="post-meta-icon int-clock novi-icon"></span><a class="post-meta-link" href="post.html">{{$post->createdAt}}</a></div>
+                  <div class="post-meta-item"><span class="post-meta-icon int-clock novi-icon"></span><a class="post-meta-link" href="post.html">{{$post->created_at}}</a></div>
                 </div>
                 <h5 class="post-title"><a href="post.html">{{$post->topic}}</a></h5>
                 <div class="post-text">{{$post->details}}</div>

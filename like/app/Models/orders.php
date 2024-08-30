@@ -8,6 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class orders extends Model
 {
     use HasFactory;
-    const CREATED_AT = 'createdAt';
     protected $table = 'orders';
+
+    function cart()
+    {
+        return $this->hasMany(carts::class, 'order_id');
+    }
 }

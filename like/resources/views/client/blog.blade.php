@@ -14,7 +14,7 @@
       <div class="col-md-6 col-lg-4">
         <!-- Post hover-->
         <div class="post post-hover post-sm">
-          <div class="post-img-link"><a href="{{ url('/post?id='.$b->id) }}"><img class="lazy-img" src="{{ Storage::url($b->headerImg) }}" data-src="{{ Storage::url($b->headerImg) }}" alt="" width="400" height="257"></a>
+          <div class="post-img-link "><a href="{{ url('/post?id='.$b->id) }}"><img class="lazy-img text-center" src="{{ Storage::url($b->headerImg) }}" data-src="{{ Storage::url($b->headerImg) }}" alt="" style="object-fit: fill;" width="100%" height="257"></a>
           </div>
           <div class="post-inner">
             <h5 class="post-title"><a href="{{ url('/post?id='.$b->id) }}">{{ $b->topic }}</a></h5>
