@@ -1,55 +1,100 @@
 @extends('admin')
 @section('contents')
 
-<style>
-  .modal-dialog-custom {
-    max-width: 50%;
-    /* Adjust this percentage to change the modal width */
-  }
-</style>
 
 <div class="container-fluid">
   <div class="card">
     <div class="card-body p-4">
-      <div class="d-sm-flex d-block align-items-center justify-content-between mb-9">
-        <div class="row pt-3 col-md-4">
-          <div class="col-6">
-            <input type="text" class="form-control" id="searchInput" placeholder="คำค้นหา">
-          </div>
-          <div class="col-2">
-            <button type="submit" class="btn btn-primary" onclick="applyFilters()">ค้นหา</button>
-          </div>
-        </div>
-        <div class="col-md-8 pt-3">
-          <div class="btn-group" role="group" aria-label="Platform Filters">
-            <button type="button" class="btn btn-outline-primary {{ $platform == 'all' ? 'active' : '' }}" onclick="applyFilters('all')">
-              <img src="{{ asset('src/assets/images/products/icon-all.png') }}" alt="All" style="width: 23px; height: 23px;">
-              ทั้งหมด
-            </button>
-            <button type="button" class="btn btn-outline-primary {{ $platform == 'facebook' ? 'active' : '' }}" onclick="applyFilters('facebook')">
-              <img src="{{ asset('src/assets/images/products/icon-FB.png') }}" alt="Facebook" style="width: 23px; height: 23px;">
-              Facebook
-            </button>
-            <button type="button" class="btn btn-outline-primary {{ $platform == 'instagram' ? 'active' : '' }}" onclick="applyFilters('instagram')">
-              <img src="{{ asset('src/assets/images/products/icon-IG.png') }}" alt="Instagram" style="width: 23px; height: 23px;">
-              Instagram
-            </button>
-            <button type="button" class="btn btn-outline-primary {{ $platform == 'tiktok' ? 'active' : '' }}" onclick="applyFilters('tiktok')">
-              <img src="{{ asset('src/assets/images/products/icon-TT.png') }}" alt="Tiktok" style="width: 23px; height: 23px;">
-              Tiktok
-            </button>
-            <button type="button" class="btn btn-outline-primary {{ $platform == 'twitter' ? 'active' : '' }}" onclick="applyFilters('twitter')">
-              <img src="{{ asset('src/assets/images/products/icon-X.png') }}" alt="Twitter" style="width: 23px; height: 23px;">
-              Twitter(X)
-            </button>
-            <button type="button" class="btn btn-outline-primary {{ $platform == 'youtube' ? 'active' : '' }}" onclick="applyFilters('youtube')">
-              <img src="{{ asset('src/assets/images/products/icon-YT.png') }}" alt="Youtube" style="width: 23px; height: 23px;">
-              Youtube
-            </button>
-            <button type="button" class="btn btn-outline-primary {{ $platform == 'shopee' ? 'active' : '' }}" onclick="applyFilters('shopee')">
-              <img src="{{ asset('src/assets/images/products/icon-SP.png') }}" alt="Shopee" style="width: 23px; height: 23px;">
-              Shopee
-            </button>
+
+      <div class="container-fluid">
+        <div class="card">
+          <div class="card-body p-4">
+            <div class="row mb-3">
+              <div class="col-12 col-md-6 mb-2 mb-md-0">
+                <input type="text" class="form-control mb-2 mb-md-0" id="searchInput" placeholder="คำค้นหา">
+              </div>
+              <div class="col-12 col-md-2">
+                <button type="submit" class="btn btn-primary w-100" onclick="applyFilters()">ค้นหา</button>
+              </div>
+            </div>
+
+            <!-- Horizontal Scrollable Buttons for Mobile -->
+            <div class="d-block d-md-none overflow-auto mb-3" style="white-space: nowrap;">
+              <button type="button" class="btn btn-outline-primary {{ $platform == 'all' ? 'active' : '' }}" onclick="applyFilters('all')">
+                <img src="{{ asset('src/assets/images/products/icon-all.png') }}" alt="All" style="width: 23px; height: 23px;">
+                ทั้งหมด
+              </button>
+              <button type="button" class="btn btn-outline-primary {{ $platform == 'facebook' ? 'active' : '' }}" onclick="applyFilters('facebook')">
+                <img src="{{ asset('src/assets/images/products/icon-FB.png') }}" alt="Facebook" style="width: 23px; height: 23px;">
+                Facebook
+              </button>
+              <button type="button" class="btn btn-outline-primary {{ $platform == 'instagram' ? 'active' : '' }}" onclick="applyFilters('instagram')">
+                <img src="{{ asset('src/assets/images/products/icon-IG.png') }}" alt="Instagram" style="width: 23px; height: 23px;">
+                Instagram
+              </button>
+              <button type="button" class="btn btn-outline-primary {{ $platform == 'tiktok' ? 'active' : '' }}" onclick="applyFilters('tiktok')">
+                <img src="{{ asset('src/assets/images/products/icon-TT.png') }}" alt="Tiktok" style="width: 23px; height: 23px;">
+                Tiktok
+              </button>
+              <button type="button" class="btn btn-outline-primary {{ $platform == 'twitter' ? 'active' : '' }}" onclick="applyFilters('twitter')">
+                <img src="{{ asset('src/assets/images/products/icon-X.png') }}" alt="Twitter" style="width: 23px; height: 23px;">
+                Twitter(X)
+              </button>
+              <button type="button" class="btn btn-outline-primary {{ $platform == 'youtube' ? 'active' : '' }}" onclick="applyFilters('youtube')">
+                <img src="{{ asset('src/assets/images/products/icon-YT.png') }}" alt="Youtube" style="width: 23px; height: 23px;">
+                Youtube
+              </button>
+              <button type="button" class="btn btn-outline-primary {{ $platform == 'shopee' ? 'active' : '' }}" onclick="applyFilters('shopee')">
+                <img src="{{ asset('src/assets/images/products/icon-SP.png') }}" alt="Shopee" style="width: 23px; height: 23px;">
+                Shopee
+              </button>
+            </div>
+
+            <!-- Grid for larger screens -->
+            <div class="row row-cols-2 row-cols-sm-4 row-cols-md-7 g-2 d-none d-md-flex">
+              <div class="col">
+                <button type="button" class="btn btn-outline-primary w-100 {{ $platform == 'all' ? 'active' : '' }}" onclick="applyFilters('all')">
+                  <img src="{{ asset('src/assets/images/products/icon-all.png') }}" alt="All" style="width: 23px; height: 23px;">
+                  ทั้งหมด
+                </button>
+              </div>
+              <div class="col">
+                <button type="button" class="btn btn-outline-primary w-100 {{ $platform == 'facebook' ? 'active' : '' }}" onclick="applyFilters('facebook')">
+                  <img src="{{ asset('src/assets/images/products/icon-FB.png') }}" alt="Facebook" style="width: 23px; height: 23px;">
+                  Facebook
+                </button>
+              </div>
+              <div class="col">
+                <button type="button" class="btn btn-outline-primary w-100 {{ $platform == 'instagram' ? 'active' : '' }}" onclick="applyFilters('instagram')">
+                  <img src="{{ asset('src/assets/images/products/icon-IG.png') }}" alt="Instagram" style="width: 23px; height: 23px;">
+                  Instagram
+                </button>
+              </div>
+              <div class="col">
+                <button type="button" class="btn btn-outline-primary w-100 {{ $platform == 'tiktok' ? 'active' : '' }}" onclick="applyFilters('tiktok')">
+                  <img src="{{ asset('src/assets/images/products/icon-TT.png') }}" alt="Tiktok" style="width: 23px; height: 23px;">
+                  Tiktok
+                </button>
+              </div>
+              <div class="col">
+                <button type="button" class="btn btn-outline-primary w-100 {{ $platform == 'twitter' ? 'active' : '' }}" onclick="applyFilters('twitter')">
+                  <img src="{{ asset('src/assets/images/products/icon-X.png') }}" alt="Twitter" style="width: 23px; height: 23px;">
+                  Twitter(X)
+                </button>
+              </div>
+              <div class="col">
+                <button type="button" class="btn btn-outline-primary w-100 {{ $platform == 'youtube' ? 'active' : '' }}" onclick="applyFilters('youtube')">
+                  <img src="{{ asset('src/assets/images/products/icon-YT.png') }}" alt="Youtube" style="width: 23px; height: 23px;">
+                  Youtube
+                </button>
+              </div>
+              <div class="col">
+                <button type="button" class="btn btn-outline-primary w-100 {{ $platform == 'shopee' ? 'active' : '' }}" onclick="applyFilters('shopee')">
+                  <img src="{{ asset('src/assets/images/products/icon-SP.png') }}" alt="Shopee" style="width: 23px; height: 23px;">
+                  Shopee
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -101,10 +146,10 @@
 
       <!-- Modal -->
       <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-custom">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-dialog-custom">
           <div class="modal-content">
             <div class="modal-header">
-              <h1 class="modal-title fs-5" id="exampleModalLabel">Loading...</h1>
+              <h5 class="modal-title" id="exampleModalLabel">Loading...</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -116,6 +161,7 @@
           </div>
         </div>
       </div>
+
     </div>
   </div>
 </div>
