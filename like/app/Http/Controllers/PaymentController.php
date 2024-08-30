@@ -38,9 +38,9 @@ class PaymentController extends Controller
         try {
             // Log the incoming request data
             Log::info('Incoming request data:', $request->all());
-            // if ($request->input('amount') < 10) {
-            //     return response()->json(['error' => 'กรุณาเติมเงินขั้นต่ำ 10 บาท', 'title' => 'เติมน้อยเกิ๊น..'], 500);
-            // }
+            if ($request->input('amount') < 10) {
+                return response()->json(['error' => 'กรุณาเติมเงินขั้นต่ำ 10 บาท', 'title' => 'เติมน้อยเกิ๊น..'], 500);
+            }
             if ($request->input('amount') > 30000) {
                 return response()->json(['error' => 'กรุณาเติมเงินน้อยกว่า 30,000 บาท', 'title' => 'เติมเยอะเกินไปแล้ว!'], 500);
             }
