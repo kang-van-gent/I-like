@@ -199,7 +199,7 @@ class PaymentController extends Controller
                 $message = "📣  ออเดอร์ใหม่จากเว็บ GainLike‼️ \n\n - 📌 ตรวจสอบทันที!";
 
                 $postData = [
-                    'to' => $this->user_id,
+
                     'messages' => [
                         [
                             'type' => 'text',
