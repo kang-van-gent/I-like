@@ -12,7 +12,7 @@
           <select id="statusSelect" class="form-select" onchange="applyFilters()">
             <option value="all" {{ $status == 'all' ? 'selected' : '' }}>ทั้งหมด</option>
             <option value="กำลังดำเนินการ" {{ $status == 'กำลังดำเนินการ' ? 'selected' : '' }}>กำลังดำเนินการ</option>
-            <option value="เสร็จสมบูรณ์" {{ $status == 'เสร็จสมบูรณ์' ? 'selected' : '' }}>เสร็จสมบูรณ์</option>
+            <option value="เสร็จสิ้น" {{ $status == 'เสร็จสิ้น' ? 'selected' : '' }}>เสร็จสิ้น</option>
 
           </select>
         </div>
@@ -23,6 +23,7 @@
         <table class="table text-nowrap mb-0 align-middle">
           <thead class="text-dark fs-4">
             <tr>
+              <th>รหัสออเดอร์</th>
               <th style="min-width: 280px; width: 40.3%">ชื่อรายการ</th>
               <th style="min-width: 70px; width: 15%" class="text-center">เวลา</th>
               <th class="text-center" style="min-width: 70px; width: 13%">ค่าบริการ</th>
@@ -36,6 +37,7 @@
             @if ($orders)
             @foreach ($orders as $order)
             <tr>
+              <td><a href="#">{{$order->id}}</a></td>
               <td><a href="#">{{$order->cart[0]['item_name']}}</a></td>
               <td>{{$order->created_at}}</td>
               <td class="text-center">
