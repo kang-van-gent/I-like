@@ -185,7 +185,7 @@
                 <div class="unlimited-access hide-menu bg-light-danger position-relative mb-7 mt-2 rounded">
                     <div class="d-flex">
                         <div class="unlimited-access-title me-3">
-                            <h6 class="fw-semibold fs-4 mb-6 text-danger w-85">${{ session('data')[0]->wallet }} <br> เครดิตคงเหลือ</h6>
+                            <h6 class="fw-semibold fs-4 mb-6 text-danger w-85">฿{{ session('data')[0]->wallet }} <br> เครดิตคงเหลือ</h6>
                             <a href="/payment" class="btn btn-danger fs-2 fw-semibold lh-sm">เติมเงิน</a>
                         </div>
                     </div>

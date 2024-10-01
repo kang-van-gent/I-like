@@ -2,6 +2,26 @@
 @section('contents')
 
 <style>
+  /* Hide scrollbar for the body in all browsers */
+  body {
+    overflow-y: scroll;
+    /* Allow vertical scrolling */
+    overflow-x: hidden;
+    /* Prevent horizontal scrolling */
+  }
+
+  /* Hide scrollbar in Webkit-based browsers (Chrome, Safari, Edge) */
+  body::-webkit-scrollbar {
+    display: none;
+    /* Hide the scrollbar */
+  }
+
+  /* Hide scrollbar in Firefox */
+  body {
+    scrollbar-width: none;
+    /* Hide the scrollbar in Firefox */
+  }
+
   .cont {
     display: grid;
     place-items: center;
@@ -90,6 +110,57 @@
     /* Repeat from 2 after the 11th card */
   }
 
+  #journey {
+    height: 100vh;
+    background-image: url('/images/Gain-like-banner-header.png');
+    background-size: cover;
+    background-position: 100% center;
+    background-repeat: no-repeat;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    text-align: left;
+    /* Default alignment */
+  }
+
+  .banner-mobile {
+    display: none;
+  }
+
+  @media (max-width: 768px) {
+    #journey {
+      display: none;
+    }
+
+    .banner-mobile {
+      display: block;
+    }
+  }
+
+  /* Additional styles for the text to avoid unnecessary spacing */
+  #journey h1,
+  #journey h3 {
+    margin: 0;
+    padding: 0;
+    z-index: 1;
+    /* Ensure text is above the image */
+  }
+
+  /* Container to adjust vertical alignment */
+  #journey .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    /* Ensure container takes full height */
+    padding: 0;
+    margin-left: 10%;
+  }
+
+
+
   /* Continue this pattern for more cards */
 
   @keyframes slideUp {
@@ -137,7 +208,7 @@
         <div class="offset-md group-30">
           @if(Session::has('user'))
           <a class="btn btn-lg btn-secondary" href="/services">
-            <div class="icon-box-icon novi-icon int-user"> ไปที่หน้าร้านค้า</div>
+            <div class="icon-box-icon novi-icon int-cart"> ไปที่หน้าร้านค้า</div>
           </a>
           @else
           <a class="btn btn-lg btn-primary" href="/login">
@@ -154,23 +225,32 @@
   </div>
 </section>
 <!-- Novi-->
-<section class="section section-lg bg-invisible pended-element novi-background" id="journey" data-preset='{"title":"Novi Builder","category":"content box","reload":true,"id":"novi-builder-2"}'>
+<section id="journey" class="section-lg bg-invisible pended-element novi-background">
   <div class="container">
     <div class="row row-30 align-items-center justify-content-lg-between">
-      <div class="col-sm-6 col-md-5 col-lg-4" data-animate='{"class":"fadeInLeft"}'>
+      <div class="col-sm-8 col-md-10 col-lg-12" data-animate='{"class":"fadeInLeft"}'>
         <h1 class="text-primary">อันดับ 1 </h1>
-        <h3 class="sh"> เรื่อง Social Gain-<span class="text-primary">Like </span></h3>
+        <h3 class="sh"> เรื่อง Social ต้อง Gain-Like</h3>
+      </div>
 
-      </div>
-      <div class="col-xs-10 col-sm-6 col-md-7">
-        <img class="lazy-img shadow-lg" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs%3D" data-src="images/image-33-1280x800.gif" alt="" width="1280" height="800">
-        <!-- <div class="ytp-cued-thumbnail-overlay-image" style="background-image: url(&quot;https://i.ytimg.com/vi/1fzCZRjXAI4/sddefault.jpg?sqp=-oaymwEmCIAFEOAD8quKqQMa8AEB-AH-CYAC0AWKAgwIABABGH8gRigTMA8=&amp;rs=AOn4CLDgVS-hYlHVG0huxLSOZBYiV6-QAg&quot;);"></div> -->
-      </div>
     </div>
   </div>
 </section>
+
+<div class="row banner-mobile" id="banner-mobile">
+  <div class="col-md-12 text-center">
+    <h1 class="text-primary">อันดับ 1 </h1>
+    <h3 class="sh text-dark"> เรื่อง Social ต้อง Gain-Like</h3>
+  </div>
+  <div class="col-md-12 text-center">
+    <div class="col-xs-10 col-sm-6 col-md-7"><img class="lazy-img shadow-lg" data-src="images/Mobile-banner.png" alt="" width="1280" height="800">
+
+    </div>
+  </div>
+</div>
+
 <!-- Promotions -->
-<section class="section bg-invisible novi-background pended-element" data-preset='{"title":"Features","category":"carousel","reload":true,"id":"features-2"}'>
+<!-- <section class="section bg-invisible novi-background pended-element" data-preset='{"title":"Features","category":"carousel","reload":true,"id":"features-2"}'>
   <div class="container">
     <div class="row align-items-center slick-creative novi-disabled">
       <div class="col-md-7 d-md-flex flex-md-row-reverse">
@@ -198,6 +278,61 @@
         </div>
         <div class="col-lg-auto mt-5" data-animate='{"class":"fadeInRight"}'><a class="btn btn-lg btn-secondary" target="_blank" href="https://online.fliphtml5.com/fnvhk/zpcb/#p=1">
             รายละเอียดโปรโมชั่น</a></div>
+      </div>
+
+    </div>
+  </div>
+</section> -->
+<!-- Promotions -->
+<section class="section bg-invisible novi-background pended-element " data-preset='{"title":"Features","category":"carousel","reload":true,"id":"features-2"}'>
+  <div class="container">
+    <div class="row align-items-center slick-creative novi-disabled">
+      <div class="col-md-7 d-md-flex flex-md-row-reverse pt-3 pb-3 p-0">
+        <div class="slick-slider slider-for slider-images" data-slick='{"arrows":false,"asNavFor":".slider-nav","draggable":false,"adaptiveHeight":true}'>
+          <div class="text-end">
+            <div class="pended-img-container">
+              <img class="pended-img" src="{{ asset('/images/pro1.jpg') }}" data-src="{{ asset('/images/pro1.jpg') }}" alt="" width="1042" height="910">
+            </div>
+          </div>
+          <div class="text-end">
+            <div class="pended-img-container">
+              <img class="pended-img" src="{{ asset('/images/pro2.jpg') }}" data-src="{{ asset('/images/pro2.jpg') }}" alt="" width="1042" height="910">
+            </div>
+          </div>
+          <div class="text-end">
+            <div class="pended-img-container">
+              <img class="pended-img" src="{{ asset('/images/pro3.jpg') }}" data-src="{{ asset('/images/pro3.jpg') }}" alt="" width="1042" height="910">
+            </div>
+          </div>
+          <div class="text-end">
+            <div class="pended-img-container">
+              <img class="pended-img" src="{{ asset('/images/pro4.jpg') }}" data-src="{{ asset('/images/pro4.jpg') }}" alt="" width="1042" height="910">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-5 pt-5" style="padding-bottom: 14.2%">
+        <div class="ps-xxl-3">
+          <h2 class="text-secondary">โปรโมชั่นของเรา</h2>
+          <div class="slick-slider slider-nav" data-slick='{"arrows":false,"asNavFor":".slider-for","autoplay":true,"autoplaySpeed":3000,"focusOnSelect":true,"variableWidth":true}'>
+
+            <div class="slick-dot">บริการใหม่! 9.9</div>
+            <div class="slick-dot">โปรฯ ท้าฝนลดกระหน่ำ!</div>
+            <div class="slick-dot">เปิดร้านออนไลน์</div>
+            <div class="slick-dot">ทำ Line Official Account</div>
+
+          </div>
+          <div class="slick-slider slider-for" data-slick='{"arrows":false,"asNavFor":".slider-nav","draggable":false}'>
+
+            <p>ไลก์ทุกโพสทันใจ ไม่ต้องทำอะไรไลก์ก็ขึ้น เริ่มต้นเพียง 299 บาท!</p>
+            <p>โปรโมชั่นท้าฝนรับส่วนลดพิเศษไปเลย 20%</p>
+            <p>เปิดร้านค้าออนไลน์ สร้างรายได้จากการทำงานที่บ้านง่ายๆ ต้อง GainLike!</p>
+            <p>Package รับทำ Line official account ตอนนี้ที่ GainLike!</p>
+
+          </div>
+        </div>
+        <div class="col-lg-auto mt-5" data-animate='{"class":"fadeInRight"}'><a class="btn btn-lg btn-secondary" target="_blank" href="https://online.fliphtml5.com/fnvhk/zpcb/#p=1">
+            ตรวจสอบราคาบริการ</a></div>
       </div>
 
     </div>
@@ -244,44 +379,51 @@
   </div>
 </section>
 
-<section class="section section-lg bg-200 novi-background " data-preset='{"title":"Blurb Ordered Sample","category":"blurb","reload":true,"id":"blurb-ordered-sample-1"}'>
+<section class="section section-lg bg-200 novi-background py-5">
   <div class="container">
-    <div class="row row-30">
-      <div class="col-sm-6 col-lg-4 d-flex">
-        <!-- Blurb-->
-        <article class="blurb blurb-boxed text-center">
-          <div class="blurb-embed text-secondary"><span class="blurb-number h2">4.8</span>/5</div>
-          <div class="blurb-title h4">
-            <div class="ratt-star ">
-              <div class="icon-box-icon novi-icon fa-star icon icon-md icon-warning novi-icon"></div>
-              <div class="icon-box-icon novi-icon fa-star icon icon-md icon-warning novi-icon"></div>
-              <div class="icon-box-icon novi-icon fa-star icon icon-md icon-warning novi-icon"></div>
-              <div class="icon-box-icon novi-icon fa-star icon icon-md icon-warning novi-icon"></div>
-              <div class="icon-box-icon novi-icon fa-star icon icon-md icon-warning novi-icon"></div>
-
+    <div class="row gy-4 justify-content-center">
+      <!-- Blurb 1 -->
+      <div class="col-sm-6 col-md-4 d-flex">
+        <article class="blurb blurb-boxed text-center p-4 w-100 shadow-sm bg-white rounded">
+          <div class="blurb-embed text-secondary mb-3">
+            <span class="blurb-number display-4">4.8</span>/5
+          </div>
+          <div class="blurb-title mb-2">
+            <div class="ratt-star d-flex justify-content-center">
+              <div class="icon-box-icon novi-icon fa-star icon icon-md icon-warning"></div>
+              <div class="icon-box-icon novi-icon fa-star icon icon-md icon-warning"></div>
+              <div class="icon-box-icon novi-icon fa-star icon icon-md icon-warning"></div>
+              <div class="icon-box-icon novi-icon fa-star icon icon-md icon-warning"></div>
+              <div class="icon-box-icon novi-icon fa-star icon icon-md icon-warning"></div>
             </div>
           </div>
-          <div class="blurb-text h4">ความพึงพอใจของลูกค้า</div>
+          <div class="blurb-text h5">ความพึงพอใจของลูกค้า</div>
         </article>
       </div>
-      <div class="col-sm-6 col-lg-4 d-flex">
-        <!-- Blurb-->
-        <article class="blurb blurb-boxed  text-center">
-          <div class="blurb-embed"><span class="blurb-number h2">
-              <div class="icon-box-icon novi-icon icon-danger icon-xl fa-bar-chart"></div>
-            </span></div>
+
+      <!-- Blurb 2 -->
+      <div class="col-sm-6 col-md-4 d-flex">
+        <article class="blurb blurb-boxed text-center p-4 w-100 shadow-sm bg-white rounded">
+          <div class="blurb-embed mb-3">
+            <div class="icon-box-icon novi-icon icon-danger fa-bar-chart icon-xl"></div>
+          </div>
           <div class="blurb-title h5">ออเดอร์ทั้งหมดที่ขายไปแล้ว</div>
-          <div class="blurb-text h4"><span class="text-secondary"><span data-counter>1045008</span></span></div>
+          <div class="blurb-text h4">
+            <span class="text-secondary"><span data-counter>1045008</span></span>
+          </div>
         </article>
       </div>
-      <div class="col-sm-6 col-lg-4 d-flex">
-        <!-- Blurb-->
-        <article class="blurb blurb-boxed text-center">
-          <div class="blurb-embed"><span class="blurb-number h2">
-              <div class="icon-box-icon novi-icon icon-xl icon-info fa-shopping-basket"></div>
-            </span></div>
+
+      <!-- Blurb 3 -->
+      <div class="col-sm-6 col-md-4 d-flex">
+        <article class="blurb blurb-boxed text-center p-4 w-100 shadow-sm bg-white rounded">
+          <div class="blurb-embed mb-3">
+            <div class="icon-box-icon novi-icon fa-shopping-basket icon-xl icon-info"></div>
+          </div>
           <div class="blurb-title h5">บริการที่เปิดใช้งาน ณ ปัจจุบัน</div>
-          <div class="blurb-text h4"><span class="text-primary"><span data-counter>1003</span></span> บริการ</div>
+          <div class="blurb-text h4">
+            <span class="text-primary"><span data-counter>1003</span></span> บริการ
+          </div>
         </article>
       </div>
     </div>

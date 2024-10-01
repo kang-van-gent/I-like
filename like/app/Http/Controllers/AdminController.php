@@ -218,12 +218,25 @@ class AdminController extends Controller
             return redirect('/login');
         }
 
-
         $total = Cart::getTotal();
+        $discount = 0;
+        $subtotal = $total;
+
+        if ($total >= 200) {
+            $discount = $total * 10 / 100;
+            $subtotal = $total - $discount;
+        }
+
         $items = Cart::getContent();
-        $count = count(Cart::getContent());
-        return view('admin.buys', ['items' => $items, 'total' => $total, 'counting' => $count]);
-        // return $items;
+        $count = count($items);
+
+        return view('admin.buys', [
+            'items' => $items,
+            'total' => $total,
+            'counting' => $count,
+            'discount' => $discount,
+            'subtotal' => $subtotal
+        ]);
     }
     /**
      * Display a listing of the resource.
@@ -435,10 +448,14 @@ class AdminController extends Controller
         // Find the item in the cart and update its quantity
         $cartItem = Cart::get($itemId); // Assuming you're using a Cart package
         if ($cartItem) {
-            $newQuantity = $cartItem->quantity + $change;
-            if ($newQuantity > 0) {
-                Cart::update($itemId, ['quantity' => $newQuantity]);
+            $cartItem->quantity += $change;
+            if ($cartItem->quantity > 0) {
+                Cart::update($itemId, ['quantity' => $change]);
                 return response()->json(['status' => 'success']);
+            } else {
+                // Remove the item if the new quantity is less than 1
+                Cart::remove($itemId);
+                return response()->json(['status' => 'success', 'msg' => 'Item removed from the cart']);
             }
         }
 

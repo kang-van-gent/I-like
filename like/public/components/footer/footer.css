@@ -1,6 +1,6 @@
 .footer {
     display: block;
-    padding: 4.375rem 0rem 2.5rem;
+    padding: 1.375rem 0rem 1.5rem;
 }
 .footer * + .footer-panel {
     margin-top: 3.75rem;
@@ -58,7 +58,7 @@
 }
 @media (min-width: 768px) {
     .footer-xxl {
-        padding-top: 6.25rem;
+        /* padding-top: 6.25rem; */
     }
     .footer-xxl * + .footer-panel {
         margin-top: 5rem;
@@ -69,7 +69,7 @@
 }
 @media (min-width: 992px) {
     .footer {
-        padding: 6.25rem 0rem 3.125rem;
+        /* padding: 6.25rem 0rem 3.125rem; */
     }
     .footer .row + .row {
         margin-top: 5rem;
@@ -92,7 +92,7 @@
 }
 @media (min-width: 1200px) {
     .footer {
-        padding-top: 9.375rem;
+        /* padding-top: 9.375rem; */
     }
     .footer .row + .row {
         margin-top: 6.25rem;
@@ -118,7 +118,7 @@
 }
 @media (min-width: 1600px) {
     .footer-xxl {
-        padding-top: 21.875rem;
+        /* padding-top: 21.875rem; */
     }
     .footer-xxl * + .footer-panel {
         margin-top: 17.8125rem;

@@ -22,7 +22,8 @@ return new class extends Migration
             $table->type();
             $table->service();
             $table->ilnk();
-            $table->commests();
+            $table->comments();
+            $table->quantity();
             $table->timestamps();
         });
     }

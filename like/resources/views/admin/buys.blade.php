@@ -26,11 +26,11 @@
                         </div>
                       </div>
                       <div class="d-grid gap-2 d-md-flex justify-content-md-between mb-3">
-                        <h6 class="card-subtitle mb-2 text-muted ">x{{ $item->attributes->amount }}</h6>
+                        <h6 class="card-subtitle mb-2 text-muted ">x{{ $item->attributes->amount * $item->quantity}}</h6>
                         <h6 class="card-subtitle mb-2 text-muted mx-2">จำนวน : {{ $item->quantity }} รายการ</h6>
                         <div class="d-flex align-items-center">
-                          <!-- <button class="btn btn-outline-secondary btn-sm me-2" type="button" onclick="updateQuantity('{{ $item->id }}', -1)">-</button>
-                          <button class="btn btn-outline-secondary btn-sm me-2" type="button" onclick="updateQuantity('{{ $item->id }}', 1)">+</button> -->
+                          <button class="btn btn-outline-secondary btn-sm me-2" type="button" onclick="updateQuantity('{{ $item->id }}', -1)">-</button>
+                          <button class="btn btn-outline-secondary btn-sm me-2" type="button" onclick="updateQuantity('{{ $item->id }}', 1)">+</button>
                           <a href="{{ route('service.remove',$item->id) }}" class="btn btn-outline-danger btn-sm" type="button">X</a>
                         </div>
                       </div>
@@ -38,6 +38,20 @@
                         <input type="text" class="form-control" id="commentLink{{ $item->id }}" placeholder="ลิ้งก์สำหรับ comment" value="{{$item->attributes->link}}">
                         <label for="commentLink{{ $item->id }}">ลิ้งก์ที่ต้องการใช้บริการ</label>
                       </div>
+                      @if(strpos($item->attributes->service, 'like') !== false && $item->attributes->platform == 'facebook')
+                      <div class="form-floating">
+                        <select class="form-select" aria-label="Default select example" id="comments{{ $item->id }}">
+                          <option value='' selected>กรุณาเลือก emoji</option>
+                          <option value="ไลก์ 👍🏻">ไลก์ 👍🏻</option>
+                          <option value="หัวใจ ❤️">หัวใจ ❤️</option>
+                          <option value="ห่วงใย 💕">ห่วงใย 💕</option>
+                          <option value="หัวเราะ 😂">หัวเราะ 😂</option>
+                          <option value="ว้าว 😯">ว้าว 😯</option>
+                          <option value="เสียใจ 🥲">เสียใจ 🥲</option>
+                          <option value="โกรธ 😡">โกรธ 😡</option>
+                        </select>
+                      </div>
+                      @endif
                       @if($item->attributes->service == 'comment')
                       <div class="form-floating">
                         <textarea class="form-control" placeholder="Leave a comment here" id="comments{{ $item->id }}">{{$item->attributes->comments}}</textarea>
@@ -63,7 +77,6 @@
         </div>
       </div>
     </div>
-
     <div class="col-lg-4">
       <div class="row">
         <div class="col-lg-12">
@@ -71,18 +84,20 @@
             <div class="card-body p-4">
               <h5 class="card-title mb-9 fw-semibold">รวมทั้งหมด</h5>
               <div class="row align-items-center">
-                <div class="col">
-                  <h4 class="fw-semibold mb-3 text-end">{{ Number::currency($total,'thb') }}</h4>
+                <div class="cols">
+                  <h4 class="fw-semibold mb-3 text-end">฿{{ number_format($total, 2) }}</h4>
                 </div>
                 <div class="d-grid gap-2">
-                  <!-- <small>กรุณาใส่ลิ้งก์ Account ที่ต้องการใช้บริการเพิ่มไลคเพิ่มติดตาม</small> -->
-                  <!-- <div class="form-floating mb-3">
-                    <input type="text" class="form-control" placeholder="Link" name='link' id="linkInput">
-                    <label for="linkInput">ลิ้งก์ : สำหรับไลก์และติดตาม</label>
-                  </div> -->
-                  <button class="btn btn-primary" type="button" onclick="buy({{$total}})">ชำระเงิน</button>
+                  @if($discount > 0)
+                  <h6 class="fw-semibold mb-3 text-end text-success">ส่วนลด 10% : ฿{{ number_format($discount, 2) }}</h6>
+                  <h4 class="fw-semibold mb-3 text-end">ยอดสุทธิ : ฿{{ number_format($subtotal, 2) }}</h4>
+                  <button class="btn btn-primary" type="button" onclick="buy({{ $subtotal }})">ชำระเงิน</button>
+                  @else
+                  <button class="btn btn-primary" type="button" onclick="buy({{ $total }})">ชำระเงิน</button>
+                  @endif
                   <a href="/services" class="btn btn-outline-secondary" type="button">เลือกบริการเพิ่ม</a>
                 </div>
+
               </div>
             </div>
           </div>
@@ -96,28 +111,28 @@
 </script>
 
 <script>
-  // function updateQuantity(itemId, change) {
-  //   $.ajax({
-  //     url: '{{ route("service.updateQuantity") }}', // Update this to the correct route
-  //     method: 'POST',
-  //     data: {
-  //       _token: '{{ csrf_token() }}',
-  //       itemId: itemId,
-  //       change: change
-  //     },
-  //     success: function(response) {
-  //       if (response.status === 'success') {
-  //         location.reload(); // Reload the page to update the quantity
-  //       } else {
-  //         alert('Error updating quantity');
-  //       }
-  //     },
-  //     error: function(error) {
-  //       console.error('Error:', error);
-  //       alert('Error updating quantity');
-  //     }
-  //   });
-  // }
+  function updateQuantity(itemId, change) {
+    $.ajax({
+      url: '{{ route("service.updateQuantity") }}', // Update this to the correct route
+      method: 'POST',
+      data: {
+        _token: '{{ csrf_token() }}',
+        itemId: itemId,
+        change: change
+      },
+      success: function(response) {
+        if (response.status === 'success') {
+          location.reload(); // Reload the page to update the quantity
+        } else {
+          alert('Error updating quantity');
+        }
+      },
+      error: function(error) {
+        console.error('Error:', error);
+        alert('Error updating quantity');
+      }
+    });
+  }
   async function validateComment(item) {
     return new Promise((resolve, reject) => {
       try {
@@ -140,6 +155,21 @@
               } else {
                 data.attributes.comments = comments ? comments.value : '';
               }
+            } else if ((data.attributes.service, 'like') && data.attributes.platform == 'facebook') {
+              let comments = document.getElementById('comments' + key);
+
+              if (link && !link.value) {
+                throw new Error('กรุณากรอกลิ้งค์ที่ต้องการใช้บริการให้ครบทุกรายการ');
+              } else {
+                data.attributes.link = link ? link.value : '';
+              }
+
+              if (comments && !comments.value) {
+                throw new Error('กรุณาเลือก emoji ที่ต้องการ');
+              } else {
+                data.attributes.comments = comments ? comments.value : '';
+              }
+
             } else {
               if (link && !link.value) {
                 throw new Error('กรุณากรอกลิ้งค์ที่ต้องการใช้บริการให้ครบทุกรายการ');
@@ -159,16 +189,11 @@
   }
 
   async function buy(total) {
-    var items = '<?php echo $items; ?>';
-    // console.log(JSON.parse(items));
-    // use filter to skip this part
-    // var link = document.getElementById('linkInput').value; // Correctly accessing the value
-    var item = JSON.parse(items)
-
+    var items = '<?php echo $items; ?>'; // Ensure this is outputting correctly in JSON format.
+    var item = JSON.parse(items);
 
     try {
-
-      await validateComment(item)
+      await validateComment(item);
 
       Swal.fire({
         title: 'ยืนยัน',
@@ -179,7 +204,6 @@
         confirmButtonText: 'ชำระเงิน'
       }).then((result) => {
         if (result.isConfirmed) {
-          // Show loading spinner
           Swal.fire({
             title: 'กำลังดำเนินการ...',
             text: 'โปรดรอสักครู่',
@@ -196,11 +220,10 @@
             data: {
               _token: '{{ csrf_token() }}',
               items: JSON.stringify(item),
-              price: total
+              subtotal: total
             },
             success: function(response) {
               Swal.close(); // Close the loading spinner
-              console.log(response);
               if (response.status == 'success') {
                 Swal.fire({
                   title: 'สำเร็จ!',
@@ -219,12 +242,10 @@
                   icon: 'error',
                   confirmButtonText: 'OK'
                 });
-                console.log('Unknown error response:', response);
               }
             },
             error: function(error) {
               Swal.close(); // Close the loading spinner
-              console.log(error.responseJSON);
               Swal.fire({
                 title: 'ล้มเหลว!',
                 text: error.responseJSON.message,
@@ -243,11 +264,6 @@
         confirmButtonText: 'รับทราบ'
       });
     }
-
-
-
-
-
   }
 </script>
 

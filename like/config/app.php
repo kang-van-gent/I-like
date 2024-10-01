@@ -5,6 +5,7 @@ use Illuminate\Support\ServiceProvider;
 
 return [
 
+    'timezone' => 'Asia/Bangkok',
     /*
     |--------------------------------------------------------------------------
     | Application Name

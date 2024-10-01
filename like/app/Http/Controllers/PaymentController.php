@@ -24,7 +24,7 @@ class PaymentController extends Controller
         $this->ksherPayService = $ksherPayService;
     }
 
-    public function showPaymentForm()
+    public function showPaymentForm(Request $request)
     {
         if (session('data') == null) {
             return redirect('/login');
@@ -32,7 +32,20 @@ class PaymentController extends Controller
         $id = session('data')[0]->id;
         $user = Customer::find($id);
         $count = count(Cart::getContent());
-        return view('admin.payment', ["userInfo" => $user, 'counting' => $count]);
+
+        $query = payment::where('user_id', $id);
+        if ($request->has('status') && $request->status != 'all') {
+            $query->where('status', $request->status);
+        }
+        $query->orderBy('id', 'desc');
+        $history = $query->paginate(10);
+
+        return view('admin.payment', [
+            "userInfo" => $user,
+            'counting' => $count,
+            'histories' => $history,
+            'status' => $request->status ?? 'all',
+        ]);
     }
 
     public function createOrder(Request $request)
@@ -105,21 +118,31 @@ class PaymentController extends Controller
             // Parse the order status response
             $orderStatus = json_decode($orderStatus, true);
 
-            //create payment history
-            $data = new payment();
-            $data->amount = $orderStatus['data']['total_fee'] / 100;
-            $data->type = $orderStatus['data']['channel'];
-            $data->status = $orderStatus['data']['result'];
-            $data->user_id = session('data')[0]->id;
-            $data->save();
+            // Create payment history
+            $amountCredited = $orderStatus['data']['total_fee'] / 100; // Convert from cents to THB
+            $bonus = 0;
+            if ($amountCredited >= 200) {
+                $bonus = $amountCredited * 0.05; // 5% bonus
+                $amountCredited += $bonus; // Add bonus to the credited amount
+            }
+
+            $payment = new Payment();
+            $payment->amount = $amountCredited;
+            $payment->type = $orderStatus['data']['channel'];
+            $payment->status = $orderStatus['data']['result'];
+            $payment->user_id = session('data')[0]->id;
+            $payment->save();
 
             // Determine the status and message based on the response
             if ($orderStatus && isset($orderStatus['data']['result']) && $orderStatus['data']['result'] === 'SUCCESS') {
                 $status = 'success';
                 $message = 'เติมเงินสำเร็จ!';
-                $customer = customer::find(session('data')[0]->id);
-                $customer->wallet = $customer->wallet + $orderStatus['data']['total_fee'] / 100;
-                session('data')[0]->wallet = session('data')[0]->wallet + $orderStatus['data']['total_fee'] / 100;
+                if ($bonus > 0) {
+                    $message .= ' ยินดีด้วยคุณได้รับโบนัส 5% จากการเติมเงินขั้นต่ำ 200!';
+                }
+                $customer = Customer::find(session('data')[0]->id);
+                $customer->wallet += $amountCredited;
+                session('data')[0]->wallet += $amountCredited;
                 $customer->save();
             } else {
                 $status = 'failed';
@@ -156,10 +179,10 @@ class PaymentController extends Controller
     public function buy(Request $request)
     {
         $data = json_decode($request->items, true);
+        $subtotal = $request->input('subtotal');  // Ensure the subtotal is passed in the request
+
         try {
-
             $shortUrl = 'https://api.line.me/v2/oauth/accessToken';
-
             $stur = [
                 'grant_type' => 'client_credentials',
                 'client_id' => $this->client_id,
@@ -174,42 +197,33 @@ class PaymentController extends Controller
             curl_close($stch);
 
             $responseData = json_decode($responsest, true);
-            // if (isset($responseData['access_token'])) {
             $short_access_token = $responseData['access_token'];
-            //     echo "Access Token: " . $access_token;
-            // } else {
-            //     echo "Failed to obtain access token";
-            // }
 
             Log::info('short live token notification:', $responseData);
 
-
             $line_access_token = $short_access_token;
-            $url = 'https://api.line.me/v2/bot/message/push'; // turn to boadcast
+            $url = 'https://api.line.me/v2/bot/message/push';
 
             $headers = [
                 'Content-Type: application/json',
                 'Authorization: Bearer ' . $line_access_token
             ];
 
-            //code...
             $id = session('data')[0]->id;
             $user = Customer::find($id);
-
 
             if (empty($data)) {
                 throw new \Exception('ไม่พบสินค้าหรือบริการในตะกร้า กรุณาเพิ่มสินค้าหรือบริการ');
             }
-            if ($user->wallet < $request->price) {
+            if ($user->wallet < $subtotal) {
                 throw new \Exception('ยอดเงินไม่เพียงพอ กรุณาเติมเงิน');
             } else {
-
-
                 $order = new orders();
                 $order->status = 'กำลังดำเนินการ';
                 $order->user_id = $id;
-                $order->price = $request->price;
+                $order->price = $subtotal;
                 $order->save();
+
                 foreach ($data as $item) {
                     $cart = new carts();
                     $cart->item_id = $item['id'];
@@ -220,19 +234,17 @@ class PaymentController extends Controller
                     $cart->service = $item['attributes']['service'];
                     $cart->platform = $item['attributes']['platform'];
                     $cart->link = $item['attributes']['link'];
-                    if ($item['attributes']['service'] == 'comment') {
+                    $cart->quantity = $item['quantity'];
+                    if ($item['attributes']['service'] == 'comment' || strpos($item['attributes']['service'], 'like') !== false) {
                         $cart->comments = $item['attributes']['comments'];
                     }
                     $cart->order_id = $order->id;
                     $cart->save();
-
-                    // Log::info('Line API messaging:', $response);
                 }
 
                 $message = "📣  ออเดอร์ใหม่จากเว็บ GainLike‼️ \n\n - 📌 ตรวจสอบทันที!";
-
                 $postData = [
-                    'to' => $this->user_id, // remove this
+                    'to' => $this->user_id,
                     'messages' => [
                         [
                             'type' => 'text',
@@ -249,13 +261,9 @@ class PaymentController extends Controller
                 $response = curl_exec($ch);
                 curl_close($ch);
 
-                $responseLine = json_decode($response, true);
-
                 Log::info('Line message response:', $postData);
 
-
-                $user->wallet = $user->wallet - $request->price;
-                session('data')[0]->wallet = session('data')[0]->wallet - $request->price;
+                $user->wallet -= $subtotal;  // Deduct the subtotal from the user's wallet
                 $user->save();
 
                 Cart::clear();

@@ -4,6 +4,8 @@
 <div class="container-fluid">
   <div class="card">
     <div class="card-body p-4">
+      <h2 class="text-center text-dark ">ประวัติการสั่งซื้อ</h2>
+      <hr class="w-50 m-auto mb-3 fw-bold">
       <div class="d-sm-flex d-block align-items-center justify-content-between mb-3">
         <div class="row pt-3 col-md-6">
 
@@ -49,9 +51,18 @@
                   {{ count($order->cart) }} รายการ
                 </button>
               </td>
+              @if ($order->status == 'กำลังดำเนินการ')
               <td class="text-center">
+                <i class="ti ti-clock" style="color: #4260f5; font-size: 30px;"></i><br>
+
                 {{$order->status}}
               </td>
+              @else
+              <td class="text-center align-middle" style="height: 100%;">
+                <i class="ti ti-circle-check" style="color: #32c77f; font-size: 34px;"></i> <br>
+                {{$order->status}}
+              </td>
+              @endif
 
             </tr>
             @endforeach
@@ -99,7 +110,7 @@
     const modalContentEl = document.getElementById('modalItemsContent');
     let content = '<ul>';
     items.forEach(item => {
-      content += `<li>${item['item_name']} - x${item.amount} - ราคา ${item.price} บาท</li><hr></hr`;
+      content += `<li>${item['item_name']} - x${item.amount} - ราคา ${item.price} บาท - จำนวน ${item.quantity} ชิ้น</li><hr></hr`;
     });
     content += '</ul>';
     modalContentEl.innerHTML = content;

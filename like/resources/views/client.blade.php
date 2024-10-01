@@ -8,10 +8,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <!-- Link Thumbnail -->
-    <meta property="og:title" content="ARSD-SOCIAL">
-    <meta property="og:description" content="Official Website ของผู้ให้บริการการเพิ่มผู้ติดตามและการเพิ่มไลค์ระดับประเทศ">
-    <meta property="og:image" content="{{asset('images/banners/banner-01-620x360.png')}}">
+    <meta property="og:title" content="Gain Like-Services">
+    <meta property="og:description" content="Official Website ของผู้ให้บริการการเพิ่มผู้ติดตามและการเพิ่มไลก์ระดับประเทศ">
+    <meta property="og:image" content="https://gainlike-service.com/images/banners/message.jpg">
     <meta property="og:url" content="https://gainlike-service.com/">
+    <meta property="og:type" content="website">
 
     <!-- Preload and Link CSS and JS -->
     <link rel="preload" href="{{asset('components/base/base.css')}}" as="style">
@@ -40,6 +41,7 @@
 
         @include('header.clientheader')
         @yield('contents')
+        @include('footer.clientfooter')
 
 
 

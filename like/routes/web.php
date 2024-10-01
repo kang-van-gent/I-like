@@ -91,7 +91,7 @@ Route::get('/admin/delete-promotion/{id}', [MasterController::class, 'deleteProm
 Route::get('/admin/delete-blog/{id}', [MasterController::class, 'deleteblog']);
 
 
-Route::get('/payment', [PaymentController::class, 'showPaymentForm']);
+Route::get('/payment', [PaymentController::class, 'showPaymentForm'])->name('admin.payment');
 Route::post('/payment/create', [PaymentController::class, 'createOrder'])->name('payment.create');
 Route::get('/payment/return', [PaymentController::class, 'return'])->name('payment.return');
 Route::post('/payment/notify', [PaymentController::class, 'notify'])->name('payment.notify');

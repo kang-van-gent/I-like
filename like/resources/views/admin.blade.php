@@ -6,6 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Gain-Like</title>
     <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+
+    <!-- Link Thumbnail -->
+    <meta property="og:title" content="Gain Like-Services">
+    <meta property="og:description" content="Official Website ของผู้ให้บริการการเพิ่มผู้ติดตามและการเพิ่มไลก์ระดับประเทศ">
+    <meta property="og:image" content="https://gainlike-service.com/images/banners/message.jpg">
+    <meta property="og:url" content="https://gainlike-service.com/">
+    <meta property="og:type" content="website">
+
     <link rel="stylesheet" href="/src/assets/css/styles.min.css" />
     <link href="https://fonts.googleapis.com/css2?family=Line+Seed:wght@400;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
