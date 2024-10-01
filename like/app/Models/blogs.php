@@ -11,6 +11,6 @@ class blogs extends Model
     protected $table = 'blogs';
     function paragrahpDeck()
     {
-        return $this->hasMany(paragraphs::class, 'blogId');
+        return $this->hasMany(paragraphs::class, 'blog_id');
     }
 }

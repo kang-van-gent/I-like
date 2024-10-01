@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->details();
             $table->image();
-            $table->blogId();
+            $table->blog_id();
         });
     }
 

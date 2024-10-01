@@ -18,14 +18,14 @@
           <h2>{{$blog->topic}}</h2>
 
 
-          <figure class="figure text-center"><img class="lazy-img figure-img " src="{{ Storage::url($blog->headerImg) }}" data-src="{{ Storage::url($blog->headerImg) }}" alt="" width="840" height="540">
+          <figure class="figure text-center"><img class="lazy-img figure-img " src="{{ $blog->header_img}}" data-src="{{ $blog->header_img }}" alt="" width="840" height="540">
 
           </figure>
           @foreach($blog->paragrahpDeck as $paragraph )
           <p>
             <span>&emsp;&emsp;&emsp;&emsp;&emsp;{{$paragraph->details}}</span>
           </p>
-          <figure class="figure text-center"><img class="lazy-img figure-img" src="{{ Storage::url($paragraph->image) }}" data-src="{{ Storage::url($paragraph->image) }}" alt="" width="840" height="540">
+          <figure class="figure text-center"><img class="lazy-img figure-img" src="{{ $paragraph->img }}" data-src="{{ $paragraph->img }}" alt="" width="840" height="540">
           </figure>
           @endforeach
 
@@ -36,7 +36,7 @@
 
             @foreach($lastest as $post)
             <div class="col-sm-6">
-              <div class="post post-sm"><a class="post-img-link" href="post.html"><img class="lazy-img" src="{{ Storage::url($post->coverImage) }}" data-src="{{ Storage::url($post->coverImage) }}" alt="" width="400" height="257"></a>
+              <div class="post post-sm"><a class="post-img-link" href="post.html"><img class="lazy-img" src="{{ $post->cover_img }}" data-src="{{ $post->cover_img }}" alt="" width="400" height="257"></a>
                 <div class="post-meta">
                   <div class="post-meta-item"><span class="post-meta-icon int-clock novi-icon"></span><a class="post-meta-link" href="post.html">{{$post->created_at}}</a></div>
                 </div>

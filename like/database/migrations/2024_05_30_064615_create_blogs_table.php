@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('blog', function (Blueprint $table) {
             $table->id();
-            $table->coverImage();
-            $table->headerImg();
+            $table->cover_img();
+            $table->header_img();
             $table->topic();
             $table->details();
             $table->category();

@@ -38,6 +38,9 @@ Route::get('/developer', function () {
     return view('client.developer');
 });
 
+Route::get('/phpinfo', function () {
+    return view('phpinfo');
+});
 
 Route::get('/blogs', [HomeController::class, 'blogs']);
 Route::get('/post', [HomeController::class, 'post']);
