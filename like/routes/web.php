@@ -31,15 +31,12 @@ Route::get('/register', function () {
     return view('auth.register');
 });
 
-Route::get('/promotions', function () {
-    return view('client.promotion');
-});
+// Route::get('/promotions', function () {
+//     return view('client.promotion');
+// });
+
 Route::get('/developer', function () {
     return view('client.developer');
-});
-
-Route::get('/phpinfo', function () {
-    return view('phpinfo');
 });
 
 Route::get('/blogs', [HomeController::class, 'blogs']);
@@ -81,6 +78,10 @@ Route::get('/services/{productId}', [AdminController::class, 'store'])->name('se
 Route::get('/product/details', [AdminController::class, 'getProductByDetails'])->name('product.details');
 Route::post('/service/updateQuantity', [AdminController::class, 'updateQuantity'])->name('service.updateQuantity');
 Route::get('/remove-item/{productId}', [AdminController::class, 'removeItem'])->name('service.remove');
+Route::get('/promotions', [AdminController::class, 'promotions']);
+Route::get('/postPromotion', [AdminController::class, 'postPromotion']);
+Route::get('/packages', [AdminController::class, 'package']);
+Route::get('/postPackage', [AdminController::class, 'postPackage']);
 
 
 

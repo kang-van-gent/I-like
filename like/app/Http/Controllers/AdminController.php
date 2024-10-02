@@ -7,6 +7,7 @@ use App\Models\customer;
 use App\Models\orders;
 use App\Models\products;
 use App\Models\promotions;
+use App\Models\packages;
 use Illuminate\Http\Request;
 use Cart;
 use Illuminate\Support\Facades\DB;
@@ -498,5 +499,41 @@ class AdminController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+    public function promotions ()
+    {
+        if (session('data') == null) {
+            return redirect('/login');
+        }
+
+        $count = count(Cart::getContent());
+        $promotions = promotions::orderBy('id', 'desc')->get();
+        return view('admin.promotions', ['promotions' => $promotions, 'counting' => $count]);
+    }
+    public function postPromotion()
+    {
+        $id = request('id');
+        $count = count(Cart::getContent());
+        $promotions = promotions::find($id);
+        $lastest = promotions::take(2)->get();
+        return view('admin.postPromotion')->with(['promotions' => $promotions, 'counting' => $count, 'lastest' => $lastest]);
+    }
+    public function package ()
+    {
+        if (session('data') == null) {
+            return redirect('/login');
+        }
+
+        $count = count(Cart::getContent());
+        $package = packages::orderBy('id', 'desc')->get();
+        return view('admin.package', ['package' => $package, 'counting' => $count]);
+    }
+    public function postPackage()
+    {
+        $id = request('id');
+        $count = count(Cart::getContent());
+        $package = packages::find($id);
+        $lastest = packages::take(2)->get();
+        return view('admin.postPackage')->with(['package' => $package, 'counting' => $count, 'lastest' => $lastest]);
     }
 }
