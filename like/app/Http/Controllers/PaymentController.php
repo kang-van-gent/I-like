@@ -30,7 +30,7 @@ class PaymentController extends Controller
             return redirect('/login');
         }
         $id = session('data')[0]->id;
-        $user = Customer::find($id);
+        $user = customer::find($id);
         $count = count(Cart::getContent());
 
         $query = payment::where('user_id', $id);
@@ -126,7 +126,7 @@ class PaymentController extends Controller
                 $amountCredited += $bonus; // Add bonus to the credited amount
             }
 
-            $payment = new Payment();
+            $payment = new payment();
             $payment->amount = $amountCredited;
             $payment->type = $orderStatus['data']['channel'];
             $payment->status = $orderStatus['data']['result'];
@@ -140,7 +140,7 @@ class PaymentController extends Controller
                 if ($bonus > 0) {
                     $message .= ' ยินดีด้วยคุณได้รับโบนัส 5% จากการเติมเงินขั้นต่ำ 200!';
                 }
-                $customer = Customer::find(session('data')[0]->id);
+                $customer = customer::find(session('data')[0]->id);
                 $customer->wallet += $amountCredited;
                 session('data')[0]->wallet += $amountCredited;
                 $customer->save();
@@ -210,7 +210,7 @@ class PaymentController extends Controller
             ];
 
             $id = session('data')[0]->id;
-            $user = Customer::find($id);
+            $user = customer::find($id);
 
             if (empty($data)) {
                 throw new \Exception('ไม่พบสินค้าหรือบริการในตะกร้า กรุณาเพิ่มสินค้าหรือบริการ');
