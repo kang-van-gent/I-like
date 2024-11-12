@@ -31,7 +31,7 @@
 
             <div class="accent-box-text small group-15">
               <div>
-                <u class="fw-medium"><a class="link-inherit" href="#">ลืมรหัสผ่าน?</a></u>
+                <u class="fw-medium"><a class="link-inherit" href="reset-password">ลืมรหัสผ่าน?</a></u>
               </div>
               <div>ยังไม่ได้เป็นสมาชิก?
                 <u class="fw-medium"><a class="link-inherit" href="/register">สมัครสมาชิก</a></u>

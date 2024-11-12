@@ -48,6 +48,10 @@
                 <img src="{{ asset('src/assets/images/products/icon-SP.png') }}" alt="Shopee" style="width: 23px; height: 23px;">
                 Shopee
               </button>
+              <button type="button" class="btn btn-outline-primary {{ $platform == 'lemon8' ? 'active' : '' }}" onclick="applyFilters('lemon8')">
+                <!-- <img src="{{ asset('src/assets/images/products/icon-SP.png') }}" alt="lemon8" style="width: 23px; height: 23px;"> -->
+                Lemon8
+              </button>
             </div>
 
             <!-- Grid for larger screens -->
@@ -92,6 +96,12 @@
                 <button type="button" class="btn btn-outline-primary w-100 {{ $platform == 'shopee' ? 'active' : '' }}" onclick="applyFilters('shopee')">
                   <img src="{{ asset('src/assets/images/products/icon-SP.png') }}" alt="Shopee" style="width: 23px; height: 23px;">
                   Shopee
+                </button>
+              </div>
+              <div class="col">
+                <button type="button" class="btn btn-outline-primary w-100 {{ $platform == 'lemon8' ? 'active' : '' }}" onclick="applyFilters('lemon8')">
+                  <!-- <img src="{{ asset('src/assets/images/products/icon-SP.png') }}" alt="lemon8" style="width: 23px; height: 23px;"> -->
+                  Lemon8
                 </button>
               </div>
             </div>

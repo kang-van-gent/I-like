@@ -20,6 +20,7 @@
             <h5 class="post-title"><a href="{{ url('/post?id='.$b->id) }}">{{ $b->topic }}</a></h5>
 
             <div class="post-text">{{$b->details}}</div>
+            <div class="post-text">{{$b->tags}}</div>
             <div class="post-meta post-meta-between">
               <div class="post-meta-item"><a class="btn btn-secondary" href="{{ url('/post?id='.$b->id) }}">อ่านต่อ</a></div>
 

@@ -45,8 +45,12 @@ Route::get('/post', [HomeController::class, 'post']);
 
 // Authentication Controller
 Route::get('/login', [AuthenticateController::class, 'index']);
+Route::get('/reset-password', [AuthenticateController::class, 'resetPassword']);
+Route::get('/new-password', [AuthenticateController::class, 'newPassord']);
 Route::post('/checklogin', [AuthenticateController::class, 'login']);
+Route::post('/confirm-email', [AuthenticateController::class, 'confirmEmail']);
 Route::post('/regis', [AuthenticateController::class, 'register'])->name('auth.regis');
+Route::post('/update-password', [AuthenticateController::class, 'updatePassword'])->name('auth.updatePassword');
 Route::get('/logout', [AuthenticateController::class, 'logout']);
 
 // Client after login

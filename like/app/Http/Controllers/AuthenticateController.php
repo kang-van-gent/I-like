@@ -26,6 +26,7 @@ class AuthenticateController extends Controller
      */
     public function login(Request $request)
     {
+
         $request->validate([
             'username' => 'required',
             'password' => 'required',
@@ -69,7 +70,7 @@ class AuthenticateController extends Controller
             'password' => [
                 'required',
                 'min:8',
-                'regex:/^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])[a-zA-Z0-9]+$/', // Ensures at least one uppercase letter, one lowercase letter, one number, and no spaces or special characters
+                // 'regex:/^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])[a-zA-Z0-9]+$/', // Ensures at least one uppercase letter, one lowercase letter, one number, and no spaces or special characters
 
             ],
 
@@ -81,7 +82,7 @@ class AuthenticateController extends Controller
             'email.email' => 'กรุณากรอกอีเมลให้ถูกต้อง',
             'password.required' => 'กรุณากรอกรหัสผ่าน',
             'password.min' => 'รหัสผ่านต้องมีความยาวอย่างน้อย 8 ตัวอักษร',
-            'password.regex' => 'รหัสผ่านต้องมีอักษรตัวใหญ่อย่างน้อย 1 ตัว',
+            // 'password.regex' => 'รหัสผ่านต้องมีอักษรตัวใหญ่อย่างน้อย 1 ตัว',
 
         ]);
         if ($validator->fails()) {
@@ -118,6 +119,7 @@ class AuthenticateController extends Controller
         $data->email = $request->email;
         $data->confirmed = 1;
         $data->blocked = 0;
+        $data->wallet = 0;
         // $data->firstName = $request->firstName;
         // $data->lastName = $request->lastName;
         // $data->age = $request->age;
@@ -132,6 +134,94 @@ class AuthenticateController extends Controller
             'message' => 'ลงทะเบียนสำเร็จ',
             'data' => $data
         ], 201);
+    }
+
+    public function resetPassword()
+    {
+        //
+        if (session('data') != null) {
+            return redirect('/');
+        }
+        if (session('toReset') != null) {
+            session()->forget(['reset', 'toReset']);
+        }
+
+
+        return view('auth.request');
+    }
+
+    public function confirmEmail(Request $request)
+    {
+        //
+        if (session('data') != null) {
+            return redirect('/');
+        }
+
+        $request->validate([
+            'email' => 'required',
+        ]);
+
+        $admin = customer::where(['email' => $request->email])->count();
+
+        if ($admin > 0) {
+            $adminData = customer::where(['email' => $request->email])->get();
+
+            session(['reset' => true, 'toReset' => $adminData]);
+            return redirect('new-password');
+        } else {
+            return redirect('/reset-password')->with('error', 'ไม่พบอีเมลดังกล่าว กรุณาตรวจสอบความถูกต้องอีกครั้ง');
+        }
+    }
+
+    public function newPassord(Request $request)
+    {
+        if (session('data') != null) {
+            return redirect('/');
+        }
+        if (session('toReset') == null) {
+            return redirect('/reset-password');
+        }
+        return view('auth.newPassord');
+    }
+
+    public function updatePassword(Request $request)
+    {
+        if (session('data') != null) {
+            return redirect('/');
+        }
+
+
+        $validator = Validator::make($request->all(), [
+            'password' => [
+                'required',
+                'min:6'
+            ],
+
+        ], [
+            'password.required' => 'กรุณากรอกรหัสผ่าน',
+            'password.min' => 'รหัสผ่านต้องมีความยาวอย่างน้อย 6 ตัวอักษร',
+        ]);
+
+        $id = session('toReset')[0]->id;
+        $user = customer::find($id);
+        $user->password = sha1($request->password);
+        $user->save();
+
+
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => 'error',
+                'errors' => $validator->errors()
+            ], 400);
+        } else {
+            session()->forget(['reset', 'toReset']);
+
+            return response()->json([
+                'status' => 'success',
+                'message' => 'รีเซ็ตรหัสผ่านเสร็จสิ้น',
+                'data' => $user
+            ], 201);
+        }
     }
 
     /**

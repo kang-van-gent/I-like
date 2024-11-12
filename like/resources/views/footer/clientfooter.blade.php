@@ -10,7 +10,7 @@
                     <li class="list-inline-item small">Mon - Sun 08:00 AM - 06:00 PM</li>
                 </ul>
                 <div class="mt-2 mt-md-0">
-                    <a class="icon icon-xs icon-social int-facebook novi-icon me-3" href="#"></a>
+                    <a class="icon icon-xs icon-social int-facebook novi-icon me-3" href="https://www.facebook.com/profile.php?id=61557690340003"></a>
                     <a class="icon icon-xs icon-social int-instagram novi-icon" href="#"></a>
                 </div>
             </div>

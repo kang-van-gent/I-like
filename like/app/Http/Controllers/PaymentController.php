@@ -203,6 +203,7 @@ class PaymentController extends Controller
 
             $line_access_token = $short_access_token;
             $url = 'https://api.line.me/v2/bot/message/push';
+            // $url = 'https://api.line.me/v2/bot/message/boardcast';
 
             $headers = [
                 'Content-Type: application/json',
@@ -242,7 +243,7 @@ class PaymentController extends Controller
                     $cart->save();
                 }
 
-                $message = "📣  ออเดอร์ใหม่จากเว็บ GainLike‼️ \n\n - 📌 ตรวจสอบทันที!";
+                $message = "📣  ออเดอร์ใหม่จากเว็บ GainLike‼️ \n\n - 📌 ตรวจสอบทันที! \n\n admin.gainlike-service.com";
                 $postData = [
                     'to' => $this->user_id,
                     'messages' => [
