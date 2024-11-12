@@ -49,7 +49,7 @@
                 Shopee
               </button>
               <button type="button" class="btn btn-outline-primary {{ $platform == 'lemon8' ? 'active' : '' }}" onclick="applyFilters('lemon8')">
-                <!-- <img src="{{ asset('src/assets/images/products/icon-SP.png') }}" alt="lemon8" style="width: 23px; height: 23px;"> -->
+                <img src="{{ asset('src/assets/images/products/icon-L8.png') }}" alt="lemon8" style="width: 23px; height: 23px;">
                 Lemon8
               </button>
             </div>
@@ -100,7 +100,7 @@
               </div>
               <div class="col">
                 <button type="button" class="btn btn-outline-primary w-100 {{ $platform == 'lemon8' ? 'active' : '' }}" onclick="applyFilters('lemon8')">
-                  <!-- <img src="{{ asset('src/assets/images/products/icon-SP.png') }}" alt="lemon8" style="width: 23px; height: 23px;"> -->
+                  <img src="{{ asset('src/assets/images/products/icon-L8.png') }}" alt="lemon8" style="width: 23px; height: 23px;">
                   Lemon8
                 </button>
               </div>
@@ -124,6 +124,8 @@
               <img src="{{ asset('src/assets/images/products/tiktok.avif') }}" class="card-img-top" style="max-width: 100%; height: 150px; object-fit: contain;" alt="...">
               @elseif ($p->platform == 'twitter')
               <img src="{{ asset('src/assets/images/products/Banner-X.png') }}" class="card-img-top" style="max-width: 100%; height: 150px; object-fit: contain;" alt="...">
+              @elseif ($p->platform == 'lemon8')
+              <img src="{{ asset('src/assets/images/products/Banner-L8.png') }}" class="card-img-top" style="max-width: 100%; height: 150px; object-fit: contain;" alt="...">
               @else
               <img src="{{ asset('src/assets/images/products/Banner-SP.png') }}" class="card-img-top" style="max-width: 100%; height: 150px; object-fit: contain;" alt="...">
               @endif
@@ -195,17 +197,19 @@
 
           // Determine the platform image
           if (platform === 'facebook') {
-            platformImage = `<img src="{{ asset('src/assets/images/products/facebook.jpg') }}" class="card-img-top" style="max-width: 100%; height: 150px; object-fit: contain;" alt="Facebook Image">`;
+            platformImage = `<img src="{{ asset('src/assets/images/products/Banner-fB.png') }}" class="card-img-top" style="max-width: 100%; height: 150px; object-fit: contain;" alt="Facebook Image">`;
           } else if (platform === 'youtube') {
-            platformImage = `<img src="{{ asset('src/assets/images/products/youtube.webp') }}" class="card-img-top" style="max-width: 100%; height: 150px; object-fit: contain;" alt="YouTube Image">`;
+            platformImage = `<img src="{{ asset('src/assets/images/products/Banner-YT.png') }}" class="card-img-top" style="max-width: 100%; height: 150px; object-fit: contain;" alt="YouTube Image">`;
           } else if (platform === 'instagram') {
-            platformImage = `<img src="{{ asset('src/assets/images/products/instagram.webp') }}" class="card-img-top" style="max-width: 100%; height: 150px; object-fit: contain;" alt="Instagram Image">`;
+            platformImage = `<img src="{{ asset('src/assets/images/products/Banner-IG.png') }}" class="card-img-top" style="max-width: 100%; height: 150px; object-fit: contain;" alt="Instagram Image">`;
           } else if (platform === 'tiktok') {
             platformImage = `<img src="{{ asset('src/assets/images/products/tiktok.avif') }}" class="card-img-top" style="max-width: 100%; height: 150px; object-fit: contain;" alt="TikTok Image">`;
           } else if (platform === 'twitter') {
-            platformImage = `<img src="{{ asset('src/assets/images/products/twitter.jpg') }}" class="card-img-top" style="max-width: 100%; height: 150px; object-fit: contain;" alt="Twitter Image">`;
+            platformImage = `<img src="{{ asset('src/assets/images/products/Banner-X.png') }}" class="card-img-top" style="max-width: 100%; height: 150px; object-fit: contain;" alt="Twitter Image">`;
+          } else if (platform === 'lemon8') {
+            platformImage = `<img src="{{ asset('src/assets/images/products/Banner-L8.png') }}" class="card-img-top" style="max-width: 100%; height: 150px; object-fit: contain;" alt="TikTok Image">`;
           } else {
-            platformImage = `<img src="{{ asset('src/assets/images/products/shoppee.png') }}" class="card-img-top" style="max-width: 100%; height: 150px; object-fit: contain;" alt="Shopee Image">`;
+            platformImage = `<img src="{{ asset('src/assets/images/products/Banner-SP.png') }}" class="card-img-top" style="max-width: 100%; height: 150px; object-fit: contain;" alt="Shopee Image">`;
           }
 
           // Build the modal content in a card layout with 3 columns
