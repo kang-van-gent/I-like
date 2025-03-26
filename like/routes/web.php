@@ -114,3 +114,5 @@ Route::get('/payment/success', function () {
     // This route is just a dummy and does nothing
     return response()->json(['success' => 'Top up successfully']);
 })->name('payment.success');
+
+Route::post('/redeem-reward', [AdminController::class, 'redeemReward'])->name('admin.redeemReward');

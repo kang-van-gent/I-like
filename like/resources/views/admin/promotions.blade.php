@@ -8,18 +8,19 @@
     @if (count($promotions)>0)
     @foreach ( $promotions as $p )
     <div class="col-md-4">
-      {{-- <h5 class="card-title fw-semibold mb-4">Card</h5> --}}
-      <div class="card">
-        <div class="position-relative">
-          <a href="{{ url('/postPromotion?id='.$p->id) }}"><img src="{{ $p->cover_img }}" data-src="{{ $p->cover_img }}" href="{{ url('/postPromotion?id='.$p->id) }}" class="card-img-top rounded-0" alt="..."></a>
-
+      <div class="card h-100"> <!-- Added h-100 for full height -->
+        <div class="position-relative" style="height: 200px; overflow: hidden;"> <!-- Fixed height container -->
+          <a href="{{ url('/postPromotion?id='.$p->id) }}">
+            <img src="{{ $p->image_url }}"
+              data-src="{{ $p->image_url }}"
+              class="card-img-top rounded-0"
+              alt="..."
+              style="width: 100%; height: 100%; object-fit: cover;"> <!-- object-fit: cover ensures image fills space -->
+          </a>
         </div>
-        <div class="card-body">
-          {{-- <h5 class="card-title">Card title</h5> --}}
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-            the
-            card's content.</p>
-          <a href="{{ url('/postPromotion?id='.$p->id) }}" class="btn btn-primary">อ่านเพิ่มเติม</a>
+        <div class="card-body p-3 d-flex flex-column"> <!-- Added flex container -->
+          <p class="card-text flex-grow-1">{{$p->topic}}</p> <!-- flex-grow-1 allows text to fill available space -->
+          <a href="{{ url('/postPromotion?id='.$p->id) }}" class="btn btn-primary mt-auto">อ่านเพิ่มเติม</a>
         </div>
       </div>
     </div>

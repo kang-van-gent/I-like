@@ -99,7 +99,7 @@
                                     <td class="text-center">
                                         {{$history->amount}} บาท
                                     </td>
-                                    @if ($history->status == 'SUCCESS')'
+                                    @if ($history->status == 'paid')'
                                     <td class="text-center">
                                         <i class="ti ti-circle-check" style="color: #32c77f; font-size: 34px;"></i> <br>
 
@@ -108,7 +108,6 @@
                                     @else
                                     <td class="text-center">
                                         <i class="ti ti-circle-x" style="color: #f95858; font-size: 34px;"></i> <br>
-
 
                                         {{$history->status}}
                                     </td>

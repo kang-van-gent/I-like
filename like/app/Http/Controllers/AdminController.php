@@ -8,6 +8,7 @@ use App\Models\orders;
 use App\Models\products;
 use App\Models\promotions;
 use App\Models\packages;
+use App\Models\rewards;
 use Illuminate\Http\Request;
 use Cart;
 use Illuminate\Support\Facades\DB;
@@ -220,13 +221,16 @@ class AdminController extends Controller
         }
 
         $total = Cart::getTotal();
+        $sum = Cart::getTotal();
         $discount = 0;
-        $subtotal = $total;
 
         if ($total >= 200) {
             $discount = $total * 10 / 100;
-            $subtotal = $total - $discount;
+            $total = $total - $discount;
         }
+
+        $id = session('data')[0]->id;
+        $coupons = rewards::where('user', $id)->get();
 
         $items = Cart::getContent();
         $count = count($items);
@@ -234,9 +238,10 @@ class AdminController extends Controller
         return view('admin.buys', [
             'items' => $items,
             'total' => $total,
+            'sum' => $sum,
             'counting' => $count,
             'discount' => $discount,
-            'subtotal' => $subtotal
+            'coupons' => $coupons
         ]);
     }
     /**
@@ -500,7 +505,7 @@ class AdminController extends Controller
     {
         //
     }
-    public function promotions ()
+    public function promotions()
     {
         if (session('data') == null) {
             return redirect('/login');
@@ -518,7 +523,7 @@ class AdminController extends Controller
         $lastest = promotions::take(2)->get();
         return view('admin.postPromotion')->with(['promotions' => $promotions, 'counting' => $count, 'lastest' => $lastest]);
     }
-    public function package ()
+    public function package()
     {
         if (session('data') == null) {
             return redirect('/login');
@@ -535,5 +540,35 @@ class AdminController extends Controller
         $package = packages::find($id);
         $lastest = packages::take(2)->get();
         return view('admin.postPackage')->with(['package' => $package, 'counting' => $count, 'lastest' => $lastest]);
+    }
+
+    public function redeemReward(Request $request)
+    {
+        if (session('data') == null) {
+            return redirect('/login');
+        }
+
+
+
+        $id = session('data')[0]->id;
+        $findReward = rewards::where('user', '=', $id)->get();
+
+        if (count($findReward) > 0) {
+            return response()->json(['status' => 'recieved', 'message' => 'คุณได้รับรางวัลกิจกรรมไปแล้ว']);
+        } else {
+            $rewards = new rewards;
+            $rewards->user = $id;
+            $rewards->type = $request->input('type');
+            $rewards->unit = $request->input('unit');
+            $rewards->amount = $request->input('amount');
+            $rewards->descriptions = $request->input('descriptions');
+            $rewards->code = $request->input('code');
+            $rewards->limit = $request->input('limit');
+            $rewards->expired_date = $request->input('expired_date');
+            // $rewards->save();
+
+
+            return response()->json(['status' => 'success', 'request' => $findReward]);
+        }
     }
 }

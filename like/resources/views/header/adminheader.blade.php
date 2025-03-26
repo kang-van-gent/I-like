@@ -43,15 +43,15 @@
                             </span>
                             <span class="hide-menu">โปรโมชั่น</span>
                         </a>
-                    </li> 
-                    <li class="sidebar-item ">
+                    </li>
+                    <!-- <li class="sidebar-item ">
                         <a class="sidebar-link-primary " href="/packages" aria-expanded="false">
                             <span>
                                 <i class="ti ti-package"></i>
                             </span>
                             <span class="hide-menu">แพ็คเกจ</span>
                         </a>
-                    </li> 
+                    </li>  -->
                     <!-- <li class="sidebar-item ">
             <a class="sidebar-link " href="/affiliates" aria-expanded="false">
               <span>

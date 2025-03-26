@@ -6,6 +6,8 @@ use App\Models\customer;
 use App\Models\orders;
 use App\Models\payment;
 use App\Models\carts;
+use App\Models\promotions;
+use App\Models\rewards;
 use Cart;
 use Illuminate\Http\Request;
 use App\Services\KsherPayService;
@@ -178,100 +180,146 @@ class PaymentController extends Controller
 
     public function buy(Request $request)
     {
-        $data = json_decode($request->items, true);
-        $subtotal = $request->input('subtotal');  // Ensure the subtotal is passed in the request
+        $data = is_string($request->items) ? json_decode($request->items, true) : $request->items;
+        $subtotal = $request->input('total');  // Subtotal before applying the coupon
+        $coupon = $request->input('coupon');      // Coupon details passed in the request
 
         try {
-            $shortUrl = 'https://api.line.me/v2/oauth/accessToken';
-            $stur = [
-                'grant_type' => 'client_credentials',
-                'client_id' => $this->client_id,
-                'client_secret' => $this->client_secret,
-            ];
+            // Validate the coupon if provided
+            $discount = 0;
+            if ($coupon) {
+                $validCoupon = rewards::where('id', $coupon['id'])->where('limit', '>', 0)->first();
+                if (!$validCoupon) {
+                    throw new \Exception('คูปองไม่ถูกต้องหรือหมดอายุ');
+                }
 
-            $stch = curl_init($shortUrl);
-            curl_setopt($stch, CURLOPT_RETURNTRANSFER, true);
-            curl_setopt($stch, CURLOPT_POST, true);
-            curl_setopt($stch, CURLOPT_POSTFIELDS, http_build_query($stur));
-            $responsest = curl_exec($stch);
-            curl_close($stch);
+                // Calculate discount based on coupon type
+                if ($validCoupon->unit === 'percent') {
+                    $discount = ($subtotal * $validCoupon->amount) / 100;
+                } else {
+                    $discount = $validCoupon->amount;
+                }
 
-            $responseData = json_decode($responsest, true);
-            $short_access_token = $responseData['access_token'];
+                // Ensure discount doesn't exceed the subtotal
+                $discount = min($discount, $subtotal);
 
-            Log::info('short live token notification:', $responseData);
+                // Decrement the coupon limit
+                $validCoupon->decrement('limit');
+            }
 
-            $line_access_token = $short_access_token;
-            $url = 'https://api.line.me/v2/bot/message/push';
-            // $url = 'https://api.line.me/v2/bot/message/boardcast';
+            // Adjust the subtotal after applying the discount
+            $total = $subtotal - $discount;
 
-            $headers = [
-                'Content-Type: application/json',
-                'Authorization: Bearer ' . $line_access_token
-            ];
-
+            // Validate user wallet balance
             $id = session('data')[0]->id;
             $user = customer::find($id);
-
             if (empty($data)) {
                 throw new \Exception('ไม่พบสินค้าหรือบริการในตะกร้า กรุณาเพิ่มสินค้าหรือบริการ');
             }
-            if ($user->wallet < $subtotal) {
+            if ($user->wallet < $total) {
                 throw new \Exception('ยอดเงินไม่เพียงพอ กรุณาเติมเงิน');
-            } else {
-                $order = new orders();
-                $order->status = 'กำลังดำเนินการ';
-                $order->user_id = $id;
-                $order->price = $subtotal;
-                $order->save();
-
-                foreach ($data as $item) {
-                    $cart = new carts();
-                    $cart->item_id = $item['id'];
-                    $cart['item_name'] = $item['name'];
-                    $cart->price = $item['price'];
-                    $cart->amount = $item['attributes']['amount'];
-                    $cart->type = $item['attributes']['type'];
-                    $cart->service = $item['attributes']['service'];
-                    $cart->platform = $item['attributes']['platform'];
-                    $cart->link = $item['attributes']['link'];
-                    $cart->quantity = $item['quantity'];
-                    if ($item['attributes']['service'] == 'comment' || strpos($item['attributes']['service'], 'like') !== false) {
-                        $cart->comments = $item['attributes']['comments'];
-                    }
-                    $cart->order_id = $order->id;
-                    $cart->save();
-                }
-
-                $message = "📣  ออเดอร์ใหม่จากเว็บ GainLike‼️ \n\n - 📌 ตรวจสอบทันที! \n\n admin.gainlike-service.com";
-                $postData = [
-                    'to' => $this->user_id,
-                    'messages' => [
-                        [
-                            'type' => 'text',
-                            'text' => $message
-                        ]
-                    ]
-                ];
-
-                $ch = curl_init($url);
-                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                curl_setopt($ch, CURLOPT_POST, true);
-                curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-                curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($postData));
-                $response = curl_exec($ch);
-                curl_close($ch);
-
-                Log::info('Line message response:', $postData);
-
-                $user->wallet -= $subtotal;  // Deduct the subtotal from the user's wallet
-                $user->save();
-
-                Cart::clear();
-                return response()->json(['status' => 'success', 'message' => 'การสั่งซื้อสำเร็จแล้ว สามารถดูประวัติการสั่งซื้อได้ในประวัติการสั่งซื้อ'], 200);
             }
+
+            // Create order
+            $order = new orders();
+            $order->status = 'กำลังดำเนินการ';
+            $order->user_id = $id;
+            $order->price = $total; // Store the discounted total
+            // $order->coupon_id = $coupon['id'] ?? null; // Optionally store the coupon ID
+            // $order->discount = $discount; // Store the discount amount
+            $order->save();
+
+            // Add items to the order
+            foreach ($data as $item) {
+                $cart = new carts();
+                $cart->item_id = $item['id'];
+                $cart->item_name = $item['name'];
+                $cart->price = $item['price'];
+                $cart->amount = $item['attributes']['amount'];
+                $cart->type = $item['attributes']['type'];
+                $cart->service = $item['attributes']['service'];
+                $cart->platform = $item['attributes']['platform'];
+                $cart->link = $item['attributes']['link'];
+                $cart->quantity = $item['quantity'];
+                if ($item['attributes']['service'] === 'comment' || strpos($item['attributes']['service'], 'like') !== false) {
+                    $cart->comments = $item['attributes']['comments'];
+                }
+                $cart->order_id = $order->id;
+                $cart->save();
+            }
+
+            // Send Line notification
+            $line_access_token = $this->getLineAccessToken();
+            $message = "📣  ออเดอร์ใหม่จากเว็บ GainLike‼️ \n\n - 📌 ตรวจสอบทันที! \n\n admin.gainlike-service.com";
+            $this->sendLineNotification($line_access_token, $message);
+
+            // Deduct the total from the user's wallet
+            $user->wallet -= $total;
+            $user->save();
+
+            // Clear the cart
+            Cart::clear();
+
+            return response()->json([
+                'status' => 'success',
+                'message' => 'การสั่งซื้อสำเร็จแล้ว สามารถดูประวัติการสั่งซื้อได้ในประวัติการสั่งซื้อ'
+            ], 200);
         } catch (\Exception $e) {
-            return response()->json(['status' => 'error', 'message' => $e->getMessage(), 'data' => json_decode($request->items, true)], 400);
+            return response()->json([
+                'status' => 'error',
+                'message' => $e->getMessage(),
+                'data' => $data
+            ], 400);
         }
+    }
+
+    // Helper method to get Line Access Token
+    private function getLineAccessToken()
+    {
+        $shortUrl = 'https://api.line.me/v2/oauth/accessToken';
+        $stur = [
+            'grant_type' => 'client_credentials',
+            'client_id' => $this->client_id,
+            'client_secret' => $this->client_secret,
+        ];
+
+        $stch = curl_init($shortUrl);
+        curl_setopt($stch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($stch, CURLOPT_POST, true);
+        curl_setopt($stch, CURLOPT_POSTFIELDS, http_build_query($stur));
+        $response = curl_exec($stch);
+        curl_close($stch);
+
+        $responseData = json_decode($response, true);
+        return $responseData['access_token'] ?? null;
+    }
+
+    // Helper method to send Line Notification
+    private function sendLineNotification($accessToken, $message)
+    {
+        $url = 'https://api.line.me/v2/bot/message/push';
+        $headers = [
+            'Content-Type: application/json',
+            'Authorization: Bearer ' . $accessToken
+        ];
+        $postData = [
+            'to' => $this->user_id,
+            'messages' => [
+                [
+                    'type' => 'text',
+                    'text' => $message
+                ]
+            ]
+        ];
+
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($postData));
+        $response = curl_exec($ch);
+        curl_close($ch);
+
+        Log::info('Line message response:', ['response' => $response]);
     }
 }

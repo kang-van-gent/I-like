@@ -36,18 +36,14 @@
                 <img src="{{ asset('src/assets/images/products/icon-TT.png') }}" alt="Tiktok" style="width: 23px; height: 23px;">
                 Tiktok
               </button>
-              <button type="button" class="btn btn-outline-primary {{ $platform == 'twitter' ? 'active' : '' }}" onclick="applyFilters('twitter')">
-                <img src="{{ asset('src/assets/images/products/icon-X.png') }}" alt="Twitter" style="width: 23px; height: 23px;">
-                Twitter(X)
-              </button>
               <button type="button" class="btn btn-outline-primary {{ $platform == 'youtube' ? 'active' : '' }}" onclick="applyFilters('youtube')">
                 <img src="{{ asset('src/assets/images/products/icon-YT.png') }}" alt="Youtube" style="width: 23px; height: 23px;">
                 Youtube
               </button>
-              <button type="button" class="btn btn-outline-primary {{ $platform == 'shopee' ? 'active' : '' }}" onclick="applyFilters('shopee')">
+              <!-- <button type="button" class="btn btn-outline-primary {{ $platform == 'shopee' ? 'active' : '' }}" onclick="applyFilters('shopee')">
                 <img src="{{ asset('src/assets/images/products/icon-SP.png') }}" alt="Shopee" style="width: 23px; height: 23px;">
                 Shopee
-              </button>
+              </button> -->
               <button type="button" class="btn btn-outline-primary {{ $platform == 'lemon8' ? 'active' : '' }}" onclick="applyFilters('lemon8')">
                 <img src="{{ asset('src/assets/images/products/icon-L8.png') }}" alt="lemon8" style="width: 23px; height: 23px;">
                 Lemon8
@@ -81,23 +77,17 @@
                 </button>
               </div>
               <div class="col">
-                <button type="button" class="btn btn-outline-primary w-100 {{ $platform == 'twitter' ? 'active' : '' }}" onclick="applyFilters('twitter')">
-                  <img src="{{ asset('src/assets/images/products/icon-X.png') }}" alt="Twitter" style="width: 23px; height: 23px;">
-                  Twitter(X)
-                </button>
-              </div>
-              <div class="col">
                 <button type="button" class="btn btn-outline-primary w-100 {{ $platform == 'youtube' ? 'active' : '' }}" onclick="applyFilters('youtube')">
                   <img src="{{ asset('src/assets/images/products/icon-YT.png') }}" alt="Youtube" style="width: 23px; height: 23px;">
                   Youtube
                 </button>
               </div>
-              <div class="col">
+              <!-- <div class="col">
                 <button type="button" class="btn btn-outline-primary w-100 {{ $platform == 'shopee' ? 'active' : '' }}" onclick="applyFilters('shopee')">
                   <img src="{{ asset('src/assets/images/products/icon-SP.png') }}" alt="Shopee" style="width: 23px; height: 23px;">
                   Shopee
                 </button>
-              </div>
+              </div> -->
               <div class="col">
                 <button type="button" class="btn btn-outline-primary w-100 {{ $platform == 'lemon8' ? 'active' : '' }}" onclick="applyFilters('lemon8')">
                   <img src="{{ asset('src/assets/images/products/icon-L8.png') }}" alt="lemon8" style="width: 23px; height: 23px;">

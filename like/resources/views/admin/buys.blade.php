@@ -85,16 +85,20 @@
               <h5 class="card-title mb-9 fw-semibold">รวมทั้งหมด</h5>
               <div class="row align-items-center">
                 <div class="cols">
-                  <h4 class="fw-semibold mb-3 text-end">฿{{ number_format($total, 2) }}</h4>
+                  <h4 class="fw-semibold mb-3 text-end">฿{{ number_format($sum, 2) }}</h4>
                 </div>
+
                 <div class="d-grid gap-2">
                   @if($discount > 0)
                   <h6 class="fw-semibold mb-3 text-end text-success">ส่วนลด 10% : ฿{{ number_format($discount, 2) }}</h6>
-                  <h4 class="fw-semibold mb-3 text-end">ยอดสุทธิ : ฿{{ number_format($subtotal, 2) }}</h4>
-                  <button class="btn btn-primary" type="button" onclick="buy({{ $subtotal }})">ชำระเงิน</button>
-                  @else
-                  <button class="btn btn-primary" type="button" onclick="buy({{ $total }})">ชำระเงิน</button>
                   @endif
+                  <div id="selected-coupon-details" class="text-success text-end"></div>
+                  <h4 class="fw-semibold mb-3 text-end" id="total-display">
+                    ยอดสุทธิ : ฿{{ number_format($total, 2) }}
+                  </h4>
+                  <button class="btn btn-primary" type="button" onclick="buy({{ $total }})">ชำระเงิน</button>
+
+                  <button class="btn btn-info" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">เลือกใช้โค้ด</button>
                   <a href="/services" class="btn btn-outline-secondary" type="button">เลือกบริการเพิ่ม</a>
                 </div>
 
@@ -103,14 +107,183 @@
           </div>
         </div>
       </div>
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="card overflow-hidden">
+            <div class="card-body p-4">
+              <h5 class="card-title mb-9 fw-semibold">รายละเอียดเพิ่มเติม :</h5>
+              <div class="card-text">
+                <ul style="list-style-type: disc; padding-left: 20px;">
+                  <li>กำหนดเพศ</li>
+                  <li>กำหนดคำคอมเมนต์</li>
+                </ul>
+                <p>เช่น</p>
+                <p><strong>เพศชาย</strong></p>
+                <ol>
+                  <li>ซื้อสินค้าไปดูดีมากว่าเลยครับ</li>
+                </ol>
+                <p><strong>เพศหญิง</strong></p>
+                <ol>
+                  <li>บริการดี ใส่ใจลูกค้ามากค่ะ</li>
+                </ol>
+                <p><strong style="color: red;">หมายเหตุ:</strong> อย่าลืมเปิดช่องเป็นสาธารณะทุกครั้ง<br>
+                  ระยะประกัน: 30 วัน นับจากวันชำระบริการ</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">คูปองของฉัน</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        @if(count($coupons) > 0)
+        @foreach($coupons as $coupon)
+        @if($coupon->limit > 0)
+        <div class="card selectable-card mb-3" onclick="selectCard(this)" data-coupon='@json($coupon)'>
+          <div class="card-body">
+            <div class="radio-circle"></div>
+            <div>
+              <h5 class="card-title mb-1">{{ $coupon->descriptions }}</h5>
+              <p class="card-text text-muted">จำนวนสิทธิ์: {{ $coupon->limit }}</p>
+            </div>
+          </div>
+        </div>
+        @endif
+        @endforeach
+        @else
+        <p class="text-center">ไม่มีคูปองที่ใช้ได้ในขณะนี้</p>
+        @endif
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ปิด</button>
+        <button type="button" class="btn btn-primary" id="useCoupon" onclick="useCoupon({{$total}})">ใช้งาน</button>
+      </div>
     </div>
   </div>
 </div>
 
+<style>
+  /* Modern Card Hover and Active Effects */
+  .selectable-card {
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    border: 2px solid transparent;
+  }
+
+  .selectable-card:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  }
+
+  .selectable-card.active {
+    border-color: #0d6efd;
+    /* Primary color border for active */
+    box-shadow: 0 4px 20px rgba(13, 110, 253, 0.4);
+  }
+
+  .selectable-card .card-body {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .radio-circle {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid #6c757d;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s, border-color 0.2s;
+  }
+
+  .radio-circle.active {
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+  }
+
+  .radio-circle.active::before {
+    content: '';
+    width: 10px;
+    height: 10px;
+    background-color: white;
+    border-radius: 50%;
+  }
+</style>
+
 <script>
+  const items = @json($items); // Convert PHP $items into a JavaScript object
+  const coupons = @json($coupons); // Convert PHP $coupons into a JavaScript object
 </script>
 
 <script>
+  let selectedCoupon = null; // Global variable to store the selected coupon
+
+  function selectCard(card) {
+    // Remove active class from all cards
+    document.querySelectorAll('.selectable-card').forEach((item) => {
+      item.classList.remove('active');
+      item.querySelector('.radio-circle').classList.remove('active');
+    });
+
+    // Add active class to the selected card
+    card.classList.add('active');
+    card.querySelector('.radio-circle').classList.add('active');
+
+    // Retrieve coupon data from the card's data attribute
+    selectedCoupon = JSON.parse(card.getAttribute('data-coupon'));
+    console.log(selectedCoupon);
+
+  }
+
+  function useCoupon(total) {
+    if (!selectedCoupon) {
+      alert('กรุณาเลือกคูปองก่อนใช้งาน');
+      return;
+    }
+
+    // Calculate the discount based on coupon type
+    const discount =
+      selectedCoupon.unit === 'percent' ?
+      (total * (selectedCoupon.amount || 0)) / 100 :
+      selectedCoupon.amount || 0;
+
+    const discountedTotal = total - discount;
+
+    // Update coupon details in the UI
+    const couponDetails = document.getElementById('selected-coupon-details');
+    if (couponDetails) {
+      couponDetails.innerHTML = `
+      <p class="fw-semibold mb-3 text-end text-success">ใช้คูปอง: ${selectedCoupon.descriptions || 'ไม่มีคูปอง'}</p>
+      <p class="fw-semibold mb-3 text-end text-success">ส่วนลด: ฿${discount.toFixed(2)}</p>
+      
+    `;
+    }
+
+    // Update the subtotal display
+    const subtotalElement = document.getElementById('total-display');
+    if (subtotalElement) {
+      subtotalElement.textContent = `ยอดสุทธิ ฿${discountedTotal.toFixed(2)}`;
+    }
+
+    // Close the modal
+    const modal = document.getElementById('exampleModal');
+    const bootstrapModal = bootstrap.Modal.getInstance(modal);
+    bootstrapModal.hide();
+  }
+
   function updateQuantity(itemId, change) {
     $.ajax({
       url: '{{ route("service.updateQuantity") }}', // Update this to the correct route
@@ -189,68 +362,52 @@
   }
 
   async function buy(total) {
-    var items = '<?php echo $items; ?>'; // Ensure this is outputting correctly in JSON format.
-    var item = JSON.parse(items);
+    // Calculate the discount safely
+    console.log(total);
+
+    const discount =
+      selectedCoupon?.unit === 'percent' ?
+      (total * (selectedCoupon.amount || 0)) / 100 :
+      selectedCoupon?.amount || 0;
+
+    const discountedTotal = total - discount;
 
     try {
-      await validateComment(item);
-
+      await validateComment(items);
       Swal.fire({
         title: 'ยืนยัน',
-        text: `ยืนยันการชำระเงินจำนวน ${total} บาท`,
+        text: `ยืนยันการชำระเงินจำนวน ฿${discountedTotal.toFixed(2)}`,
         icon: 'info',
         showCancelButton: true,
         cancelButtonText: 'ยกเลิก',
         confirmButtonText: 'ชำระเงิน'
       }).then((result) => {
         if (result.isConfirmed) {
-          Swal.fire({
-            title: 'กำลังดำเนินการ...',
-            text: 'โปรดรอสักครู่',
-            allowOutsideClick: false,
-            showConfirmButton: false,
-            willOpen: () => {
-              Swal.showLoading()
-            }
-          });
-
           $.ajax({
             url: '{{ route("payment.buy") }}',
             type: 'POST',
             data: {
               _token: '{{ csrf_token() }}',
-              items: JSON.stringify(item),
-              subtotal: total
+              items: items, // Use the JavaScript items object
+              total: total,
+              coupon: selectedCoupon // Pass selected coupon to the server
             },
             success: function(response) {
-              Swal.close(); // Close the loading spinner
-              if (response.status == 'success') {
-                Swal.fire({
-                  title: 'สำเร็จ!',
-                  text: response.message,
-                  icon: 'success',
-                  confirmButtonText: 'รับทราบ'
-                }).then((response) => {
-                  if (response.isConfirmed) {
-                    window.location.reload();
-                  }
-                });
-              } else {
-                Swal.fire({
-                  title: 'ล้มเหลว!',
-                  text: 'เกิดข้อผิดพลาดกรุณาลองใหม่อีกครั้ง',
-                  icon: 'error',
-                  confirmButtonText: 'OK'
-                });
-              }
+              Swal.fire({
+                title: 'สำเร็จ!',
+                text: response.message,
+                icon: 'success',
+                confirmButtonText: 'ตกลง'
+              }).then(() => {
+                window.location.reload();
+              });
             },
             error: function(error) {
-              Swal.close(); // Close the loading spinner
               Swal.fire({
-                title: 'ล้มเหลว!',
+                title: 'เกิดข้อผิดพลาด',
                 text: error.responseJSON.message,
                 icon: 'error',
-                confirmButtonText: 'รับทราบ'
+                confirmButtonText: 'ตกลง'
               });
             }
           });
@@ -258,10 +415,10 @@
       });
     } catch (error) {
       Swal.fire({
-        title: 'กรุณาตรวจสอบ!',
+        title: 'กรุณาตรวจสอบ',
         text: error.message,
         icon: 'warning',
-        confirmButtonText: 'รับทราบ'
+        confirmButtonText: 'ตกลง'
       });
     }
   }

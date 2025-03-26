@@ -6,6 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self';"> -->
 
     <!-- Link Thumbnail -->
     <meta property="og:title" content="Gain Like-Services">
@@ -21,60 +22,36 @@
     <link rel="preload" href="{{asset('components/base/script.js')}}" as="script">
     <link rel="icon" href="{{asset('images/favicon.ico')}}" type="image/x-icon">
     <link rel="stylesheet" href="{{asset('components/base/base.css')}}">
-    <script src="{{asset('components/base/core.js')}}" defer></script>
-    <script src="{{asset('components/base/script.js')}}" defer></script>
+    <script src="{{ asset('components/base/core.js') }}" defer></script>
+    <script src="{{ asset('components/base/script.js') }}" defer></script>
     <script src="{{asset('components/base/bootstrap.min.js')}}" defer></script>
-    <script src="{{asset('components/base/popper.js')}}" defer></script>
+    <!-- <script src="{{asset('components/base/popper.js')}}" defer></script> -->
     <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
-
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glider-js@1/glider.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/glider-js@1/glider.min.js"></script>
-
-
-    <script>
-        ! function(f, b, e, v, n, t, s) {
-            if (f.fbq) return;
-            n = f.fbq = function() {
-                n.callMethod ?
-                    n.callMethod.apply(n, arguments) : n.queue.push(arguments)
-            };
-            if (!f._fbq) f._fbq = n;
-            n.push = n;
-            n.loaded = !0;
-            n.version = '2.0';
-            n.queue = [];
-            t = b.createElement(e);
-            t.async = !0;
-            t.src = v;
-            s = b.getElementsByTagName(e)[0];
-            s.parentNode.insertBefore(t, s)
-        }(window, document, 'script',
-            'https://connect.facebook.net/en_US/fbevents.js');
-        fbq('init', '1258849958481539');
-        fbq('track', 'PageView');
-    </script>
-    <noscript><img height="1" width="1" style="display:none"
-            src="https://www.facebook.com/tr?id=1258849958481539&ev=PageView&noscript=1" /></noscript>
-    <!-- End Meta Pixel Code -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <!-- Include Bootstrap CSS -->
+    <!-- Include Bootstrap and Popper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 
 </head>
+
+
 
 <body>
     <div class="page">
 
 
         @include('header.clientheader')
-        <script src="https://static.elfsight.com/platform/platform.js" async></script>
-        <div class="elfsight-app-05dfd155-aa3b-4df7-bad9-8a9b2c5e5e7a" data-elfsight-app-lazy></div>
+
         @yield('contents')
 
         @include('footer.clientfooter')
 
 
-
-
     </div>
+
+
+
     <!-- Page Loader-->
     <div class="page-loader bg-gradient-animated">
         <svg class="page-loader-progress" x="0px" y="0px" width="180" height="180" viewBox="0 0 180 180">
@@ -88,7 +65,7 @@
     </div>
     <div class="notifications-area" id="notifications-area"></div>
 
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 
 </body>
 
